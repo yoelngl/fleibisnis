@@ -128,4 +128,24 @@ return [
     'city' => 'Kota',
     'country' => 'Negara',
     'address' => 'Alamat',
+    'why-register' => 'Saya mendaftar Fleibisnis untuk?',
+
+    // Select 1
+    'looking-franchise' => 'Mencari peluang bisnis waralaba maupun peluang bisnis lainnya',
+    'looking-product' => 'Mencari produk dan layanan untuk usaha',
+    'looking-information' => 'Mengetahui informasi terkini mengenai peluang bisnis waralaba',
+    'networking' => 'Menambah jejaring',
+    'other' => 'Lain-lain',
+
+    // Select 2 
+    'range-franchise' => 'Budget atau nilai investasi dari Peluang Bisnis yang sedang dicari',
+
+    // Select 3
+    'below' => 'Dibawah IDR 100,000,000',
+    '100m-200m' => 'IDR 100,000,001 - IDR 200,000,000',
+    '200m-500m' => 'IDR 200,000,001 - IDR 500,000,000',
+    '500m-1b' => 'IDR 500,000,001 - IDR 1,000,000,000',
+    '1b-2b' => 'IDR 1,000,000,001 - IDR 2,000,000,000',
+    'above' => 'Diatas IDR 2,000,000,000',
+
 ];

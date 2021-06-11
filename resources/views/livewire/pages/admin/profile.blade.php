@@ -33,31 +33,40 @@
                 <div class="row with-forms">
                     <div class="col-md-6">
                         <label>{{ trans('message.full-name') }}</label>
-                        <input type="text" class="input-text" wire:model="fullname" placeholder="Alex Daniel" value="">
+                        <input type="text" wire:model="fullname" class="input-text" wire:model="fullname" placeholder="Alex Daniel" value="">
                     </div>
                     <div class="col-md-6">
                         <label>{{ trans('message.phone-number') }}</label>
-                        <input type="text" class="input-text" placeholder="08xx-xxxx-xxxx" value="">
+                        <input type="text" wire:model="phone_number" class="input-text" placeholder="08xx-xxxx-xxxx" value="">
                     </div>
                     <div class="col-md-6">
                         <label>{{ trans('message.email-bussines') }}</label>
-                        <input type="text" class="input-text" placeholder="test@example.com" value="">
+                        <input type="text" wire:model="email_bussines" class="input-text" placeholder="test@example.com" value="">
                     </div>
                     <div class="col-md-6">
                         <label>{{ trans('message.job-title') }}</label>
-                        <input type="text" class="input-text" placeholder="Account Manager" value="">
+                        <input type="text" wire:model="job_title" class="input-text" placeholder="Account Manager" value="">
                     </div>
                     <div class="col-md-6">
                         <label>{{ trans('message.city') }}</label>
-                        <input type="text" class="input-text" placeholder="Jakarta" value="">
+                        <input type="text" wire:model="city" class="input-text" placeholder="Jakarta" value="">
                     </div>
                     <div class="col-md-6">
                         <label>{{ trans('message.country') }}</label>
-                        <input type="text" class="input-text" placeholder="Indonesia" value="">
+                        <input type="text" wire:model="country" class="input-text" placeholder="Indonesia" value="">
+                    </div>
+                    <div class="col-md-4">
+                        <label>{{ trans('message.why-register') }}</label>
+                        <select wire:model="why-register" class="utf_chosen_select_single">
+                            <option value="" disabled>Choose your option</option>
+                            @foreach($why as $item)
+                                <option value="{{ $item }}">{{ $item['value'] }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-md-12">
                         <label>{{ trans('message.address') }}</label>
-                        <textarea name="notes" cols="30" rows="10">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti.</textarea>
+                        <textarea wire:model="address" cols="30" rows="10"></textarea>
                     </div>
                     </div>
                 </div>

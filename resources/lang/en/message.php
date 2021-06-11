@@ -127,6 +127,27 @@ return [
     'city' => 'City',
     'country' => 'Country',
     'address' => 'Address',
+    'why-register' => 'I signed up fleibisnis for?',
+
+    // Select 1
+    'looking-franchise' => 'Looking for franchise or business opportunities',
+    'looking-product' => 'Looking for products or services for personal store',
+    'looking-information' => 'Looking for information and industry knowledge of franchise or Bussines opportunities',
+    'networking' => 'Networking',
+    'other' => 'Others',
+
+    // Select 2 
+    'range-franchise' => 'Range of Franchise or bussines opportunities Values that I am looking for',
+
+    // Select 3
+    'below' => 'Below IDR 100,000,000',
+    '100m-200m' => 'IDR 100,000,001 - IDR 200,000,000',
+    '200m-500m' => 'IDR 200,000,001 - IDR 500,000,000',
+    '500m-1b' => 'IDR 500,000,001 - IDR 1,000,000,000',
+    '1b-2b' => 'IDR 1,000,000,001 - IDR 2,000,000,000',
+    'above' => 'Above IDR 2,000,000,000',
 
 
-];
+
+
+]; 
