@@ -17,6 +17,7 @@ class Profile extends Component
     public $address;
 
     public function mount(){
+        $data = [];
         $this->why = [
             'Mencari peluang bisnis waralaba maupun peluang bisnis lainnya' => trans('message.looking-franchise'),
             'Mencari produk dan layanan untuk usah' => trans('message.looking-product'),
@@ -24,7 +25,6 @@ class Profile extends Component
             'Menambah jejaring' => trans('networking'),
             'Lain-lain' => trans('others'),
         ];
-        dd($this->why);
 
     }
 

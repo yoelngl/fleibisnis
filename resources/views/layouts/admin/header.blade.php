@@ -2,7 +2,7 @@
     <div id="header" class="not-sticky">
       <div class="container">
         <div class="utf_left_side">
-          <div id="logo"> <a href="index_1.html"><img src="images/logo.png" alt=""></a> <a href="index_1.html" class="dashboard-logo">{{--  <img src="images/logo2.png" alt=""> --}} </a> </div>
+          <div id="logo"> <a href="index_1.html"><img src="{{ asset('images/logo-fleibisnis.png') }}"  alt=""></a> <a href="index_1.html" class="dashboard-logo"> <img src="{{ asset('images/logo-fleibisnis1.png') }}" style="width: 150px" alt=""> </a> </div>
           <div class="mmenu-trigger" style="background: none">
           </div>
           <div class="clearfix"></div>

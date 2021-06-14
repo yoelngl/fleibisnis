@@ -1,20 +1,23 @@
 <?php
 
-use App\Http\Controllers\AuthenticationController;
 use App\Http\Livewire\Pages\Home;
 use App\Http\Livewire\Pages\Event;
 use App\Http\Livewire\Pages\Expert;
 use App\Http\Livewire\Pages\Contact;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Pages\TodayNews;
 use Illuminate\Support\Facades\Session;
+use App\Http\Livewire\Auth\Master\Login;
 use App\Http\Livewire\Pages\Admin\Profile;
 use App\Http\Livewire\Pages\ExpertDetails;
 use App\Http\Livewire\Pages\RetailDirectory;
+use App\Http\Livewire\Pages\Master\Dashboard;
 use App\Http\Livewire\Pages\FranchiseDirectory;
 use App\Http\Controllers\VerificationController;
+use App\Http\Controllers\AuthenticationController;
 use App\Http\Livewire\Pages\Directory\RetailDetails;
+use App\Http\Livewire\Pages\Master\Retail\RetailForm;
+use App\Http\Livewire\Pages\Master\Retail\RetailIndex;
 use App\Http\Livewire\Pages\Directory\FranchiseDetails;
 
 /*
@@ -53,3 +56,12 @@ Route::GET('/retail-directory', RetailDirectory::class)->name('retail-directory'
 Route::GET('/retail-details',RetailDetails::class)->name('retail-details');
 Route::GET('/franchise-details',FranchiseDetails::class)->name('franchise-details');
 Route::GET('/events',Event::class)->name('events');
+
+Route::GET('/admin/master/login',Login::class)->name('admin.login');
+
+Route::middleware(['role:admin'])->group(function () {
+    Route::GET('/dashboard',Dashboard::class)->name('admin.dashboard');
+
+    Route::GET('/admin/retail-directory',RetailIndex::class)->name('admin.retail');
+    Route::GET('/admin/retail-directory/add',RetailForm::class)->name('admin.retail.add');
+});

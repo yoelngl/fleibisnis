@@ -22,6 +22,7 @@ class Login extends Component
         if(Auth::attempt(['email' => $this->email, 'password' => $this->password])){
             if(Auth::user()->verified == "0"){
                 session()->flash('warning',trans('message.not-verified'));
+                Auth::logout();
                 return redirect()->route('home');
             }else{
                 session()->flash('success',trans('message.login-success'));

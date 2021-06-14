@@ -134,11 +134,6 @@ body {font-family: 'Muli', sans-serif;}
             <tr>
               <td style="padding:0px;margin:0px;border-spacing:0;"><table class="wrapper" role="module" data-type="image" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="72aac1ba-9036-4a77-b9d5-9a60d9b05cba">
   <tbody>
-    <tr>
-      <td style="font-size:6px; line-height:10px; padding:0px 0px 0px 0px;" valign="top" align="center">
-        <img class="max-width" border="0" style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px;" width="29" alt="" data-proportionally-constrained="true" data-responsive="false" src="http://cdn.mcauto-images-production.sendgrid.net/954c252fedab403f/9200c1c9-b1bd-47ed-993c-ee2950a0f239/29x27.png" height="27">
-      </td>
-    </tr>
   </tbody>
 </table><table class="module" role="module" data-type="spacer" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="331cde94-eb45-45dc-8852-b7dbeb9101d7">
   <tbody>
@@ -150,9 +145,9 @@ body {font-family: 'Muli', sans-serif;}
 </table><table class="wrapper" role="module" data-type="image" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="d8508015-a2cb-488c-9877-d46adf313282">
   <tbody>
     <tr>
-      <td style="font-size:6px; line-height:10px; padding:0px 0px 0px 0px;" valign="top" align="center">
-        <img class="max-width" border="0" style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px;" width="95" alt="" data-proportionally-constrained="true" data-responsive="false" src="http://cdn.mcauto-images-production.sendgrid.net/954c252fedab403f/61156dfa-7b7f-4020-85f8-a586addf4288/95x33.png" height="33">
-      </td>
+        <td style="font-size:6px; line-height:10px; padding:0px 0px 0px 0px;" valign="top" align="center">
+            <img class="max-width" border="0" style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px;" width="160px" alt="" data-proportionally-constrained="true" data-responsive="false" src="https://ik.imagekit.io/gn496p48191/logo-fleibisnis_UBBG7Vjzx-.png" width="160px">
+        </td>
     </tr>
   </tbody>
 </table><table class="module" role="module" data-type="spacer" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="27716fe9-ee64-4a64-94f9-a4f28bc172a0">
@@ -171,7 +166,9 @@ body {font-family: 'Muli', sans-serif;}
 </table><table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="a10dcb57-ad22-4f4d-b765-1d427dfddb4e" data-mc-module-version="2019-10-22">
   <tbody>
     <tr>
-      <td style="padding:18px 30px 18px 30px; line-height:22px; text-align:inherit; background-color:#ffffff;" height="100%" valign="top" bgcolor="#ffffff" role="module-content"><div><div style="font-family: inherit; text-align: center"><span style="font-size: 18px">Please verify your email address to</span><span style="color: #000000; font-size: 18px; font-family: arial,helvetica,sans-serif"> get access to thousands of exclusive job listings</span><span style="font-size: 18px">.</span></div>
+      <td style="padding:18px 30px 18px 30px; line-height:22px; text-align:inherit; background-color:#ffffff;" height="100%" valign="top" bgcolor="#ffffff" role="module-content"><div><div style="font-family: inherit; text-align: center"><span style="font-size: 18px">You registered an account on Fleibisnis, before being able to use your account you need to verify that this is your email address by clicking the button!
+
+       </span></div>
 <div style="font-family: inherit; text-align: center"><span style="color: #f52084; font-size: 18px"><strong>Thank you!&nbsp;</strong></span></div><div></div></div></td>
     </tr>
   </tbody>
@@ -199,12 +196,7 @@ body {font-family: 'Muli', sans-serif;}
       </tr>
     </tbody>
   </table>
-                            <!--[if mso]>
-                        </td>
-                        </tr>
-                    </table>
-                    </center>
-                    <![endif]-->
+
                 </td>
                 </tr>
             </tbody></table>

@@ -58,9 +58,9 @@
                     <div class="col-md-4">
                         <label>{{ trans('message.why-register') }}</label>
                         <select wire:model="why-register" class="utf_chosen_select_single">
-                            <option value="" disabled>Choose your option</option>
-                            @foreach($why as $item)
-                                <option value="{{ $item }}">{{ $item['value'] }}</option>
+                            <option value="" selected>Choose your option</option>
+                            @foreach($why as $key => $value)
+                                <option value="{{ $key }}">{{ $value }}</option>
                             @endforeach
                         </select>
                     </div>
