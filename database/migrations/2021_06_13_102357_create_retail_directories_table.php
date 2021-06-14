@@ -18,7 +18,7 @@ class CreateRetailDirectoriesTable extends Migration
             $table->string('product_name');
             $table->string('slug')->unique();
             $table->string('product_type');
-            $table->integer('product_category')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->text('product_information');
             $table->text('product_spesification');
             $table->text('product_images');
@@ -38,6 +38,7 @@ class CreateRetailDirectoriesTable extends Migration
             $table->string('email_address')->nullable();
             $table->string('phone_numbers')->nullable();
             $table->string('enquiries')->nullable();
+            $table->integer('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

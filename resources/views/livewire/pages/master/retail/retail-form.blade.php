@@ -26,7 +26,7 @@
                     <ol class="breadcrumb">
                       <li class="breadcrumb-item">Main App
                       </li>
-                      <li class="breadcrumb-item"><a href="{{ route('admin.retail') }}"">Retail Directory</a>
+                      <li class="breadcrumb-item"><a href="{{ route('admin.retail') }}">Retail Directory</a>
                       </li>
                       <li class="breadcrumb-item active">Form
                       </li>
@@ -46,29 +46,30 @@
                     <h4 class="card-title">Retail Directory Form</h4>
                   </div>
                   <div class="card-body">
-                    <form class="mt-2" wire:submit.prevent="{{ isset($edit) ? 'updateNews("'.$edit->slug.'")' : 'createRetail' }}" >
+                    <form class="mt-2" wire:submit.prevent="createRetail">
 
                     <ul class="nav nav-pills nav-fill">
                       <li class="nav-item">
-                        <a class="nav-link active" id="product-tab-fill" data-toggle="pill" href="#product-fill" aria-expanded="true"
+                        <a class="nav-link {{ $tab == 'product' ? 'active' : '' }}" wire:click="$set('tab', 'product')" id="product-tab-fill" data-toggle="pill" href="#product-fill" aria-expanded="true"
                           >Product</a
                         >
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="company-tab-fill" data-toggle="pill" href="#company-fill" aria-expanded="false"
+                        <a class="nav-link {{ $tab == 'company' ? 'active' : '' }}" wire:click="$set('tab', 'company')" id="company-tab-fill" data-toggle="pill" href="#company-fill" aria-expanded="false"
                           >Company</a
                         >
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="user-tab-fill" data-toggle="pill" href="#user-fill" aria-expanded="false"
+                        <a class="nav-link {{ $tab == 'user' ? 'active' : '' }}" wire:click="$set('tab', 'user')" id="user-tab-fill" data-toggle="pill" href="#user-fill" aria-expanded="false"
                           >User</a
                         >
                       </li>
                     </ul>
-                    <div class="tab-content">
+                    <div class="tab-content" >
+
                       <div
                         role="tabpanel"
-                        class="tab-pane active"
+                        class="tab-pane {{ ($tab == 'product') ? 'active' : '' }}"
                         id="product-fill"
                         aria-labelledby="product-tab-fill"
                         aria-expanded="true"
@@ -81,7 +82,7 @@
                                     type="text"
                                     id="product_name"
                                     class="form-control"
-                                    wire:model="product_name"
+                                    wire:model.defer="product_name"
                                     placeholder="Product Name"
                                     />
                                 @error('product_name') <small class="text-danger">{{ $message }}</small> @enderror
@@ -91,7 +92,7 @@
                                 <div class="form-group mb-2">
                                     <label for="product_category">Product Category</label>
                                     <div wire:ignore>
-                                        <select id="product_category" wire:model="product_category" class="select2 form-control">
+                                        <select id="product_category" wire:model.defer="product_category" class="select2 form-control">
                                         <option value="" selected>-- Product Category --</option>
                                         @foreach($categories as $category)
                                             <option value="{{ $category->id }}" >{{ $category->title }}</option>
@@ -108,7 +109,7 @@
                                     type="text"
                                     id="product_type"
                                     class="form-control"
-                                    wire:model="product_type"
+                                    wire:model.defer="product_type"
                                     placeholder="Product Type"
                                     />
                                 @error('product_type') <small class="text-danger">{{ $message }}</small> @enderror
@@ -121,7 +122,7 @@
                                     type="text"
                                     id="price"
                                     class="form-control"
-                                    wire:model="price"
+                                    wire:model.defer="price"
                                     placeholder="Price"
                                     />
                                 @error('price') <small class="text-danger">{{ $message }}</small> @enderror
@@ -134,7 +135,7 @@
                                     type="text"
                                     id="product_type"
                                     class="form-control"
-                                    wire:model="guarantee"
+                                    wire:model.defer="guarantee"
                                     placeholder="Guarantee"
                                     />
                                 @error('guarantee') <small class="text-danger">{{ $message }}</small> @enderror
@@ -144,21 +145,21 @@
                             <div class="form-group mb-2" >
                                 <label>Product Information</label>
                                 <div wire:ignore>
-                                    <textarea id="product_information" wire:model="product_information"></textarea>
+                                    <textarea id="product_information"  wire:model.defer="product_information"></textarea>
                                 </div>
                                     @error('product_information') <small class="text-danger">{{ $message }}</small> @enderror
                             </div>
                             <div class="form-group mb-2" >
                                 <label>Product Features</label>
                                 <div wire:ignore>
-                                    <textarea id="product_features" wire:model="product_features"></textarea>
+                                    <textarea id="product_features" wire:model.defer="product_features"></textarea>
                                 </div>
                                     @error('product_features') <small class="text-danger">{{ $message }}</small> @enderror
                             </div>
                             <div class="form-group mb-2" >
                                 <label>Product Spesification</label>
                                 <div wire:ignore>
-                                    <textarea id="product_spesification" wire:model="product_spesification"></textarea>
+                                    <textarea id="product_spesification" wire:model.defer="product_spesification"></textarea>
                                 </div>
                                     @error('product_spesification') <small class="text-danger">{{ $message }}</small> @enderror
                             </div>
@@ -167,16 +168,22 @@
                             <div class="border rounded p-2">
                                 <h4 class="mb-1">Product Image</h4>
                                 <div class="media flex-column flex-md-row">
+
                                 <img
-                                <?php isset($edit->images) ? $data = 'storage/'.$edit->images
-                                                           : $data = 'backend-assets/images/slider/03.jpg' ?>
-                                    src="{{ asset($data) }}"
+                                  <?php if(isset($edit->images)) {
+                                      $data = 'storage/'.$edit->images;
+                                    }else if(isset($product_images)){
+                                      $datas = $product_images->temporaryUrl();
+                                    }else{
+                                      $data = 'backend-assets/images/slider/03.jpg';
+                                    }
+                                  ?>
+                                    src="{{ isset($product_images) ? $datas : asset($data) }}"
                                     id="blog-feature-image"
                                     class="rounded mr-2 mb-1 mb-md-0"
                                     width="170"
                                     height="110"
-                                    alt="News Form Images"
-                                    wire:ignore.self
+                                    alt="Retail Directory Form Images"
                                 />
                                 <div class="media-body" >
                                     <small class="text-muted">Recommended image resolution 1366x768, image size 10mb.</small>
@@ -186,8 +193,8 @@
                                     <div class="d-inline-block">
                                     <div class="form-group mb-0">
                                         <div class="custom-file" wire:ignore>
-                                            <input type="file" wire:model="product_images" class="custom-file-input" id="blogCustomFile" accept="image/*" />
-                                        <label class="custom-file-label" for="blogCustomFile">Choose file</label>
+                                            <input type="file" wire:model.defer="product_images" class="custom-file-input" id="blogCustomFiles" accept="image/*" />
+                                        <label class="custom-file-label" for="blogCustomFiles">Choose file</label>
                                         </div>
                                         @error('product_images') <small class="text-danger">{{ $message }}</small> @enderror
                                     </div>
@@ -198,22 +205,23 @@
                             </div>
                         </div>
                       </div>
+
                       <div
-                        class="tab-pane"
+                        class="tab-pane {{ ($tab == 'company') ? 'active' : '' }}"
                         id="company-fill"
                         role="tabpanel"
                         aria-labelledby="company-tab-fill"
                         aria-expanded="false"
                       >
                       <div class="row">
-                          <div class="col-md-4 col-12">
-                              <div class="form-group mb-2">
+                          <div class="col-md-12 col-12">
+                              <div class="form-group mb-2" >
                                   <label for="product_name">Company Name</label>
                                   <input
                                   type="text"
                                   id="company_name"
                                   class="form-control"
-                                  wire:model="company_name"
+                                  wire:model.defer="company_name"
                                   placeholder="Company Name"
                                   />
                               @error('company_name') <small class="text-danger">{{ $message }}</small> @enderror
@@ -226,7 +234,7 @@
                                   type="text"
                                   id="company_city"
                                   class="form-control"
-                                  wire:model="company_city"
+                                  wire:model.defer="company_city"
                                   placeholder="Company City"
                                   />
                               @error('company_city') <small class="text-danger">{{ $message }}</small> @enderror
@@ -239,10 +247,23 @@
                                   type="text"
                                   id="company_country"
                                   class="form-control"
-                                  wire:model="company_country"
+                                  wire:model.defer="company_country"
                                   placeholder="Company Country"
                                   />
                               @error('company_country') <small class="text-danger">{{ $message }}</small> @enderror
+                              </div>
+                          </div>
+                          <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                  <label for="product_type">Legal Entity</label>
+                                  <input
+                                  type="text"
+                                  id="legal_entity"
+                                  class="form-control"
+                                  wire:model.defer="legal_entity"
+                                  placeholder="Legal Entity"
+                                  />
+                              @error('legal_entity') <small class="text-danger">{{ $message }}</small> @enderror
                               </div>
                           </div>
                           <div class="col-12">
@@ -256,7 +277,7 @@
                             <div class="form-group mb-2" >
                                 <label>Company Information</label>
                                 <div wire:ignore>
-                                    <textarea id="company_information" wire:model="company_information"></textarea>
+                                    <textarea id="company_information" wire:model.defer="company_information"></textarea>
                                 </div>
                                     @error('company_information') <small class="text-danger">{{ $message }}</small> @enderror
                             </div>
@@ -265,9 +286,9 @@
                               <div class="form-group mb-2">
                                   <label for="product_category">Company Type</label>
                                   <div wire:ignore>
-                                      <select id="company_type" wire:model="company_type" class="select2 form-control">
+                                      <select id="company_type" wire:model.defer="company_type" class="select2 form-control">
                                       <option value="" selected>-- Company Type --</option>
-                                      @foreach($company_type as $key => $value)
+                                      @foreach($company_type_data as $value)
                                           <option value="{{ $value }}" >{{ $value }}</option>
                                       @endforeach
                                       </select>
@@ -279,9 +300,9 @@
                               <div class="form-group mb-2">
                                   <label for="product_category">Looking For?</label>
                                   <div wire:ignore>
-                                      <select id="looking_for" wire:model="looking_for" class="select2 form-control">
+                                      <select id="looking_for" wire:model.defer="looking_for" class="select2 form-control">
                                       <option value="" selected>-- Looking For? --</option>
-                                      @foreach($looking_for as $key => $value)
+                                      @foreach($looking_for_data as $key => $value)
                                           <option value="{{ $value }}" >{{ $value }}</option>
                                       @endforeach
                                       </select>
@@ -296,7 +317,7 @@
                                   type="text"
                                   id="whatsapp_contact"
                                   class="form-control"
-                                  wire:model="whatsapp_contact"
+                                  wire:model.defer="whatsapp_contact"
                                   placeholder="Whatsapp Contact"
                                   />
                               @error('whatsapp_contact') <small class="text-danger">{{ $message }}</small> @enderror
@@ -306,17 +327,6 @@
                           <div class="border rounded p-2">
                               <h4 class="mb-1">Catalog/Brochure</h4>
                               <div class="media flex-column flex-md-row">
-                              <img
-                              <?php isset($edit->images) ? $data = 'storage/'.$edit->images
-                                                         : $data = 'backend-assets/images/slider/03.jpg' ?>
-                                  src="{{ asset($data) }}"
-                                  id="blog-feature-image"
-                                  class="rounded mr-2 mb-1 mb-md-0"
-                                  width="170"
-                                  height="110"
-                                  alt="News Form Images"
-                                  wire:ignore.self
-                              />
                               <div class="media-body" >
                                   <small class="text-muted">Recommended image resolution 1366x768, image size 10mb.</small>
                                   <p class="my-50">
@@ -325,10 +335,10 @@
                                   <div class="d-inline-block">
                                   <div class="form-group mb-0">
                                       <div class="custom-file" wire:ignore>
-                                          <input type="file" wire:model="product_images" class="custom-file-input" id="blogCustomFile" accept="image/*" />
-                                      <label class="custom-file-label" for="blogCustomFile">Choose file</label>
+                                          <input type="file" wire:model.defer="catalog_brochure" class="custom-file-input" id="blogCustomFiless"/>
+                                      <label class="custom-file-label" for="blogCustomFiless">Choose file</label>
                                       </div>
-                                      @error('product_images') <small class="text-danger">{{ $message }}</small> @enderror
+                                      @error('catalog_brochure') <small class="text-danger">{{ $message }}</small> @enderror
                                   </div>
                                   </div>
                               </div>
@@ -337,8 +347,9 @@
                           </div>
                       </div>
                       </div>
+
                       <div
-                        class="tab-pane"
+                        class="tab-pane {{ ($tab == 'user') ? 'active' : '' }}"
                         id="user-fill"
                         role="tabpanel"
                         aria-labelledby="user-tab-fill"
@@ -352,7 +363,7 @@
                                   type="text"
                                   id="fullname"
                                   class="form-control"
-                                  wire:model="fullname"
+                                  wire:model.defer="fullname"
                                   placeholder="Full Name"
                                   />
                               @error('fullname') <small class="text-danger">{{ $message }}</small> @enderror
@@ -365,7 +376,7 @@
                                   type="email"
                                   id="email_address"
                                   class="form-control"
-                                  wire:model="email_address"
+                                  wire:model.defer="email_address"
                                   placeholder="Email Address"
                                   />
                               @error('email_address') <small class="text-danger">{{ $message }}</small> @enderror
@@ -378,10 +389,10 @@
                                   type="text"
                                   id="phone_number"
                                   class="form-control"
-                                  wire:model="phone_number"
+                                  wire:model.defer="phone_number"
                                   placeholder="Phone Number"
                                   />
-                              @error('price') <small class="text-danger">{{ $message }}</small> @enderror
+                              @error('phone_number') <small class="text-danger">{{ $message }}</small> @enderror
                               </div>
                           </div>
                           <div class="col-md-4 col-12">
@@ -391,7 +402,7 @@
                                   type="text"
                                   id="enquiries"
                                   class="form-control"
-                                  wire:model="enquiries"
+                                  wire:model.defer="enquiries"
                                   placeholder="Enquiries"
                                   />
                               @error('enquiries') <small class="text-danger">{{ $message }}</small> @enderror
@@ -401,8 +412,8 @@
                       </div>
                       <div class="col-12 mt-50">
                           <img src="{{ asset('icons/loading.gif') }}" wire:loading wire:target="{{ isset($edit) ? 'updateNews("'.$edit->slug.'")' : 'createRetail' }}" alt="" width="60px">
-                          <button type="submit" class="btn btn-primary mr-1" wire:loading.delay wire:loading.class="btn btn-secondary" wire:target="{{ isset($edit) ? 'updateNews("'.$edit->slug.'")' : 'createRetail' }}" wire:loading.attr="hidden"> Submit</button>
-                          <a href="{{ route('admin.retail') }}"  class="btn btn-danger"  wire:target="{{ isset($edit) ? 'updateNews("'.$edit->slug.'")' : 'createRetail' }}" wire:loading.class="btn btn-secondary" wire:loading.attr="hidden">Back</a>
+                          <button type="submit" class="btn btn-primary mr-1" wire:target="createRetail"> Submit</button>
+                          <a href="{{ route('admin.retail') }}" wire:target="createRetail"  class="btn btn-danger" wire:loading.class="btn btn-secondary" wire:loading.attr="hidden">Back</a>
                       </div>
                     </div>
                     </form>
@@ -419,13 +430,24 @@
 @push('scripts')
 <script src="{{ asset('backend-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
 <script src="{{ asset('backend-assets/js/scripts/pages/page-blog-edit.min.js') }}"></script>
-<script src="https://cdn.tiny.cloud/1/hbjeuw3i2rynhza5stqc8laavo0yd57y5q6chx8fr61bvmhr/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/hbjeuw3i2rynhza5stqc8laavo0yd57y5q6chx8fr61bvmhr/tinymce/5/tinymce.min.js" referrerpolicy="origin" wire:def></script>
 
 
 <script>
+      document.addEventListener('livewire:load', function () {
+           // Your JS here.
+       })
     $(document).on('change','#product_category',function(){
         console.log(this.value);
         @this.set('product_category', this.value);
+    });
+    $(document).on('change','#company_type',function(){
+        console.log(this.value);
+        @this.set('company_type', this.value);
+    });
+    $(document).on('change','#looking_for',function(){
+        console.log(this.value);
+        @this.set('looking_for', this.value);
     });
 
     tinymce.init({

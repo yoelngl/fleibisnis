@@ -33,54 +33,68 @@ Retail Directory
             <div class="content-detached content-left">
                 <div class="content-body"><!-- Blog List -->
                     <div class="blog-list-wrapper">
-                        <div class="row">
-                            <div class="col-md-6 col-12">
-                                <div class="card">
-                                <a href="page-blog-detail.html">
-                                    <img class="card-img-top img-fluid" src="../../../app-assets/images/slider/02.jpg" alt="Blog Post pic" />
-                                </a>
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                    <a href="page-blog-detail.html" class="blog-title-truncate text-body-heading"
-                                        >The Best Features Coming to iOS and Web design</a
-                                    >
-                                    </h4>
-                                    <div class="media">
-                                    <div class="avatar mr-50">
-                                        <img src="../../../app-assets/images/portrait/small/avatar-s-7.jpg" alt="Avatar" width="24" height="24" />
-                                    </div>
-                                    <div class="media-body">
-                                        <small class="text-muted mr-25">by</small>
-                                        <small><a href="javascript:void(0);" class="text-body">Ghani Pradita</a></small>
-                                        <span class="text-muted ml-50 mr-25">|</span>
-                                        <small class="text-muted">Jan 10, 2020</small>
-                                    </div>
-                                    </div>
-                                    <div class="my-1 py-25">
-                                    <a href="javascript:void(0);">
-                                        <div class="badge badge-pill badge-light-info mr-50">Quote</div>
-                                    </a>
-                                    <a href="javascript:void(0);">
-                                        <div class="badge badge-pill badge-light-primary">Fashion</div>
-                                    </a>
-                                    </div>
-                                    <p class="card-text blog-content-truncate">
-                                    Donut fruitcake soufflé apple pie candy canes jujubes croissant chocolate bar ice cream.
-                                    </p>
-                                    <hr />
-                                    <div class="d-flex justify-content-between align-items-center">
-                                    <a href="page-blog-detail.html#blogComment">
-                                        <div class="d-flex align-items-center">
-                                        <i data-feather="message-square" class="font-medium-1 text-body mr-50"></i>
-                                        <span class="text-body font-weight-bold">76 Comments</span>
-                                        </div>
-                                    </a>
-                                    <a href="page-blog-detail.html" class="font-weight-bold">Read More</a>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
+                      <div class="row">
+                      @if($retail->count())
+                        @foreach($retail as $item)
+                          <div class="col-md-4 col-12">
+                          <div class="card">
+                              <a href="#">
+                              <img class="card-img-top img-fluid" width="200" src="{{ asset('storage/'.$item->product_images) }}" alt="Blog Post pic" />
+                              </a>
+                              <div class="card-body">
+                              <h4 class="card-title">
+                                  <a href="page-blog-detail.html" class="blog-title-truncate text-body-heading">
+                                      {{ $item->product_name }}
+                                  </a>
+                              </h4>
+                              <div class="media">
+                                  <div class="avatar mr-50">
+                                  <img src="{{ asset('backend-assets/images/portrait/small/avatar-s-7.jpg') }}" alt="Avatar" width="24" height="24" />
+                                  </div>
+                                  <div class="media-body">
+                                  <small class="text-muted mr-25">by</small>
+                                  <small><a href="javascript:void(0);" class="text-body">{{ $item->user->username }}</a></small>
+                                  <span class="text-muted ml-50 mr-25">|</span>
+                                  <small class="text-muted">{{ $item->created_at->format('d F, Y') }}</small>
+                                  </div>
+                              </div>
+                              <div class="my-1 py-25">
+                                  <a wire:click="tags('{{ $item->category->slug }}')">
+                                  <div class="badge badge-light-primary mr-50">{{ $item->category->title }}</div>
+                                  </a>
+                              </div>
+                              <hr />
+                              <div class="d-flex justify-content-between align-items-center">
+                                  <a href="page-blog-detail.html#blogComment">
+                                  <div class="d-flex align-items-center">
+                                  </div>
+                                  </a>
+                                  <div>
+                                  <a href="page-blog-detail.html" class="font-weight-bold  mr-1">Details</a>
+                                  <a href="{{ route('admin.retail.edit',['slug' => $item->slug]) }}" class="font-weight-bold text-warning mr-1">Edit</a>
+                                  <a wire:click.prevent="$emit('deleteRetail','{{ $item->slug }}')" class="font-weight-bold text-danger mr-1">Delete</a>
+                                  </div>
+
+                              </div>
+                              </div>
+                          </div>
+                          </div>
+                        @endforeach
+                        @if($retail->hasMorePages())
+                        <div class="col-12 d-flex justify-content-center">
+                            <button class="btn btn-primary" wire:click="$emit('load-more')">Load more!</button>
                         </div>
+                        @endif
+                      @else
+                          <div class="col-12">
+                              <div class="alert alert-warning" role="alert">
+                              <div class="alert-body">
+                                  <strong>Warning:</strong> There is no retail here yet, please add retail by pressing the Create Retails button!
+                              </div>
+                              </div>
+                          </div>
+                      @endif
+                      </div>
                         <!--/ Blog List Items -->
                     </div>
                 </div>
@@ -160,6 +174,33 @@ Retail Directory
     <script>
         @include('vendor.helpers')
         $(document).ready(function () {
+          @this.on('deleteRetail', slug => {
+              Swal.fire({
+                  title: 'Are You Sure?',
+                  text: 'Retail will be deleted permanently!',
+                  icon: "warning",
+                  showCancelButton: true,
+                  confirmButtonColor: '#7367F0',
+                  cancelButtonColor: '#EA5455',
+                  confirmButtonText: 'Yes, Delete!'
+              }).then((result) => {
+              //if user clicks on delete
+                  if (result.value) {
+              // calling destroy method to delete
+                      @this.call('deleteRetail',slug)
+              // success response
+                      Swal.fire({title: 'Deleted',
+                              text: 'Retail successfully deleted!',
+                              icon: 'success'});
+                  } else {
+                      Swal.fire({
+                          title: 'Cancelled!',
+                          text: 'Retail delete Cancelled!',
+                          icon: 'error'
+                      });
+                  }
+              });
+          });
             @this.on('deleteCategory', slug => {
                 Swal.fire({
                     title: 'Are You Sure?',

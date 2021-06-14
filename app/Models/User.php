@@ -7,6 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\RetailDirectory;
 
 class User extends Authenticatable
 {
@@ -46,5 +47,9 @@ class User extends Authenticatable
 
     public function verifyUser(){
         return $this->hasOne(VerifyUser::class);
+    }
+
+    public function retail(){
+      return $this->hasMany(RetailDirectory::class, 'user_id');
     }
 }

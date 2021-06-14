@@ -64,4 +64,5 @@ Route::middleware(['role:admin'])->group(function () {
 
     Route::GET('/admin/retail-directory',RetailIndex::class)->name('admin.retail');
     Route::GET('/admin/retail-directory/add',RetailForm::class)->name('admin.retail.add');
+    Route::GET('/admin/retail/edit/{slug}',RetailForm::class)->name('admin.retail.edit');
 });

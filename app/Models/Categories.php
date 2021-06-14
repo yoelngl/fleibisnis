@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\RetailDirectory;
 
 class Categories extends Model
 {
@@ -17,6 +18,10 @@ class Categories extends Model
         'title',
         'slug'
     ];
+
+    public function retail(){
+      return $this->hasMany(RetailDirectory::class,'category_id');
+    }
 
     public function sluggable(): array
     {
