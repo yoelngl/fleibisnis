@@ -18,7 +18,7 @@ class CreateRetailDirectoriesTable extends Migration
             $table->string('product_name');
             $table->string('slug')->unique();
             $table->string('product_type');
-            $table->foreign('product_categories')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('product_category')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->text('product_information');
             $table->text('product_spesification');
             $table->text('product_images');
