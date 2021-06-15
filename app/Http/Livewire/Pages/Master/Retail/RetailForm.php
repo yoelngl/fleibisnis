@@ -108,11 +108,11 @@ class RetailForm extends Component
     {
         $company_type_data = [
             'Manufacture',
-            'Distributor/Agents',
+            'Distributors/Agents',
             'Retailers',
         ];
         $looking_for_data = [
-          'Distributor/Agents',
+          'Distributors/Agents',
           'Retailers',
           'Bussiness Owners'
         ];
