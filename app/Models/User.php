@@ -49,6 +49,11 @@ class User extends Authenticatable
         return $this->hasOne(VerifyUser::class);
     }
 
+    public function franchise(){
+      return $this->hasMany(FranchiseDirectory::class, 'user_id');
+
+    }
+
     public function retail(){
       return $this->hasMany(RetailDirectory::class, 'user_id');
     }

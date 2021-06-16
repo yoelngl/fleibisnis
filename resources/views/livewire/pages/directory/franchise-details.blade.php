@@ -231,3 +231,5 @@ Franchise Detail
         </div>
       </div>
 </div>
+@include('layouts.footer')
+

@@ -68,7 +68,6 @@
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
-    <script src="{{ asset('backend-assets/vendors/js/vendors.min.js') }}"></script>
     <script src="{{ asset('backend-assets/js/core/app-menu.min.js') }}"></script>
     <script src="{{ asset('backend-assets/js/core/app.min.js') }}"></script>
     <script src="{{ asset('backend-assets/js/scripts/customizer.min.js') }}"></script>

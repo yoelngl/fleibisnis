@@ -18,7 +18,7 @@ class CreateRetailDirectoriesTable extends Migration
             $table->string('product_name');
             $table->string('slug')->unique();
             $table->string('product_type');
-            $table->integer('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('category_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->text('product_information');
             $table->text('product_spesification');
             $table->text('product_images');
@@ -30,8 +30,9 @@ class CreateRetailDirectoriesTable extends Migration
             $table->string('company_address');
             $table->string('company_city');
             $table->string('company_country');
+            $table->text('company_information');
             $table->enum('company_type',['Manufacture','Distributors/Agents','Retailers']);
-            $table->enum('looking_for',['Distributors/Agents','Retailers','Business Owners']);
+            $table->enum('looking_for',['Distributors/Agents','Retailers','Bussiness Owners']);
             $table->text('brand_brochure');
             $table->string('brand_whatsapp')->nullable();
             $table->string('full_name')->nullable();

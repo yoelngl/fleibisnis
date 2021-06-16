@@ -19,6 +19,8 @@
 
         <li class=" nav-item {{ request()->is('admin/retail-directory') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.retail') }}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="home">Retail Directory</span></a>
         </li>
+        <li class=" nav-item {{ request()->is('admin/franchise-directory') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.franchise') }}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="home">Franchise Directory</span></a>
+        </li>
       </ul>
     </div>
   </div>

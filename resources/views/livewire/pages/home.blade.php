@@ -202,6 +202,8 @@
       </section>
 
 </div>
+@include('layouts.footer')
+
 
 @push('scripts')
 <script>

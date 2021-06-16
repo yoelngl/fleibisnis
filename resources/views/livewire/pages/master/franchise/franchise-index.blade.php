@@ -1,5 +1,5 @@
 @section('title')
-Retail Directory
+Franchise Directory
 @endsection
 <div>
     <div class="app-content content ">
@@ -10,12 +10,12 @@ Retail Directory
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h2 class="content-header-title float-left mb-0">Retail Directory</h2>
+                    <h2 class="content-header-title float-left mb-0">Franchise Directory</h2>
                     <div class="breadcrumb-wrapper">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a>
                         </li>
-                        <li class="breadcrumb-item active">Retail Directory
+                        <li class="breadcrumb-item active">Franchise Directory
                         </li>
                     </ol>
                     </div>
@@ -25,7 +25,7 @@ Retail Directory
             <div class="content-header-right text-md-right col-md-3 col-12 d-md-block ">
                 <div class="form-group breadcrumb-right">
                 <div class="dropdown">
-                    <a href="{{ route('admin.retail.add') }}" class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" >Create Retails</a>
+                    <a href="{{ route('admin.franchise.add') }}" class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" >Create Franchise</a>
                 </div>
                 </div>
             </div>
@@ -34,12 +34,12 @@ Retail Directory
                 <div class="content-body"><!-- Blog List -->
                     <div class="blog-list-wrapper">
                       <div class="row">
-                      @if($retail->count())
-                        @foreach($retail as $item)
+                      @if($franchise->count())
+                        @foreach($franchise as $item)
                           <div class="col-md-4 col-12">
                           <div class="card">
                               <a href="#">
-                              <img class="card-img-top img-fluid" width="200" src="{{ asset('storage/'.$item->product_images) }}" alt="Blog Post pic" />
+                              <img class="card-img-top img-fluid" width="200" src="{{ asset('storage/'.$item->brand_image) }}" alt="Blog Post pic" />
                               </a>
                               <div class="card-body">
                               <h4 class="card-title">
@@ -59,7 +59,7 @@ Retail Directory
                                   </div>
                               </div>
                               <div class="my-1 py-25">
-                                  <a wire:click="tags('{{ $item->category->slug }}')">
+                                  <a >
                                   <div class="badge badge-light-primary mr-50">{{ $item->category->title }}</div>
                                   </a>
                               </div>
@@ -72,7 +72,7 @@ Retail Directory
                                   <div>
                                   <a href="page-blog-detail.html" class="font-weight-bold  mr-1">Details</a>
                                   <a href="{{ route('admin.retail.edit',['slug' => $item->slug]) }}" class="font-weight-bold text-warning mr-1">Edit</a>
-                                  <a wire:click.prevent="$emit('deleteRetail','{{ $item->slug }}')" class="font-weight-bold text-danger mr-1">Delete</a>
+                                  <a wire:click.prevent="$emit('deleteFranchise','{{ $item->slug }}')" class="font-weight-bold text-danger mr-1">Delete</a>
                                   </div>
 
                               </div>
@@ -80,7 +80,7 @@ Retail Directory
                           </div>
                           </div>
                         @endforeach
-                        @if($retail->hasMorePages())
+                        @if($franchise->hasMorePages())
                         <div class="col-12 d-flex justify-content-center">
                             <button class="btn btn-primary" wire:click="$emit('load-more')">Load more!</button>
                         </div>
@@ -89,7 +89,7 @@ Retail Directory
                           <div class="col-12">
                               <div class="alert alert-warning" role="alert">
                               <div class="alert-body">
-                                  <strong>Warning:</strong> There is no retail here yet, please add retail by pressing the Create Retails button!
+                                  <strong>Warning:</strong> There is no franchise here yet, please add franchise by pressing the Create Franchise button!
                               </div>
                               </div>
                           </div>
@@ -174,10 +174,10 @@ Retail Directory
     <script>
         @include('vendor.helpers')
         $(document).ready(function () {
-          @this.on('deleteRetail', slug => {
+          @this.on('deleteFranchise', slug => {
               Swal.fire({
                   title: 'Are You Sure?',
-                  text: 'Retail will be deleted permanently!',
+                  text: 'Franchise will be deleted permanently!',
                   icon: "warning",
                   showCancelButton: true,
                   confirmButtonColor: '#7367F0',
@@ -187,15 +187,15 @@ Retail Directory
               //if user clicks on delete
                   if (result.value) {
               // calling destroy method to delete
-                      @this.call('deleteRetail',slug)
+                      @this.call('deleteFranchise',slug)
               // success response
                       Swal.fire({title: 'Deleted',
-                              text: 'Retail successfully deleted!',
+                              text: 'Franchise successfully deleted!',
                               icon: 'success'});
                   } else {
                       Swal.fire({
                           title: 'Cancelled!',
-                          text: 'Retail delete Cancelled!',
+                          text: 'Franchise delete Cancelled!',
                           icon: 'error'
                       });
                   }

@@ -193,6 +193,7 @@ Events
             </ul>
          </div>
     </div>
+    @include('layouts.footer')
 
 
 @push('scripts')

@@ -32,8 +32,9 @@
 
             @yield('content')
 
-          @include('layouts.footer')
         </div>
+        @livewireScripts()
+
 
         <!-- Scripts -->
         <script src="{{ asset('scripts/jquery-3.4.1.min.js') }}"></script>
@@ -76,7 +77,6 @@
                 </ul>
             </div>
         </div> --}}
-        @livewireScripts()
         @stack('scripts')
     </body>
 

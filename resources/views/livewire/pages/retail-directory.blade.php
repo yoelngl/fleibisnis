@@ -31,15 +31,15 @@
                 <div class="utf_layout_nav">  <a href="#" class="list active"><i class="fa fa-align-justify"></i></a> </div>
               </div>
               <div class="col-md-10 col-xs-10">
-                <div class="sort-by utf_panel_dropdown sort_by_margin float-right"> <a href="#">Investment</a>
+                {{-- <div class="sort-by utf_panel_dropdown sort_by_margin float-right"> <a href="#">Investment</a>
                   <div class="utf_panel_dropdown-content">
                     <input class="distance-radius" type="range" min="1" max="999" step="1" value="1" data-title="Select Range">
                     <div class="panel-buttons">
                       <button class="panel-apply">Apply</button>
                     </div>
                   </div>
-                </div>
-                <div class="sort-by">
+                </div> --}}
+                {{-- <div class="sort-by" wire:ignore>
                   <div class="utf_sort_by_select_item sort_by_margin">
                     <select data-placeholder="Merk" class="utf_chosen_select_single">
                       <option>Merk</option>
@@ -54,21 +54,14 @@
                       <option>Random Listings</option>
                     </select>
                   </div>
-                </div>
-                <div class="sort-by">
+                </div> --}}
+                <div class="sort-by" wire:ignore>
                   <div class="utf_sort_by_select_item sort_by_margin">
-                    <select data-placeholder="Categories" class="utf_chosen_select_single">
-                      <option>Categories</option>
-                      <option>Restaurant</option>
-                      <option>Health</option>
-                      <option>Hotels</option>
-                      <option>Real Estate</option>
-                      <option>Fitness</option>
-                      <option>Shopping</option>
-                      <option>Travel</option>
-                      <option>Shops</option>
-                      <option>Nightlife</option>
-                      <option>Events</option>
+                    <select wire:model="category_id" data-placeholder="Categories" id="categories" class="utf_chosen_select_single">
+                      <option value="">Categories</option>
+                      @foreach ($category as $item)
+                        <option value="{{ $item->id }}">{{ $item->title }}</option>
+                      @endforeach
                     </select>
                   </div>
                 </div>
@@ -76,7 +69,7 @@
                   <div class="utf_sort_by_select_item utf_search_map_section">
                     <div class="row with-forms">
                         <div class="col-md-12">
-                          <input type="text" placeholder="Search, Ex. Retail Boba" style="height: 40px" value=""/>
+                          <input type="text" placeholder="Search, Ex. Retail Boba" wire:model="search" style="height: 40px" value=""/>
                         </div>
                       </div>
                   </div>
@@ -84,129 +77,30 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-lg-12 col-md-12">
-                <div class="utf_listing_item-container list-layout"> <a href="{{ route('retail-details') }}" class="utf_listing_item">
-                  <div class="utf_listing_item-image">
-                      <img src="images/utf_listing_item-01.jpg" alt="">
-                      <span class="tag"><i class="im im-icon-Hotel"></i> REKOMENDASI</span>
-                  </div>
-                  <div class="utf_listing_item_content">
-                    <div class="utf_listing_item-inner">
-                      <h3>Gulda BBQ</h3>
-                      <span><i class="sl sl-icon-book-open"></i> Makanan dan Minuman</span>
-                      <span><i class="sl sl-icon-tag"></i> Rp. 100.000</span>
-                      <div class="utf_star_rating_section" data-rating="4.5">
-                        <div class="utf_counter_star_rating">(4.5)</div>
+                @foreach ($retail as $item)
+                <div class="col-lg-12 col-md-12">
+                    <div class="utf_listing_item-container list-layout"> <a href="{{ route('retail-details',['slug' => $item->slug]) }}" class="utf_listing_item">
+                      <div class="utf_listing_item-image">
+                          <img src="{{ asset('storage/'.$item->product_images) }}" alt="">
+                          <span class="tag"><i class="im im-icon-Hotel"></i> REKOMENDASI</span>
                       </div>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla.</p>
+                      <div class="utf_listing_item_content">
+                        <div class="utf_listing_item-inner">
+                          <h3>{{ $item->product_name }}</h3>
+                          <span><i class="sl sl-icon-book-open"></i> {{ $item->category->title }}</span>
+                          <span><i class="sl sl-icon-tag"></i> <b class="price">{{ $item->price }}</b> IDR</span>
+                          <p>{!! Str::limit($item->product_information, 200) !!}</p>
+                        </div>
+                      </div>
+                      </a>
                     </div>
                   </div>
-                  </a>
-                </div>
-              </div>
-              <div class="col-lg-12 col-md-12">
-                <div class="utf_listing_item-container list-layout"> <a href="{{ route('retail-details') }}" class="utf_listing_item">
-                  <div class="utf_listing_item-image">
-                      <img src="images/utf_listing_item-01.jpg" alt="">
-                      <span class="tag"><i class="im im-icon-Hotel"></i> REKOMENDASI</span>
-                  </div>
-                  <div class="utf_listing_item_content">
-                    <div class="utf_listing_item-inner">
-                      <h3>Gulda BBQ</h3>
-                      <span><i class="sl sl-icon-book-open"></i> Makanan dan Minuman</span>
-                      <span><i class="sl sl-icon-tag"></i> Rp. 100.000</span>
-                      <div class="utf_star_rating_section" data-rating="4.5">
-                        <div class="utf_counter_star_rating">(4.5)</div>
-                      </div>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla.</p>
-                    </div>
-                  </div>
-                  </a>
-                </div>
-              </div>
-              <div class="col-lg-12 col-md-12">
-                <div class="utf_listing_item-container list-layout"> <a href="{{ route('retail-details') }}" class="utf_listing_item">
-                  <div class="utf_listing_item-image">
-                      <img src="images/utf_listing_item-01.jpg" alt="">
-                      <span class="tag"><i class="im im-icon-Hotel"></i> REKOMENDASI</span>
-                  </div>
-                  <div class="utf_listing_item_content">
-                    <div class="utf_listing_item-inner">
-                      <h3>Gulda BBQ</h3>
-                      <span><i class="sl sl-icon-book-open"></i> Makanan dan Minuman</span>
-                      <span><i class="sl sl-icon-tag"></i> Rp. 100.000</span>
-                      <div class="utf_star_rating_section" data-rating="4.5">
-                        <div class="utf_counter_star_rating">(4.5)</div>
-                      </div>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla.</p>
-                    </div>
-                  </div>
-                  </a>
-                </div>
-              </div>
-              <div class="col-lg-12 col-md-12">
-                <div class="utf_listing_item-container list-layout"> <a href="{{ route('retail-details') }}" class="utf_listing_item">
-                  <div class="utf_listing_item-image">
-                      <img src="images/utf_listing_item-01.jpg" alt="">
-                      <span class="tag"><i class="im im-icon-Hotel"></i> REKOMENDASI</span>
-                  </div>
-                  <div class="utf_listing_item_content">
-                    <div class="utf_listing_item-inner">
-                      <h3>Gulda BBQ</h3>
-                      <span><i class="sl sl-icon-book-open"></i> Makanan dan Minuman</span>
-                      <span><i class="sl sl-icon-tag"></i> Rp. 100.000</span>
-                      <div class="utf_star_rating_section" data-rating="4.5">
-                        <div class="utf_counter_star_rating">(4.5)</div>
-                      </div>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla.</p>
-                    </div>
-                  </div>
-                  </a>
-                </div>
-              </div>
-              <div class="col-lg-12 col-md-12">
-                <div class="utf_listing_item-container list-layout"> <a href="{{ route('retail-details') }}" class="utf_listing_item">
-                  <div class="utf_listing_item-image">
-                      <img src="images/utf_listing_item-01.jpg" alt="">
-                      <span class="tag"><i class="im im-icon-Hotel"></i> REKOMENDASI</span>
-                  </div>
-                  <div class="utf_listing_item_content">
-                    <div class="utf_listing_item-inner">
-                      <h3>Gulda BBQ</h3>
-                      <span><i class="sl sl-icon-book-open"></i> Makanan dan Minuman</span>
-                      <span><i class="sl sl-icon-tag"></i> Rp. 100.000</span>
-                      <div class="utf_star_rating_section" data-rating="4.5">
-                        <div class="utf_counter_star_rating">(4.5)</div>
-                      </div>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla.</p>
-                    </div>
-                  </div>
-                  </a>
-                </div>
-              </div>
-              <div class="col-lg-12 col-md-12">
-                <div class="utf_listing_item-container list-layout"> <a href="{{ route('retail-details') }}" class="utf_listing_item">
-                  <div class="utf_listing_item-image">
-                      <img src="images/utf_listing_item-01.jpg" alt="">
-                      <span class="tag"><i class="im im-icon-Hotel"></i> REKOMENDASI</span>
-                  </div>
-                  <div class="utf_listing_item_content">
-                    <div class="utf_listing_item-inner">
-                      <h3>Gulda BBQ</h3>
-                      <span><i class="sl sl-icon-book-open"></i> Makanan dan Minuman</span>
-                      <span><i class="sl sl-icon-tag"></i> Rp. 100.000</span>
-                      <div class="utf_star_rating_section" data-rating="4.5">
-                        <div class="utf_counter_star_rating">(4.5)</div>
-                      </div>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla.</p>
-                    </div>
-                  </div>
-                  </a>
-                </div>
-              </div>
+                @endforeach
+
             </div>
+
             <div class="clearfix"></div>
-            <div class="row">
+            {{-- <div class="row">
               <div class="col-md-12">
                 <div class="utf_pagination_container_part margin-top-20 margin-bottom-70">
                   <nav class="pagination">
@@ -221,9 +115,8 @@
                   </nav>
                 </div>
               </div>
-            </div>
+            </div> --}}
           </div>
-
           <!-- Sidebar -->
           <div class="col-lg-4 col-md-4">
             <div class="sidebar">
@@ -250,3 +143,17 @@
         </div>
       </div>
 </div>
+@include('layouts.footer')
+
+@push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
+    <script>
+        $('#categories').on('change',function(){
+            @this.set('category_id',this.value);
+        });
+
+        $( '.price' ).mask('000.000.000',
+        {reverse: true}
+        );
+    </script>
+@endpush

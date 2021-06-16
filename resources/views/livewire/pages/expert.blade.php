@@ -183,6 +183,8 @@ Ask The Expert
         </div>
       </div>
 </div>
+@include('layouts.footer')
+
 
 @push('scripts')
 <script>

@@ -23,6 +23,10 @@ class Categories extends Model
       return $this->hasMany(RetailDirectory::class,'category_id');
     }
 
+    public function franchise(){
+        return $this->hasMany(FranchiseDirectory::class,'category_id');
+    }
+
     public function sluggable(): array
     {
         return [

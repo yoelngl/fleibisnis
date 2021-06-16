@@ -122,26 +122,42 @@ Retail Detail
             <div id="titlebar" class="utf_listing_titlebar">
               <li>
                 <div class="utf_list_box_listing_item">
-                    <div class="utf_list_box_listing_item-img"><a href="#"><img src="https://sc02.alicdn.com/kf/UTB8Ngyjj0oSdeJk43Owq6ya4XXaj/220034143/UTB8Ngyjj0oSdeJk43Owq6ya4XXaj.jpg" alt=""></a></div>
+                    <div class="utf_list_box_listing_item-img"><a href="#"><img src="{{ asset('storage/'.$data['product_images']) }}" alt=""></a></div>
                     <div class="utf_list_box_listing_item_content">
                     <div class="inner">
-                        <h3>Mesin Kasir</h3>
-                        <span><i class="im im-icon-Hotel"></i> Panasonic Tipe K5-27</span><br>
-                        <p>Mesin kasir sangat mudah dioperasikan lengkap dengan pelaporan stok, laporan harian dan kebutuhan kasir lainnya. Fitur sangat lengkap dan dapat dikoneksikan dengan LAN ataupun Bluetooth. </p>
-                    <p>Harga<b> Rp. 1.650.000</b></p><br><br></div>
+                        <h3>{{ $data['product_name'] }}</h3>
+                        <span><i class="im im-icon-Hotel"></i> {{ $data['product_type'] }}</span><br>
+                        <p>{!! $data['product_information'] !!} </p>
+                    <p>Harga<b> <b class="price">{{ $data['price'] }}</b> IDR</b></p><br><br></div>
                     </div>
                 </div>
-                <div class="buttons-to-right">
-                    <a href="#" class="button gray"><i class="fa fa-download"></i> Download Brochure</a>
 
-                </div>
                </li>
             </div>
-            <div id="utf_listing_overview" class="utf_listing_section" style="margin-bottom:377px">
-              <h3 class="utf_listing_headline_part margin-top-30 margin-bottom-30">{{ trans('message.spesification') }}</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam.</p>
+            <div class="row mb-2">
+                <div class="col-md-12">
+                    <h3 class="utf_listing_headline_part margin-top-30 margin-bottom-30">Product Details</h3>
+                  <div class="style-2">
+                    <div class="accordion">
+                      <h3><span class="ui-accordion-header-icon ui-icon ui-accordion-icon"></span><i class="sl sl-icon-plus"></i> {{ trans('message.spesification') }}</h3>
+                      <div>
+                        <p>{!! $data['product_spesification'] !!}</p>
+                      </div>
+                      <h3><span class="ui-accordion-header-icon ui-icon ui-accordion-icon"></span><i class="sl sl-icon-plus"></i> Product Features</h3>
+                      <div>
+                        <p>{!! $data['product_features'] !!}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <div style="margin-top: 20px">
+                <div class="row container " style=" margin-bottom: 130px">
+                    <a  href="{{ asset('storage/'.$data['brand_brochure']) }}" download class="button gray btn btn-sm"><i class="fa fa-download"></i> Download Brochure</a>
+                @auth
+                <a href="https://wa.me/{{ $data['brand_whatsapp'] }}" class="button gray btn btn-sm"><i class="fa fa-phone"></i> Whatsapp Contact</a>
+                @endauth
+                </div>
 
             </div>
              <div id="utf_listing_faq" class="utf_listing_section">
@@ -202,4 +218,14 @@ Retail Detail
         </div>
       </div>
 </div>
+@include('layouts.footer')
 
+@push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
+
+    <script>
+        $( '.price' ).mask('000.000.000',
+        {reverse: true}
+        );
+    </script>
+@endpush

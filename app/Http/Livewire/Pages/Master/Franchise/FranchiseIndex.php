@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\Pages\Master\Retail;
+namespace App\Http\Livewire\Pages\Master\Franchise;
 
-use App\Models\Categories;
 use Livewire\Component;
-use App\Models\RetailDirectory;
+use App\Models\Categories;
+use App\Models\FranchiseDirectory;
 use Illuminate\Support\Facades\Storage;
 
-
-class RetailIndex extends Component
+class FranchiseIndex extends Component
 {
     public $title;
     public $load_more = 6;
@@ -30,8 +29,6 @@ class RetailIndex extends Component
         $this->load_more = $this->load_more + 3;
     }
 
-
-
     public function categoriesAdd(){
         $this->validate();
 
@@ -40,34 +37,33 @@ class RetailIndex extends Component
         ]);
         session()->flash('success','Category added successfully!');
         $this->title = '';
-        return redirect()->route('admin.retail');
+        return redirect()->route('admin.franchise');
     }
 
     public function deleteCategory($slug){
         Categories::where('slug',$slug)->delete();
         session()->flash('success','Category deleted successfully');
-        return redirect()->route('admin.retail');
+        return redirect()->route('admin.franchise');
     }
 
     public function deleteRetail($slug){
-      $retail = RetailDirectory::where('slug',$slug)->first();
+      $franchise = FranchiseDirectory::where('slug',$slug)->first();
 
-      Storage::disk('public')->delete($retail['product_images']);
-      Storage::disk('public')->delete($retail['brand_brochure']);
+      Storage::disk('public')->delete($franchise['product_images']);
+      Storage::disk('public')->delete($franchise['brand_brochure']);
 
-      $retail->delete();
+      $franchise->delete();
 
-      session()->flash('success','Retail deleted successfully');
-      return redirect()->route('admin.retail');
+      session()->flash('success','Franchise deleted successfully');
+      return redirect()->route('admin.franchise');
     }
-
 
     public function render()
     {
         $searchTerm = '%' . $this->search . '%';
 
-        $retail = RetailDirectory::with('category','user')->where('product_name','like',$searchTerm)->paginate($this->load_more);
+        $franchise = FranchiseDirectory::with('category','user')->where('brand_name','like',$searchTerm)->paginate($this->load_more);
         $categories = Categories::all();
-        return view('livewire.pages.master.retail.retail-index',compact('retail','categories'))->extends('layouts.master.app')->section('content');
+        return view('livewire.pages.master.franchise.franchise-index',compact('franchise','categories'))->extends('layouts.master.app')->section('content');
     }
 }

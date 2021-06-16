@@ -19,6 +19,8 @@ use App\Http\Livewire\Pages\Directory\RetailDetails;
 use App\Http\Livewire\Pages\Master\Retail\RetailForm;
 use App\Http\Livewire\Pages\Master\Retail\RetailIndex;
 use App\Http\Livewire\Pages\Directory\FranchiseDetails;
+use App\Http\Livewire\Pages\Master\Franchise\FranchiseForm;
+use App\Http\Livewire\Pages\Master\Franchise\FranchiseIndex;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,7 +55,7 @@ Route::GET('/today-news',TodayNews::class)->name('today-news');
 Route::GET('/contact',Contact::class)->name('contact');
 Route::GET('/franchise-directory', FranchiseDirectory::class)->name('franchise-directory');
 Route::GET('/retail-directory', RetailDirectory::class)->name('retail-directory');
-Route::GET('/retail-details',RetailDetails::class)->name('retail-details');
+Route::GET('/retail-details/{slug}',RetailDetails::class)->name('retail-details');
 Route::GET('/franchise-details',FranchiseDetails::class)->name('franchise-details');
 Route::GET('/events',Event::class)->name('events');
 
@@ -65,4 +67,8 @@ Route::middleware(['role:admin'])->group(function () {
     Route::GET('/admin/retail-directory',RetailIndex::class)->name('admin.retail');
     Route::GET('/admin/retail-directory/add',RetailForm::class)->name('admin.retail.add');
     Route::GET('/admin/retail/edit/{slug}',RetailForm::class)->name('admin.retail.edit');
+
+    Route::GET('/admin/franchise-directory',FranchiseIndex::class)->name('admin.franchise');
+    Route::GET('/admin/franchise-directory/add',FranchiseForm::class)->name('admin.franchise.add');
+    Route::GET('/admin/franchise/edit/{slug}',FranchiseForm::class)->name('admin.franchise.edit');
 });
