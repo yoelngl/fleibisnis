@@ -30,8 +30,6 @@ class RetailIndex extends Component
         $this->load_more = $this->load_more + 3;
     }
 
-
-
     public function categoriesAdd(){
         $this->validate();
 
@@ -66,7 +64,7 @@ class RetailIndex extends Component
     {
         $searchTerm = '%' . $this->search . '%';
 
-        $retail = RetailDirectory::with('category','user')->where('product_name','like',$searchTerm)->paginate($this->load_more);
+        $retail = RetailDirectory::with('category','user')->where('product_name','like',$searchTerm)->latest()->paginate($this->load_more);
         $categories = Categories::all();
         return view('livewire.pages.master.retail.retail-index',compact('retail','categories'))->extends('layouts.master.app')->section('content');
     }

@@ -31,44 +31,33 @@
                 <div class="utf_layout_nav">  <a href="#" class="list active"><i class="fa fa-align-justify"></i></a> </div>
               </div>
               <div class="col-md-10 col-xs-10">
-                <div class="sort-by utf_panel_dropdown sort_by_margin float-right"> <a href="#">Investment</a>
-                  <div class="utf_panel_dropdown-content">
-                    <input class="distance-radius" type="range" min="1" max="999" step="1" value="1" data-title="Select Range">
-                    <div class="panel-buttons">
-                      <button class="panel-apply">Apply</button>
-                    </div>
-                  </div>
-                </div>
                 <div class="sort-by">
-                  <div class="utf_sort_by_select_item sort_by_margin">
-                    <select data-placeholder="Asal Merek" class="utf_chosen_select_single">
-                      <option>Merk</option>
-                      <option>Latest Listings</option>
-                      <option>Popular Listings</option>
-                      <option>Price (Low to High)</option>
-                      <option>Price (High to Low)</option>
-                      <option>Highest Reviewe</option>
-                      <option>Lowest Reviewe</option>
-                      <option>Newest Listing</option>
-                      <option>Oldest Listing</option>
-                      <option>Random Listings</option>
+                  <div class="utf_sort_by_select_item sort_by_margin" wire:ignore>
+                    <select data-placeholder="Investment" id="investments" class="utf_chosen_select_single">
+                      <option value="">Investment</option>
+                      @foreach ($investment as $value)
+                        <option value="{{ $value }}">{{ $value }}</option>
+                      @endforeach
                     </select>
                   </div>
                 </div>
                 <div class="sort-by">
-                  <div class="utf_sort_by_select_item sort_by_margin">
-                    <select data-placeholder="Categories" class="utf_chosen_select_single">
-                      <option>Categories</option>
-                      <option>Restaurant</option>
-                      <option>Health</option>
-                      <option>Hotels</option>
-                      <option>Real Estate</option>
-                      <option>Fitness</option>
-                      <option>Shopping</option>
-                      <option>Travel</option>
-                      <option>Shops</option>
-                      <option>Nightlife</option>
-                      <option>Events</option>
+                  <div class="utf_sort_by_select_item sort_by_margin" wire:ignore>
+                    <select data-placeholder="Origins" id="origins" class="utf_chosen_select_single" >
+                      <option value="">Origins</option>
+                      @foreach ($origin as $key => $value)
+                        <option value="{{ $key }}">{{ $value }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
+                <div class="sort-by">
+                  <div class="utf_sort_by_select_item sort_by_margin" wire:ignore>
+                    <select data-placeholder="Categories" id="categories"  class="utf_chosen_select_single">
+                      <option value="">Categories</option>
+                      @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->title }}</option>
+                      @endforeach
                     </select>
                   </div>
                 </div>
@@ -76,7 +65,7 @@
                   <div class="utf_sort_by_select_item utf_search_map_section">
                     <div class="row with-forms">
                         <div class="col-md-12">
-                          <input type="text" placeholder="Search, Ex. Franchise Boba" style="height: 40px" value=""/>
+                          <input type="text" wire:model="search" placeholder="Search, Ex. Franchise Boba" style="height: 40px" value=""/>
                         </div>
                       </div>
                   </div>
@@ -84,144 +73,31 @@
               </div>
             </div>
             <div class="row">
+              @foreach ($franchises as $franchise)
               <div class="col-lg-12 col-md-12">
-                <div class="utf_listing_item-container list-layout"> <a href="{{ route('franchise-details') }}" class="utf_listing_item">
+                <div class="utf_listing_item-container list-layout"> <a href="{{ route('franchise-details',['slug' => $franchise->slug]) }}" class="utf_listing_item">
                   <div class="utf_listing_item-image">
-                      <img src="images/utf_listing_item-01.jpg" alt="">
+                      <img src="{{ asset('storage/'.$franchise->brand_image) }}" alt="">
                       <span class="tag"><i class="im im-icon-Hotel"></i> REKOMENDASI</span>
                   </div>
                   <div class="utf_listing_item_content">
                     <div class="utf_listing_item-inner">
-                      <h3>Gulda BBQ</h3>
-                      <span><i class="sl sl-icon-book-open"></i> Makanan dan Minuman</span>
-                      <span><i class="sl sl-icon-tag"></i> Rp. 100.000</span>
-                      <div class="utf_star_rating_section" data-rating="4.5">
-                        <div class="utf_counter_star_rating">(4.5)</div>
-                      </div>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla.</p>
+                      <h3>{{ $franchise->brand_name }}</h3>
+                      <span><i class="sl sl-icon-book-open"></i> {{ $franchise->category->title }}</span>
+
+                      <p>{!! Str::limit($franchise->brand_information,250) !!}</p>
                     </div>
                   </div>
                   </a>
                 </div>
               </div>
-              <div class="col-lg-12 col-md-12">
-                <div class="utf_listing_item-container list-layout"> <a href="{{ route('franchise-details') }}" class="utf_listing_item">
-                  <div class="utf_listing_item-image">
-                      <img src="images/utf_listing_item-01.jpg" alt="">
-                      <span class="tag"><i class="im im-icon-Hotel"></i> REKOMENDASI</span>
-                  </div>
-                  <div class="utf_listing_item_content">
-                    <div class="utf_listing_item-inner">
-                      <h3>Gulda BBQ</h3>
-                      <span><i class="sl sl-icon-book-open"></i> Makanan dan Minuman</span>
-                      <span><i class="sl sl-icon-tag"></i> Rp. 100.000</span>
-                      <div class="utf_star_rating_section" data-rating="4.5">
-                        <div class="utf_counter_star_rating">(4.5)</div>
-                      </div>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla.</p>
-                    </div>
-                  </div>
-                  </a>
-                </div>
-              </div>
-              <div class="col-lg-12 col-md-12">
-                <div class="utf_listing_item-container list-layout"> <a href="{{ route('franchise-details') }}" class="utf_listing_item">
-                  <div class="utf_listing_item-image">
-                      <img src="images/utf_listing_item-01.jpg" alt="">
-                      <span class="tag"><i class="im im-icon-Hotel"></i> REKOMENDASI</span>
-                  </div>
-                  <div class="utf_listing_item_content">
-                    <div class="utf_listing_item-inner">
-                      <h3>Gulda BBQ</h3>
-                      <span><i class="sl sl-icon-book-open"></i> Makanan dan Minuman</span>
-                      <span><i class="sl sl-icon-tag"></i> Rp. 100.000</span>
-                      <div class="utf_star_rating_section" data-rating="4.5">
-                        <div class="utf_counter_star_rating">(4.5)</div>
-                      </div>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla.</p>
-                    </div>
-                  </div>
-                  </a>
-                </div>
-              </div>
-              <div class="col-lg-12 col-md-12">
-                <div class="utf_listing_item-container list-layout"> <a href="{{ route('franchise-details') }}" class="utf_listing_item">
-                  <div class="utf_listing_item-image">
-                      <img src="images/utf_listing_item-01.jpg" alt="">
-                      <span class="tag"><i class="im im-icon-Hotel"></i> REKOMENDASI</span>
-                  </div>
-                  <div class="utf_listing_item_content">
-                    <div class="utf_listing_item-inner">
-                      <h3>Gulda BBQ</h3>
-                      <span><i class="sl sl-icon-book-open"></i> Makanan dan Minuman</span>
-                      <span><i class="sl sl-icon-tag"></i> Rp. 100.000</span>
-                      <div class="utf_star_rating_section" data-rating="4.5">
-                        <div class="utf_counter_star_rating">(4.5)</div>
-                      </div>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla.</p>
-                    </div>
-                  </div>
-                  </a>
-                </div>
-              </div>
-              <div class="col-lg-12 col-md-12">
-                <div class="utf_listing_item-container list-layout"> <a href="{{ route('franchise-details') }}" class="utf_listing_item">
-                  <div class="utf_listing_item-image">
-                      <img src="images/utf_listing_item-01.jpg" alt="">
-                      <span class="tag"><i class="im im-icon-Hotel"></i> REKOMENDASI</span>
-                  </div>
-                  <div class="utf_listing_item_content">
-                    <div class="utf_listing_item-inner">
-                      <h3>Gulda BBQ</h3>
-                      <span><i class="sl sl-icon-book-open"></i> Makanan dan Minuman</span>
-                      <span><i class="sl sl-icon-tag"></i> Rp. 100.000</span>
-                      <div class="utf_star_rating_section" data-rating="4.5">
-                        <div class="utf_counter_star_rating">(4.5)</div>
-                      </div>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla.</p>
-                    </div>
-                  </div>
-                  </a>
-                </div>
-              </div>
-              <div class="col-lg-12 col-md-12">
-                <div class="utf_listing_item-container list-layout"> <a href="{{ route('franchise-details') }}" class="utf_listing_item">
-                  <div class="utf_listing_item-image">
-                      <img src="images/utf_listing_item-01.jpg" alt="">
-                      <span class="tag"><i class="im im-icon-Hotel"></i> REKOMENDASI</span>
-                  </div>
-                  <div class="utf_listing_item_content">
-                    <div class="utf_listing_item-inner">
-                      <h3>Gulda BBQ</h3>
-                      <span><i class="sl sl-icon-book-open"></i> Makanan dan Minuman</span>
-                      <span><i class="sl sl-icon-tag"></i> Rp. 100.000</span>
-                      <div class="utf_star_rating_section" data-rating="4.5">
-                        <div class="utf_counter_star_rating">(4.5)</div>
-                      </div>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla.</p>
-                    </div>
-                  </div>
-                  </a>
-                </div>
-              </div>
+              @endforeach
+              @if($franchises->hasMorePages())
+              <div class="col-md-12 centered_content"> <a wire:click="$emit('load-more')" class="button border margin-top-20">{{ trans('message.view-more') }}</a> </div>
+              @endif
+
             </div>
             <div class="clearfix"></div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="utf_pagination_container_part margin-top-20 margin-bottom-70">
-                  <nav class="pagination">
-                    <ul>
-                      <li><a href="#"><i class="sl sl-icon-arrow-left"></i></a></li>
-                      <li><a href="#" class="current-page">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">4</a></li>
-                      <li><a href="#"><i class="sl sl-icon-arrow-right"></i></a></li>
-                    </ul>
-                  </nav>
-                </div>
-              </div>
-            </div>
           </div>
 
           <!-- Sidebar -->
@@ -252,3 +128,21 @@
 </div>
 @include('layouts.footer')
 
+@push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
+    <script>
+        $('#categories').on('change',function(){
+            @this.set('category_id',this.value);
+        });
+        $('#investments').on('change',function(){
+            @this.set('investments',this.value);
+        });
+        $('#origins').on('change',function(){
+            @this.set('origins',this.value);
+        });
+
+        $( '.price' ).mask('000.000.000',
+        {reverse: true}
+        );
+    </script>
+@endpush

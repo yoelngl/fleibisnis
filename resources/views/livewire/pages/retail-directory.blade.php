@@ -88,7 +88,7 @@
                         <div class="utf_listing_item-inner">
                           <h3>{{ $item->product_name }}</h3>
                           <span><i class="sl sl-icon-book-open"></i> {{ $item->category->title }}</span>
-                          <span><i class="sl sl-icon-tag"></i> <b class="price">{{ $item->price }}</b> IDR</span>
+                          <span><i class="sl sl-icon-tag"></i> IDR <b class="price">{{ $item->price }}</b> </span>
                           <p>{!! Str::limit($item->product_information, 200) !!}</p>
                         </div>
                       </div>
@@ -96,6 +96,9 @@
                     </div>
                   </div>
                 @endforeach
+                @if($retail->hasMorePages())
+                <div class="col-md-12 centered_content"> <a wire:click="$emit('load-more')" class="button border margin-top-20">{{ trans('message.view-more') }}</a> </div>
+                @endif
 
             </div>
 

@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\RetailDirectory;
+use App\Models\TodayNews;
 
 class User extends Authenticatable
 {
@@ -51,6 +52,11 @@ class User extends Authenticatable
 
     public function franchise(){
       return $this->hasMany(FranchiseDirectory::class, 'user_id');
+
+    }
+
+    public function today_news(){
+      return $this->hasMany(TodayNews::class, 'user_id');
 
     }
 

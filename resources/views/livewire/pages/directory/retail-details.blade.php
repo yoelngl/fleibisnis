@@ -128,7 +128,7 @@ Retail Detail
                         <h3>{{ $data['product_name'] }}</h3>
                         <span><i class="im im-icon-Hotel"></i> {{ $data['product_type'] }}</span><br>
                         <p>{!! $data['product_information'] !!} </p>
-                    <p>Harga<b> <b class="price">{{ $data['price'] }}</b> IDR</b></p><br><br></div>
+                    <p>Harga<b> IDR <b class="price">{{ $data['price'] }}</b></b></p><br><br></div>
                     </div>
                 </div>
 

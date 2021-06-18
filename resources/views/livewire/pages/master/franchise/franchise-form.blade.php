@@ -46,7 +46,7 @@ Franchise Form
                     <h4 class="card-title">Franchise Directory Form</h4>
                     </div>
                     <div class="card-body">
-                    <form class="mt-2" wire:submit.prevent="{{ isset($edit) ? 'updateRetail("'.$edit->slug.'")' : 'createFranchise' }}
+                    <form class="mt-2" wire:submit.prevent="{{ isset($edit) ? 'updateFranchise("'.$edit->slug.'")' : 'createFranchise' }}
                         ">
 
                     <ul class="nav nav-pills nav-fill">
@@ -208,8 +208,8 @@ Franchise Form
                                 <div class="media flex-column flex-md-row " >
 
                                 <img
-                                    <?php if(isset($edit->brand_images)) {
-                                        $data = 'storage/'.$edit->brand_images;
+                                    <?php if(isset($edit->brand_image)) {
+                                        $data = 'storage/'.$edit->brand_image;
                                     }else{
                                         $data = 'backend-assets/images/slider/03.jpg';
                                     }
@@ -305,148 +305,6 @@ Franchise Form
                         </div>
 
                         <div
-                        class="tab-pane {{ ($tab == 'company') ? 'active' : '' }}"
-                        id="company-fill"
-                        role="tabpanel"
-                        aria-labelledby="company-tab-fill"
-                        aria-expanded="false"
-                        >
-                        <div class="row">
-                            <div class="col-md-12 col-12">
-                                <div class="form-group mb-2" >
-                                    <label for="product_name">Company Name</label>
-                                    <input
-                                    type="text"
-                                    id="company_name"
-                                    class="form-control"
-                                    wire:model.defer="company_name"
-                                    placeholder="Company Name"
-                                    />
-                                @error('company_name') <small class="text-danger">{{ $message }}</small> @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-12">
-                                <div class="form-group mb-2">
-                                    <label for="product_type">Company City</label>
-                                    <input
-                                    type="text"
-                                    id="company_city"
-                                    class="form-control"
-                                    wire:model.defer="company_city"
-                                    placeholder="Company City"
-                                    />
-                                @error('company_city') <small class="text-danger">{{ $message }}</small> @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-12">
-                                <div class="form-group mb-2">
-                                    <label for="product_type">Company Country</label>
-                                    <input
-                                    type="text"
-                                    id="company_country"
-                                    class="form-control"
-                                    wire:model.defer="company_country"
-                                    placeholder="Company Country"
-                                    />
-                                @error('company_country') <small class="text-danger">{{ $message }}</small> @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-12">
-                                <div class="form-group mb-2">
-                                    <label for="product_type">Legal Entity</label>
-                                    <input
-                                    type="text"
-                                    id="legal_entity"
-                                    class="form-control"
-                                    wire:model.defer="legal_entity"
-                                    placeholder="Legal Entity"
-                                    />
-                                @error('legal_entity') <small class="text-danger">{{ $message }}</small> @enderror
-                                </div>
-                            </div>
-                            <div class="col-12">
-                            <div class="form-group mb-2" >
-                                <label>Company Address</label>
-                                <div wire:ignore>
-                                    <textarea id="company_address" wire:model="company_address"></textarea>
-                                </div>
-                                    @error('company_address') <small class="text-danger">{{ $message }}</small> @enderror
-                            </div>
-                            <div class="form-group mb-2" >
-                                <label>Company Information</label>
-                                <div wire:ignore>
-                                    <textarea id="company_information" wire:model.defer="company_information"></textarea>
-                                </div>
-                                    @error('company_information') <small class="text-danger">{{ $message }}</small> @enderror
-                            </div>
-                            </div>
-                            <div class="col-md-4 col-12">
-                                <div class="form-group mb-2">
-                                    <label for="product_category">Company Type</label>
-                                    <div wire:ignore>
-                                        <select id="company_type" wire:model.defer="company_type" class="select2 form-control">
-                                        <option value="" selected>-- Company Type --</option>
-                                        {{-- @foreach($company_type_data as $value)
-                                            <option {{ ($company_type == $value) ? 'selected' : '' }} value="{{ $value }}" >{{ $value }}</option>
-                                        @endforeach --}}
-                                        </select>
-                                    </div>
-                                    @error('company_type') <small class="text-danger">{{ $message }}</small> @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-12">
-                                <div class="form-group mb-2">
-                                    <label for="product_category">Looking For?</label>
-                                    <div wire:ignore>
-                                        <select id="looking_for" wire:model.defer="looking_for" class="select2 form-control">
-                                        <option value="">-- Looking For? --</option>
-                                        {{-- @foreach($looking_for_data as $key => $value)
-                                            <option {{ ($looking_for == $value) ? 'selected' : '' }} value="{{ $value }}" >{{ $value }}</option>
-                                        @endforeach --}}
-                                        </select>
-                                    </div>
-                                    @error('company_type') <small class="text-danger">{{ $message }}</small> @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-12">
-                                <div class="form-group mb-2">
-                                    <label for="product_type">Whatsapp Contact</label>
-                                    <input
-                                    type="text"
-                                    id="whatsapp_contact"
-                                    class="form-control"
-                                    wire:model.defer="whatsapp_contact"
-                                    placeholder="Whatsapp Contact"
-                                    />
-                                @error('whatsapp_contact') <small class="text-danger">{{ $message }}</small> @enderror
-                                </div>
-                            </div>
-                            <div class="col-12 mb-2">
-                            <div class="border rounded p-2">
-                                <h4 class="mb-1">Catalog/Brochure</h4>
-                                <div class="media flex-column flex-md-row">
-                                <div class="media-body" >
-                                    <small class="text-muted">Recommended image resolution 620x430, image size 10mb.</small>
-                                    <p class="my-50">
-                                        <a href="javascript:void(0);" id="blog-image-text" hidden>C:\fakepath\banners.jpg</a>
-                                    </p>
-                                    <div class="d-inline-block">
-                                    <div class="form-group mb-0">
-                                        <div class="custom-file" wire:ignore>
-                                            <input type="file" wire:model.defer="catalog_brochure" class="custom-file-input" id="blogCustomFiless"/>
-                                        <label class="custom-file-label" for="blogCustomFiless">Choose file</label>
-                                        </div>
-                                        @error('catalog_brochure') <small class="text-danger">{{ $message }}</small> @enderror
-                                    </div>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-
-                        <div
                         class="tab-pane {{ ($tab == 'user') ? 'active' : '' }}"
                         id="user-fill"
                         role="tabpanel"
@@ -509,10 +367,10 @@ Franchise Form
                         </div>
                         </div>
                         <div class="col-12 mt-50">
-                            <img src="{{ asset('icons/loading.gif') }}" wire:loading wire:target="{{ isset($edit) ? 'updateRetail("'.$edit->slug.'")' : 'createFranchise' }}" alt="" width="60px">
-                            <button type="submit" class="btn btn-primary mr-1" wire:target="{{ isset($edit) ? 'updateRetail("'.$edit->slug.'")' : 'createFranchise' }}" wire:loading.attr="hidden"
+                            <img src="{{ asset('icons/loading.gif') }}" wire:loading wire:target="{{ isset($edit) ? 'updateFranchise("'.$edit->slug.'")' : 'createFranchise' }}" alt="" width="60px">
+                            <button type="submit" class="btn btn-primary mr-1" wire:target="{{ isset($edit) ? 'updateFranchise("'.$edit->slug.'")' : 'createFranchise' }}" wire:loading.attr="hidden"
                             wire:loading.attr="hidden"> Submit</button>
-                            <a href="{{ route('admin.retail') }}" wire:target="{{ isset($edit) ? 'updateRetail("'.$edit->slug.'")' : 'createFranchise' }}"  class="btn btn-danger" wire:loading.class="btn btn-secondary" wire:loading.attr="hidden">Back</a>
+                            <a href="{{ route('admin.retail') }}" wire:target="{{ isset($edit) ? 'updateFranchise("'.$edit->slug.'")' : 'createFranchise' }}"  class="btn btn-danger" wire:loading.class="btn btn-secondary" wire:loading.attr="hidden">Back</a>
                         </div>
                     </div>
                     </form>
@@ -529,6 +387,16 @@ Franchise Form
 <script src="{{ asset('backend-assets/js/scripts/pages/page-blog-edit.min.js') }}"></script>
 <script src="https://cdn.tiny.cloud/1/hbjeuw3i2rynhza5stqc8laavo0yd57y5q6chx8fr61bvmhr/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
+
+    $('#brand_category').select2().val({{ isset($brand_category) ? $brand_category : 1  }}).trigger('change');
+    $('#origin_brands').select2().val({!! isset($origin_brands) ? $origin_brands : 1 !!}).trigger('change');
+    $('#budget_investment').select2().val({!! isset($budget_investment) ? $budget_investment : 1 !!}).trigger('change');
+
+    $(document).ready(function() {
+        @this.set('brand_category',{{ isset($brand_category) ? $brand_category : 1 }});
+        @this.set('origin_brands',{!! isset($origin_brands) ? $origin_brands : 1 !!});
+        @this.set('budget_investment',{!! isset($budget_investment) ? $budget_investment : 1 !!});
+    });
 
     $(document).on('change','#brand_category',function(){
         @this.set('brand_category', this.value);

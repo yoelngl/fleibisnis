@@ -130,19 +130,18 @@ Franchise Detail
             <div id="titlebar" class="utf_listing_titlebar">
               <li>
                     <div class="utf_list_box_listing_item">
-                      <div class="utf_list_box_listing_item-img"><a href="#"><img src="https://www.apotek-k24.com/images/post/18544481552013071903100323Apotek%20K-24.jpg" alt=""></a></div>
+                      <div class="utf_list_box_listing_item-img"><a href="#"><img src="{{ asset('storage/'.$data['brand_image']) }}" alt=""></a></div>
                       <div class="utf_list_box_listing_item_content">
                         <div class="inner">
-                          <h3>Apotek K24</h3>
-                          <span><i class="im im-icon-Hotel"></i> Retail &amp; Wholesales</span><br>
+                          <h3>{{ $data->brand_name }}</h3>
+                          <span><i class="im im-icon-Hotel"></i> {{ $data->category->title }}</span><br>
 
-                          <span><i class="sl sl-icon-clock"></i> Tahun Berdiri 2002</span><br>
+                          <span><i class="sl sl-icon-clock"></i> Tahun Berdiri {{ $data->year_of_established }}</span><br>
 
-                          <span><i class="sl sl-icon-home"></i> Jumlah Gerai 400</span><br>
+                          <span><i class="sl sl-icon-home"></i> Jumlah Gerai {{ $data->total_outlet }}</span><br>
 
 
-                            <span><i class="sl sl-icon-globe"></i> www.k24klik.com</span><p>Apotek K24 adalah jaringan apotek waralaba nasional yang tersebar di beberapa kota di Indonesia. Apotek ini pertama kali berdiri pada 24 Oktober 2002 di Yogyakarta, Indonesia.</p>
-                        <p>Harga/Nilai Investasi <b>Rp. 1.000.000.000</b></p><br><br></div>
+                        <p>Harga/Nilai Investasi <b>{{ $data->investments }}</b></p><br><br></div>
                       </div>
                     </div>
                     <div class="buttons-to-right">
@@ -153,10 +152,17 @@ Franchise Detail
             </div>
             <div id="utf_listing_overview" class="utf_listing_section">
               <h3 class="utf_listing_headline_part margin-top-30 margin-bottom-30">{{ trans('message.listing-desc') }}</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam.</p><br><br><br><br><br><br><br><br><br><br><br>
+              {!! $data->brand_information !!}
 
+
+            </div>
+            <div style="margin-top: 20px">
+                <div class="row container " style=" margin-bottom: 130px">
+                    <a  href="{{ asset('storage/'.$data['brand_brochure']) }}" download class="button gray btn btn-sm"><i class="fa fa-download"></i> Download Brochure</a>
+                @auth
+                <a href="https://wa.me/{{ $data['brand_whatsapp'] }}" class="button gray btn btn-sm"><i class="fa fa-phone"></i> Whatsapp Contact</a>
+                @endauth
+                </div>
 
             </div>
 
@@ -232,4 +238,3 @@ Franchise Detail
       </div>
 </div>
 @include('layouts.footer')
-

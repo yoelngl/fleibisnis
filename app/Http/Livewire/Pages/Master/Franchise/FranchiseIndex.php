@@ -46,10 +46,11 @@ class FranchiseIndex extends Component
         return redirect()->route('admin.franchise');
     }
 
-    public function deleteRetail($slug){
+    public function deleteFranchise($slug){
       $franchise = FranchiseDirectory::where('slug',$slug)->first();
 
-      Storage::disk('public')->delete($franchise['product_images']);
+      Storage::disk('public')->delete($franchise['brand_image']);
+      Storage::disk('public')->delete($franchise['brand_logo']);
       Storage::disk('public')->delete($franchise['brand_brochure']);
 
       $franchise->delete();
@@ -61,8 +62,7 @@ class FranchiseIndex extends Component
     public function render()
     {
         $searchTerm = '%' . $this->search . '%';
-
-        $franchise = FranchiseDirectory::with('category','user')->where('brand_name','like',$searchTerm)->paginate($this->load_more);
+        $franchise = FranchiseDirectory::with('category','user')->where('brand_name','like',$searchTerm)->latest()->paginate($this->load_more);
         $categories = Categories::all();
         return view('livewire.pages.master.franchise.franchise-index',compact('franchise','categories'))->extends('layouts.master.app')->section('content');
     }

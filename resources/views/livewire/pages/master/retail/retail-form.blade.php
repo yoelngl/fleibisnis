@@ -433,19 +433,16 @@
 <script>
 
     $('#product_category').select2().val({{ isset($product_category) ? $product_category : 1  }}).trigger('change');
+    $('#company_type').select2().val({!! isset($company_type) ? $company_type : 1 !!}).trigger('change');
+    $('#looking_for').select2().val({!! isset($looking_for) ? $looking_for : 1 !!}).trigger('change');
+
     $(document).ready(function() {
         @this.set('product_category',{{ isset($product_category) ? $product_category : 1 }});
         @this.set('company_type',{!! isset($company_type) ? $company_type : 1 !!});
-
-    });
-
-    $('#company_type').select2().val({!! isset($company_type) ? $company_type : 1 !!}).trigger('change');
-
-
-    $('#looking_for').select2().val({!! isset($looking_for) ? $looking_for : 1 !!}).trigger('change');
-    $(document).ready(function() {
         @this.set('looking_for',{!! isset($looking_for) ? $looking_for : 1 !!});
     });
+
+
 
     $(document).on('change','#product_category',function(){
         @this.set('product_category', this.value);

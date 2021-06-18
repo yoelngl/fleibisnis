@@ -1,6 +1,17 @@
 @section('title')
-Franchise Directory
+Today News
 @endsection
+
+@section('vendor')
+<link rel="stylesheet" type="text/css" href="{{ asset('backend-assets/vendors/css/forms/select/select2.min.css') }}">
+
+@endsection
+
+@section('css')
+<link rel="stylesheet" type="text/css" href="{{ asset('backend-assets/css/pages/page-blog.min.css') }}">
+
+@endsection
+
 <div>
     <div class="app-content content ">
         <div class="content-overlay"></div>
@@ -10,12 +21,12 @@ Franchise Directory
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h2 class="content-header-title float-left mb-0">Franchise Directory</h2>
+                    <h2 class="content-header-title float-left mb-0">Today News</h2>
                     <div class="breadcrumb-wrapper">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a>
                         </li>
-                        <li class="breadcrumb-item active">Franchise Directory
+                        <li class="breadcrumb-item active">Today News
                         </li>
                     </ol>
                     </div>
@@ -25,7 +36,7 @@ Franchise Directory
             <div class="content-header-right text-md-right col-md-3 col-12 d-md-block ">
                 <div class="form-group breadcrumb-right">
                 <div class="dropdown">
-                    <a href="{{ route('admin.franchise.add') }}" class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" >Create Franchise</a>
+                    <a href="{{ route('admin.today_news.add') }}" class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" >Create Today News</a>
                 </div>
                 </div>
             </div>
@@ -34,17 +45,17 @@ Franchise Directory
                 <div class="content-body"><!-- Blog List -->
                     <div class="blog-list-wrapper">
                       <div class="row">
-                      @if($franchise->count())
-                        @foreach($franchise as $item)
+                      @if($news->count())
+                        @foreach($news as $item)
                           <div class="col-md-4 col-12">
                           <div class="card">
-                              <a href="{{ route('franchise-details',['slug' => $item->slug]) }}">
-                              <img class="card-img-top img-fluid" width="200" src="{{ asset('storage/'.$item->brand_image) }}" alt="Blog Post pic" />
+                              <a href="{{ route('retail-details',['slug' => $item->slug]) }}">
+                              <img class="card-img-top img-fluid" width="200" src="{{ asset('storage/'.$item->images) }}" alt="Blog Post pic" />
                               </a>
                               <div class="card-body">
                               <h4 class="card-title">
-                                  <a href="{{ route('franchise-details',['slug' => $item->slug]) }}" class="blog-title-truncate text-body-heading">
-                                      {{ $item->brand_name }}
+                                  <a href="{{ route('retail-details',['slug' => $item->slug]) }}" class="blog-title-truncate text-body-heading">
+                                      {{ $item->title }}
                                   </a>
                               </h4>
                               <div class="media">
@@ -59,7 +70,7 @@ Franchise Directory
                                   </div>
                               </div>
                               <div class="my-1 py-25">
-                                  <a >
+                                  <a wire:click="tags('{{ $item->category->slug }}')">
                                   <div class="badge badge-light-primary mr-50">{{ $item->category->title }}</div>
                                   </a>
                               </div>
@@ -70,16 +81,17 @@ Franchise Directory
                                   </div>
                                   </a>
                                   <div>
-                                    <a href="{{ route('franchise-details',['slug' => $item->slug]) }}" class="font-weight-bold  mr-1">Details</a>
-                                  <a href="{{ route('admin.franchise.edit',['slug' => $item->slug]) }}" class="font-weight-bold text-warning mr-1">Edit</a>
-                                  <a wire:click.prevent="$emit('deleteFranchise','{{ $item->slug }}')" class="font-weight-bold text-danger mr-1">Delete</a>
+                                  <a href="{{ route('retail-details',['slug' => $item->slug]) }}" class="font-weight-bold  mr-1">Details</a>
+                                  <a href="{{ route('admin.retail.edit',['slug' => $item->slug]) }}" class="font-weight-bold text-warning mr-1">Edit</a>
+                                  <a wire:click.prevent="$emit('deleteRetail','{{ $item->slug }}')" class="font-weight-bold text-danger mr-1">Delete</a>
                                   </div>
+
                               </div>
-                            </div>
+                              </div>
                           </div>
                           </div>
                         @endforeach
-                        @if($franchise->hasMorePages())
+                        @if($news->hasMorePages())
                         <div class="col-12 d-flex justify-content-center">
                             <button class="btn btn-primary" wire:click="$emit('load-more')">Load more!</button>
                         </div>
@@ -88,7 +100,7 @@ Franchise Directory
                           <div class="col-12">
                               <div class="alert alert-warning" role="alert">
                               <div class="alert-body">
-                                  <strong>Warning:</strong> There is no franchise here yet, please add franchise by pressing the Create Franchise button!
+                                  <strong>Warning:</strong> There is no retail here yet, please add retail by pressing the Create Retails button!
                               </div>
                               </div>
                           </div>
@@ -173,33 +185,6 @@ Franchise Directory
     <script>
         @include('vendor.helpers')
         $(document).ready(function () {
-          @this.on('deleteFranchise', slug => {
-              Swal.fire({
-                  title: 'Are You Sure?',
-                  text: 'Franchise will be deleted permanently!',
-                  icon: "warning",
-                  showCancelButton: true,
-                  confirmButtonColor: '#7367F0',
-                  cancelButtonColor: '#EA5455',
-                  confirmButtonText: 'Yes, Delete!'
-              }).then((result) => {
-              //if user clicks on delete
-                  if (result.value) {
-              // calling destroy method to delete
-                      @this.call('deleteFranchise',slug)
-              // success response
-                      Swal.fire({title: 'Deleted',
-                              text: 'Franchise successfully deleted!',
-                              icon: 'success'});
-                  } else {
-                      Swal.fire({
-                          title: 'Cancelled!',
-                          text: 'Franchise delete Cancelled!',
-                          icon: 'error'
-                      });
-                  }
-              });
-          });
             @this.on('deleteCategory', slug => {
                 Swal.fire({
                     title: 'Are You Sure?',

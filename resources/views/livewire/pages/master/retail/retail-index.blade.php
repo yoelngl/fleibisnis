@@ -38,12 +38,12 @@ Retail Directory
                         @foreach($retail as $item)
                           <div class="col-md-4 col-12">
                           <div class="card">
-                              <a href="#">
+                              <a href="{{ route('retail-details',['slug' => $item->slug]) }}">
                               <img class="card-img-top img-fluid" width="200" src="{{ asset('storage/'.$item->product_images) }}" alt="Blog Post pic" />
                               </a>
                               <div class="card-body">
                               <h4 class="card-title">
-                                  <a href="page-blog-detail.html" class="blog-title-truncate text-body-heading">
+                                  <a href="{{ route('retail-details',['slug' => $item->slug]) }}" class="blog-title-truncate text-body-heading">
                                       {{ $item->product_name }}
                                   </a>
                               </h4>
@@ -70,7 +70,7 @@ Retail Directory
                                   </div>
                                   </a>
                                   <div>
-                                  <a href="page-blog-detail.html" class="font-weight-bold  mr-1">Details</a>
+                                  <a href="{{ route('retail-details',['slug' => $item->slug]) }}" class="font-weight-bold  mr-1">Details</a>
                                   <a href="{{ route('admin.retail.edit',['slug' => $item->slug]) }}" class="font-weight-bold text-warning mr-1">Edit</a>
                                   <a wire:click.prevent="$emit('deleteRetail','{{ $item->slug }}')" class="font-weight-bold text-danger mr-1">Delete</a>
                                   </div>

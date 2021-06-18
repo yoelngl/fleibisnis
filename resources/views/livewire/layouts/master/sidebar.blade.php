@@ -16,10 +16,11 @@
         <li class=" nav-item {{ request()->is('dashboard') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.dashboard') }}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="home">Dashboard</span></a>
         </li>
         <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">MAIN APP</span><i data-feather="more-horizontal"></i>
-
-        <li class=" nav-item {{ request()->is('admin/retail-directory') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.retail') }}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="home">Retail Directory</span></a>
+        <li class=" nav-item {{ request()->is('admin/today_news') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.today_news') }}"><i data-feather="package"></i><span class="menu-title text-truncate" data-i18n="home">Today News</span></a>
         </li>
-        <li class=" nav-item {{ request()->is('admin/franchise-directory') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.franchise') }}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="home">Franchise Directory</span></a>
+        <li class=" nav-item {{ request()->is('admin/retail-directory') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.retail') }}"><i data-feather="package"></i><span class="menu-title text-truncate" data-i18n="home">Retail Directory</span></a>
+        </li>
+        <li class=" nav-item {{ request()->is('admin/franchise-directory') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.franchise') }}"><i data-feather="archive"></i><span class="menu-title text-truncate" data-i18n="home">Franchise Directory</span></a>
         </li>
       </ul>
     </div>
