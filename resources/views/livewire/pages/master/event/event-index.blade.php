@@ -1,15 +1,5 @@
 @section('title')
-Today News
-@endsection
-
-@section('vendor')
-<link rel="stylesheet" type="text/css" href="{{ asset('backend-assets/vendors/css/forms/select/select2.min.css') }}">
-
-@endsection
-
-@section('css')
-<link rel="stylesheet" type="text/css" href="{{ asset('backend-assets/css/pages/page-blog.min.css') }}">
-
+Event
 @endsection
 
 <div>
@@ -21,12 +11,12 @@ Today News
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h2 class="content-header-title float-left mb-0">Today News</h2>
+                    <h2 class="content-header-title float-left mb-0">Event</h2>
                     <div class="breadcrumb-wrapper">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.event') }}">Home</a>
                         </li>
-                        <li class="breadcrumb-item active">Today News
+                        <li class="breadcrumb-item active">Event
                         </li>
                     </ol>
                     </div>
@@ -36,7 +26,7 @@ Today News
             <div class="content-header-right text-md-right col-md-3 col-12 d-md-block ">
                 <div class="form-group breadcrumb-right">
                 <div class="dropdown">
-                    <a href="{{ route('admin.today_news.add') }}" class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" >Create Today News</a>
+                    <a href="{{ route('admin.event.add') }}" class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" >Create Event</a>
                 </div>
                 </div>
             </div>
@@ -45,17 +35,17 @@ Today News
                 <div class="content-body"><!-- Blog List -->
                     <div class="blog-list-wrapper">
                       <div class="row">
-                      @if($news->count())
-                        @foreach($news as $item)
+                      {{-- @if($franchise->count())
+                        @foreach($franchise as $item)
                           <div class="col-md-4 col-12">
                           <div class="card">
-                              <a href="{{ route('retail-details',['slug' => $item->slug]) }}">
-                              <img class="card-img-top img-fluid" width="200" src="{{ asset('storage/'.$item->images) }}" alt="Blog Post pic" />
+                              <a href="{{ route('franchise-details',['slug' => $item->slug]) }}">
+                              <img class="card-img-top img-fluid" width="200" src="{{ asset('storage/'.$item->brand_image) }}" alt="Blog Post pic" />
                               </a>
                               <div class="card-body">
                               <h4 class="card-title">
-                                  <a href="{{ route('retail-details',['slug' => $item->slug]) }}" class="blog-title-truncate text-body-heading">
-                                      {{ $item->title }}
+                                  <a href="{{ route('franchise-details',['slug' => $item->slug]) }}" class="blog-title-truncate text-body-heading">
+                                      {{ $item->brand_name }}
                                   </a>
                               </h4>
                               <div class="media">
@@ -70,7 +60,7 @@ Today News
                                   </div>
                               </div>
                               <div class="my-1 py-25">
-                                  <a wire:click="tags('{{ $item->category->slug }}')">
+                                  <a >
                                   <div class="badge badge-light-primary mr-50">{{ $item->category->title }}</div>
                                   </a>
                               </div>
@@ -81,17 +71,16 @@ Today News
                                   </div>
                                   </a>
                                   <div>
-                                  <a href="{{ route('retail-details',['slug' => $item->slug]) }}" class="font-weight-bold  mr-1">Details</a>
-                                  <a href="{{ route('admin.today_news.edit',['slug' => $item->slug]) }}" class="font-weight-bold text-warning mr-1">Edit</a>
-                                  <a wire:click.prevent="$emit('deleteNews','{{ $item->slug }}')" class="font-weight-bold text-danger mr-1">Delete</a>
+                                    <a href="{{ route('franchise-details',['slug' => $item->slug]) }}" class="font-weight-bold  mr-1">Details</a>
+                                  <a href="{{ route('admin.franchise.edit',['slug' => $item->slug]) }}" class="font-weight-bold text-warning mr-1">Edit</a>
+                                  <a wire:click.prevent="$emit('deleteFranchise','{{ $item->slug }}')" class="font-weight-bold text-danger mr-1">Delete</a>
                                   </div>
-
                               </div>
-                              </div>
+                            </div>
                           </div>
                           </div>
                         @endforeach
-                        @if($news->hasMorePages())
+                        @if($franchise->hasMorePages())
                         <div class="col-12 d-flex justify-content-center">
                             <button class="btn btn-primary" wire:click="$emit('load-more')">Load more!</button>
                         </div>
@@ -100,11 +89,11 @@ Today News
                           <div class="col-12">
                               <div class="alert alert-warning" role="alert">
                               <div class="alert-body">
-                                  <strong>Warning:</strong> There is no retail here yet, please add retail by pressing the Create Retails button!
+                                  <strong>Warning:</strong> There is no franchise here yet, please add franchise by pressing the Create Franchise button!
                               </div>
                               </div>
                           </div>
-                      @endif
+                      @endif --}}
                       </div>
                         <!--/ Blog List Items -->
                     </div>
@@ -143,7 +132,7 @@ Today News
                                 <button type="submit" class="btn btn-sm btn-primary mr-1" wire:target="categoriesAdd" wire:loading.attr="hidden"> Submit</button>
                         </form>
                     <h6 class="section-label mt-2">Categories</h6>
-                    @if($categories->count())
+                    {{-- @if($categories->count())
                     @foreach ($categories as $category)
                         <div class="mt-1">
                             <div class="d-flex  align-items-center mb-75">
@@ -168,7 +157,7 @@ Today News
                             </a>
                         </div>
                     </div>
-                    @endif
+                    @endif --}}
 
                     </div>
                     <!--/ Categories -->
@@ -179,68 +168,3 @@ Today News
         </div>
     </div>
 </div>
-
-@push('scripts')
-    <script src="{{ asset('backend-assets/js/scripts/extensions/ext-component-sweet-alerts.min.js') }}"></script>
-    <script>
-        @include('vendor.helpers')
-        $(document).ready(function () {
-
-            @this.on('deleteNews', slug => {
-                Swal.fire({
-                    title: 'Are You Sure?',
-                    text: 'News will be deleted permanently!',
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: '#7367F0',
-                    cancelButtonColor: '#EA5455',
-                    confirmButtonText: 'Yes, Delete!'
-                }).then((result) => {
-                //if user clicks on delete
-                    if (result.value) {
-                // calling destroy method to delete
-                        @this.call('deleteNews',slug)
-                // success response
-                        Swal.fire({title: 'Deleted',
-                                text: 'News successfully deleted!',
-                                icon: 'success'});
-                    } else {
-                        Swal.fire({
-                            title: 'Cancelled!',
-                            text: 'News delete Cancelled!',
-                            icon: 'error'
-                        });
-                    }
-                });
-            });
-
-            @this.on('deleteCategory', slug => {
-                Swal.fire({
-                    title: 'Are You Sure?',
-                    text: 'Category will be deleted permanently!',
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: '#7367F0',
-                    cancelButtonColor: '#EA5455',
-                    confirmButtonText: 'Yes, Delete!'
-                }).then((result) => {
-                //if user clicks on delete
-                    if (result.value) {
-                // calling destroy method to delete
-                        @this.call('deleteCategory',slug)
-                // success response
-                        Swal.fire({title: 'Deleted',
-                                text: 'Category successfully deleted!',
-                                icon: 'success'});
-                    } else {
-                        Swal.fire({
-                            title: 'Cancelled!',
-                            text: 'Category delete Cancelled!',
-                            icon: 'error'
-                        });
-                    }
-                });
-            });
-        });
-    </script>
-@endpush

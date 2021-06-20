@@ -27,7 +27,7 @@
                   <h3><i class="sl sl-icon-magnifier"></i>{{ trans('message.search-blog') }}</h3>
                   <div class="utf_search_blog_input">
                     <div class="input">
-                      <input class="search-field" type="text" placeholder="Search..." value=""/>
+                      <input class="search-field" wire:model="search" type="text" placeholder="Search..." value=""/>
                     </div>
                   </div>
                   <div class="clearfix"></div>
@@ -36,12 +36,9 @@
                 <div class="utf_box_widget margin-top-35">
                   <h3><i class="sl sl-icon-folder-alt"></i> {{ trans('message.categories') }}</h3>
                   <ul class="utf_listing_detail_sidebar">
-                    <li><i class="fa fa-angle-double-right"></i> <a href="#">Travel</a></li>
-                    <li><i class="fa fa-angle-double-right"></i> <a href="#">Nightlife</a></li>
-                    <li><i class="fa fa-angle-double-right"></i> <a href="#">Fitness</a></li>
-                    <li><i class="fa fa-angle-double-right"></i> <a href="#">Real Estate</a></li>
-                    <li><i class="fa fa-angle-double-right"></i> <a href="#">Restaurant</a></li>
-                    <li><i class="fa fa-angle-double-right"></i> <a href="#">Dance Floor</a></li>
+                    @foreach ($categories as $category)
+                        <li><i class="fa fa-angle-double-right"></i> <a href="javascript:void(0)" wire:click="category('{{ $category->id }}')">{{ $category->title }}</a></li>
+                    @endforeach
                   </ul>
                 </div>
 
@@ -102,18 +99,19 @@
                 <h4 style="background-color: rgba(10, 52, 90, 0.8)"><i class="sl sl-icon-star"></i>{{ trans('message.today-news') }}</h4>
               </div>
               <div class="utf_blog_post">
-                <a href="blog_detail_right_sidebar.html" class="utf_post_img"> <img src="images/blog-post-01.jpg" alt=""> </a>
+                <a href="{{ route('today_news.details',['slug' => $today_news->slug]) }}" class="utf_post_img"> <img src="{{ asset('storage/'.$today_news->images) }}" alt=""> </a>
                 <div class="utf_post_content">
-                  <h3><a href="blog_detail_right_sidebar.html">Get Alife Insurance for Your Business</a></h3>
+                  <h3><a href="{{ route('today_news.details',['slug' => $today_news->slug]) }}">{{ $today_news->title }}</a></h3>
                   <ul class="utf_post_text_meta">
-                    <li>April 02, 2021</li>
-                    <li>{{ trans('message.created-by') }} <a href="#">Admin</a></li>
+                    <li>{{ Carbon\Carbon::parse($today_news->created_at)->format('d F, Y') }}</li>
+                    <li>{{ trans('message.created-by') }} <a href="#">{{ $today_news->username }}</a></li>
                     <li><a href="#">5,122 Views</a></li>
                   </ul>
-                  <p>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic type setting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing.<a href="blog_detail_right_sidebar.html">[...]</a></p>
-                  <a href="blog_detail_right_sidebar.html" class="read-more">{{ trans('message.read-more') }}<i class="fa fa-angle-right"></i></a>
+                  <p>{!! Str::limit($today_news->description,500) !!}</p>
+                  <a href="{{ route('today_news.details',['slug' => $today_news->slug]) }}" class="read-more">{{ trans('message.read-more') }}<i class="fa fa-angle-right"></i></a>
                 </div>
               </div>
+
 
               <div class="clearfix"></div>
 
@@ -124,58 +122,25 @@
                     <h4 style="background-color: rgba(10, 52, 90, 0.8)"><i class="sl sl-icon-star"></i>{{ trans('message.more-news') }}</h4>
                 </div>
                 <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-12"> <a href="blog_detail_post.html" class="blog_compact_part-container">
-                      <div class="blog_compact_part"> <img src="images/blog-compact-post-01.jpg" alt="">
-                        <div class="blog_compact_part_content">
-                          <h3>Kiat Sukses memilih Investasi Waralaba</h3>
-                          <ul class="blog_post_tag_part">
-                            <li>Tips & Trick</li>
-                          </ul>
-                          <p>Sebelum memilih franchise waralaba baiknya pahami hal berikut...</p>
+                    @if($more_news->count())
+                    @foreach ($more_news as $item)
+                    <div class="col-md-6 col-sm-6 col-xs-12"> <a href="{{ route('today_news.details',['slug' => $item->slug]) }}" class="blog_compact_part-container">
+                        <div class="blog_compact_part"> <img src="{{ asset('storage/'.$item->images) }}" alt="">
+                          <div class="blog_compact_part_content">
+                            <h3>{{ $item->title }}</h3>
+                            <ul class="blog_post_tag_part">
+                              <li>{{ $item->category->title }} / {{ Carbon\Carbon::parse($item->created_at)->format('d F, Y') }}</li>
+                            </ul>
+                            <p>{!! Str::limit($item->description,50) !!}</p>
+                          </div>
                         </div>
+                        </a>
                       </div>
-                      </a>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6 col-xs-12"> <a href="blog_detail_post.html" class="blog_compact_part-container">
-                      <div class="blog_compact_part"> <img src="images/blog-compact-post-02.jpg" alt="">
-                        <div class="blog_compact_part_content">
-                          <h3>Greatest Event Places in Listing</h3>
-                          <ul class="blog_post_tag_part">
-                            <li>18 January 2019</li>
-                          </ul>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</p>
-                        </div>
-                      </div>
-                      </a>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6 col-xs-12"> <a href="blog_detail_post.html" class="blog_compact_part-container">
-                      <div class="blog_compact_part"> <img src="images/blog-compact-post-03.jpg" alt="">
-                        <div class="blog_compact_part_content">
-                          <h3>Top 15 Greatest Ideas for Health & Body</h3>
-                          <ul class="blog_post_tag_part">
-                            <li>10 January 2019</li>
-                          </ul>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</p>
-                        </div>
-                      </div>
-                      </a>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6 col-xs-12"> <a href="blog_detail_post.html" class="blog_compact_part-container">
-                      <div class="blog_compact_part"> <img src="images/blog-compact-post-04.jpg" alt="">
-                        <div class="blog_compact_part_content">
-                          <h3>Top 10 Best Clothing Shops in Sydney</h3>
-                          <ul class="blog_post_tag_part">
-                            <li>18 January 2019</li>
-                          </ul>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</p>
-                        </div>
-                      </div>
-                      </a>
-                    </div>
-                    <div class="col-md-12 col-xs-12">
+                    @endforeach
+                    @else
+                    <img src="{{ asset('backend-assets/images/notFound.jpg') }}" width="auto" alt="">
+                    @endif
+                    {{-- <div class="col-md-12 col-xs-12">
                         <div class="utf_pagination_container_part margin-bottom-70">
                         <nav class="pagination">
                             <ul>
@@ -188,7 +153,10 @@
                             </ul>
                         </nav>
                         </div>
-                    </div>
+                    </div> --}}
+                    @if($more_news->hasMorePages())
+                    <div class="col-md-12 centered_content"> <a wire:click="$emit('load-more')" class="button border margin-top-20">{{ trans('message.view-more') }}</a> </div>
+                    @endif
                   </div>
             </div>
           </div>

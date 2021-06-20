@@ -98,38 +98,18 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="simple_slick_carousel_block utf_dots_nav">
-                    <div class="utf_carousel_item"> <a href="listings_single_page_1.html" class="utf_listing_item-container compact">
-                        <div class="utf_listing_item"> <img src="images/utf_listing_item-01.jpg" alt=""> <span class="tag"><i class="im im-icon-Chef-Hat"></i> Food</span>
-                            <div class="utf_listing_item_content">
-                                <h3>Guldak Korean BBQ</h3>
-                                <span><i class="sl sl-icon-location"></i> Jakarta, Indonesia</span>
-                                <span><i class="sl sl-icon-phone"></i> (415) 796-3633</span>
-                            </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="utf_carousel_item"> <a href="listings_single_page_1.html" class="utf_listing_item-container compact">
-                        <div class="utf_listing_item"> <img src="images/utf_listing_item-01.jpg" alt=""> <span class="tag"><i class="im im-icon-Chef-Hat"></i> Food</span>
-                            <div class="utf_listing_item_content">
-                                <h3>Guldak Korean BBQ</h3>
-                                <span><i class="sl sl-icon-location"></i> Jakarta, Indonesia</span>
-                                <span><i class="sl sl-icon-phone"></i> (415) 796-3633</span>
-                            </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="utf_carousel_item"> <a href="listings_single_page_1.html" class="utf_listing_item-container compact">
-                        <div class="utf_listing_item"> <img src="images/utf_listing_item-01.jpg" alt=""> <span class="tag"><i class="im im-icon-Chef-Hat"></i> Food</span>
-                            <div class="utf_listing_item_content">
-                                <h3>Guldak Korean BBQ</h3>
-                                <span><i class="sl sl-icon-location"></i> Jakarta, Indonesia</span>
-                                <span><i class="sl sl-icon-phone"></i> (415) 796-3633</span>
-                            </div>
-                            </div>
-                        </a>
-                    </div>
+                        @foreach ($franchises->take(3) as $item)
+                        <div class="utf_carousel_item"> <a href="{{ route('franchise-details',['slug' => $item->slug]) }}" class="utf_listing_item-container compact">
+                            <div class="utf_listing_item"> <img src="{{ asset('storage/'.$item->brand_image) }}" alt="Franchise Images"> <span class="tag"><i class="im  im-icon-Tag-3"></i> {{ $item->category->title }}</span>
+                                <div class="utf_listing_item_content">
+                                    <h3>{{ $item->title }}</h3>
+                                    <span><i class="sl sl-icon-location"></i> Jakarta, Indonesia</span>
+                                    <span><i class="sl sl-icon-phone"></i> {{ $item->brand_whatsapp }}</span>
+                                </div>
+                                </div>
+                            </a>
+                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -145,58 +125,21 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-3 col-sm-6 col-xs-12"> <a href="blog_detail_post.html" class="blog_compact_part-container">
-              <div class="blog_compact_part"> <img src="images/blog-compact-post-01.jpg" alt="">
-                <div class="blog_compact_part_content">
-                  <h3>Kiat Sukses memilih Investasi Waralaba</h3>
-                  <ul class="blog_post_tag_part">
-                    <li>Tips & Trick</li>
-                  </ul>
-                  <p>Sebelum memilih franchise waralaba baiknya pahami hal berikut...</p>
+              @foreach ($today_news->take(4) as $item)
+              <div class="col-md-3 col-sm-6 col-xs-12"> <a href="{{ route('today_news.details',['slug' => $item->slug]) }}" class="blog_compact_part-container">
+                <div class="blog_compact_part"> <img src="{{ asset('storage/'.$item->images) }}" alt="">
+                  <div class="blog_compact_part_content">
+                    <h3>{{ $item->title }}</h3>
+                    <ul class="blog_post_tag_part">
+                      <li>{{ $item->category->title }} / {{ Carbon\Carbon::parse($item->created_at)->format('d F, Y') }}</li>
+                    </ul>
+                    <p>{!! Str::limit($item->description,50) !!}</p>
+                  </div>
                 </div>
+                </a>
               </div>
-              </a>
-            </div>
-
-            <div class="col-md-3 col-sm-6 col-xs-12"> <a href="blog_detail_post.html" class="blog_compact_part-container">
-              <div class="blog_compact_part"> <img src="images/blog-compact-post-02.jpg" alt="">
-                <div class="blog_compact_part_content">
-                  <h3>Greatest Event Places in Listing</h3>
-                  <ul class="blog_post_tag_part">
-                    <li>18 January 2019</li>
-                  </ul>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</p>
-                </div>
-              </div>
-              </a>
-            </div>
-
-            <div class="col-md-3 col-sm-6 col-xs-12"> <a href="blog_detail_post.html" class="blog_compact_part-container">
-              <div class="blog_compact_part"> <img src="images/blog-compact-post-03.jpg" alt="">
-                <div class="blog_compact_part_content">
-                  <h3>Top 15 Greatest Ideas for Health & Body</h3>
-                  <ul class="blog_post_tag_part">
-                    <li>10 January 2019</li>
-                  </ul>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</p>
-                </div>
-              </div>
-              </a>
-            </div>
-
-            <div class="col-md-3 col-sm-6 col-xs-12"> <a href="blog_detail_post.html" class="blog_compact_part-container">
-              <div class="blog_compact_part"> <img src="images/blog-compact-post-04.jpg" alt="">
-                <div class="blog_compact_part_content">
-                  <h3>Top 10 Best Clothing Shops in Sydney</h3>
-                  <ul class="blog_post_tag_part">
-                    <li>18 January 2019</li>
-                  </ul>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</p>
-                </div>
-              </div>
-              </a>
-            </div>
-            <div class="col-md-12 centered_content"> <a href="blog_page.html" class="button border margin-top-20">{{ trans('message.view-more') }}</a> </div>
+              @endforeach
+            <div class="col-md-12 centered_content"> <a href="{{ route('today-news') }}" class="button border margin-top-20">{{ trans('message.view-more') }}</a> </div>
           </div>
         </div>
       </section>

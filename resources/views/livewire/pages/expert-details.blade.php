@@ -1,5 +1,5 @@
 @section('title')
- Ask The Experts Details
+ {{ $expert->name }}
 @endsection
 
 <div>
@@ -29,9 +29,7 @@
           <div class="col-lg-8 col-md-8">
             <div id="utf_listing_overview" class="utf_listing_section">
               <h3 class="utf_listing_headline_part margin-top-30 margin-bottom-30">{{ trans('message.expert-desc') }}</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam.</p>
+              {!! $expert->description !!}
             </div>
 
             <div class="utf_listing_section">
@@ -40,18 +38,18 @@
                 <div class="col-md-12">
                   <div class="style-2">
                     <div class="accordion">
-                      <h3><span class="ui-accordion-header-icon ui-icon ui-accordion-icon"></span><i class="sl sl-icon-plus"></i> (1) How to Open an Account?</h3>
-                      <div>
-                        <p>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                      </div>
-                      <h3><span class="ui-accordion-header-icon ui-icon ui-accordion-icon"></span><i class="sl sl-icon-plus"></i> (2) How to Add Listing?</h3>
-                      <div>
-                        <p>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                      </div>
-                      <h3><span class="ui-accordion-header-icon ui-icon ui-accordion-icon"></span><i class="sl sl-icon-plus"></i> (3) What is Featured Listing?</h3>
-                      <div>
-                        <p>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                      </div>
+                        @if($qna->count())
+                        @foreach ($qna as $key => $value)
+                        <h3><span class="ui-accordion-header-icon ui-icon ui-accordion-icon"></span><i class="sl sl-icon-plus"></i> ({{ $key + 1 }}) {!! $value->question !!}?</h3>
+                        <div>
+                            {!! $value->answer !!}
+                        </div>
+                        @endforeach
+                        @else
+                        <h3> Nothing Question and Answer here</h3>
+
+                        @endif
+
                     </div>
                   </div>
                 </div>
@@ -63,17 +61,24 @@
           <div class="col-lg-4 col-md-4 margin-top-40 sidebar-search">
             <div class="utf_box_widget">
               <h3><i class="sl sl-icon-phone"></i>{{ trans('message.contact-info') }}</h3>
-              <div class="utf_hosted_by_user_title"> <a href="#" class="utf_hosted_by_avatar_listing"><img src="{{ asset('images/dashboard-avatar.jpg') }}" alt=""></a>
-                <h4><a href="#">Kathy Brown</a><span>Posted 3 Days Ago</span>
-                  <span><i class="sl sl-icon-location"></i> Lonsdale St, Melbourne</span>
+              <div class="utf_hosted_by_user_title"> <a href="#" class="utf_hosted_by_avatar_listing"><img src="{{ asset('storage/'.$expert->images) }}" alt=""></a>
+                <h4><a href="#">{{ $expert->name }}</a>
+                  <span><i class="sl sl-icon-location"></i> {{ $expert->address }}</span>
                 </h4>
               </div>
               <ul class="utf_social_icon rounded margin-top-10">
-                <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
-                <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-                <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
-                <li><a class="linkedin" href="#"><i class="icon-linkedin"></i></a></li>
-                <li><a class="instagram" href="#"><i class="icon-instagram"></i></a></li>
+                @if($expert->facebook != null)
+                <li><a class="facebook" target="_blank" href="{{ url($expert->facebook) }}"><i class="icon-facebook"></i></a></li>
+                @endif
+                @if($expert->twitter != null)
+                <li><a class="twitter" target="_blank" href="{{ url($expert->twitter) }}"><i class="icon-twitter"></i></a></li>
+                @endif
+                @if($expert->instagram != null)
+                <li><a class="instagram" target="_blank" href="{{ url($expert->instagram) }}"><i class="icon-instagram"></i></a></li>
+                @endif
+                @if($expert->linkedin != null)
+                <li><a class="linkedin" target="_blank" href="{{ url($expert->linkedin) }}"><i class="icon-linkedin"></i></a></li>
+                @endif
               </ul>
             </div>
             <div class="opening-hours margin-top-35">

@@ -370,7 +370,7 @@ Franchise Form
                             <img src="{{ asset('icons/loading.gif') }}" wire:loading wire:target="{{ isset($edit) ? 'updateFranchise("'.$edit->slug.'")' : 'createFranchise' }}" alt="" width="60px">
                             <button type="submit" class="btn btn-primary mr-1" wire:target="{{ isset($edit) ? 'updateFranchise("'.$edit->slug.'")' : 'createFranchise' }}" wire:loading.attr="hidden"
                             wire:loading.attr="hidden"> Submit</button>
-                            <a href="{{ route('admin.retail') }}" wire:target="{{ isset($edit) ? 'updateFranchise("'.$edit->slug.'")' : 'createFranchise' }}"  class="btn btn-danger" wire:loading.class="btn btn-secondary" wire:loading.attr="hidden">Back</a>
+                            <a href="{{ route('admin.franchise') }}" wire:target="{{ isset($edit) ? 'updateFranchise("'.$edit->slug.'")' : 'createFranchise' }}"  class="btn btn-danger" wire:loading.class="btn btn-secondary" wire:loading.attr="hidden">Back</a>
                         </div>
                     </div>
                     </form>

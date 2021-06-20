@@ -3,8 +3,10 @@
 namespace App\Http\Livewire\Pages\Master\News;
 
 use Livewire\Component;
-use App\Models\NewsCategories;
 use App\Models\TodayNews;
+use App\Models\NewsCategories;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Contracts\Session\Session;
 
 class NewsIndex extends Component
 {
@@ -45,9 +47,18 @@ class NewsIndex extends Component
         return redirect()->route('admin.today_news');
     }
 
+    public function deleteNews($slug){
+        $data = TodayNews::where('slug',$slug)->first();
+        Storage::disk('public')->delete($data['images']);
+        $data->delete();
+        session()->flash('success','News deleted successfully');
+        return redirect()->route('admin.today_news');
+    }
+
     public function render()
     {
-        $news = TodayNews::with('category','user')->paginate($this->load_more);
+        $searchTerm = '%' . $this->search . '%';
+        $news = TodayNews::with('category','user')->where('title','like',$searchTerm)->latest()->paginate($this->load_more);
         $categories = NewsCategories::all();
         return view('livewire.pages.master.news.news-index',compact('categories','news'))->extends('layouts.master.app')->section('content');
     }

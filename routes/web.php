@@ -19,11 +19,17 @@ use App\Http\Livewire\Pages\Directory\RetailDetails;
 use App\Http\Livewire\Pages\Master\Retail\RetailForm;
 use App\Http\Livewire\Pages\Master\Retail\RetailIndex;
 use App\Http\Livewire\Pages\Directory\FranchiseDetails;
+use App\Http\Livewire\Pages\Master\Event\EventForm;
+use App\Http\Livewire\Pages\Master\Event\EventIndex;
+use App\Http\Livewire\Pages\Master\Expert\ExpertForm as ExpertExpertForm;
+use App\Http\Livewire\Pages\Master\Expert\ExpertIndex;
 use App\Http\Livewire\Pages\Master\Franchise\FranchiseForm;
 use App\Http\Livewire\Pages\Master\Franchise\FranchiseIndex;
 use App\Http\Livewire\Pages\Master\News\NewsIndex;
 use App\Http\Livewire\Pages\Master\News\NewsForm;
-
+use App\Http\Livewire\Pages\Master\Widget\Expert as WidgetExpert;
+use App\Http\Livewire\Pages\Master\Widget\ExpertForm;
+use App\Http\Livewire\Pages\TodayNewsDetail;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,8 +59,9 @@ Route::POST('/logout',[AuthenticationController::class, 'logout'])->name('logout
 
 Route::GET('/',Home::class)->name('home');
 Route::GET('/ask-the-expert',Expert::class)->name('expert');
-Route::GET('/ask-the-expert/details',ExpertDetails::class)->name('expert.details');
+Route::GET('/ask-the-expert/details/{slug}',ExpertDetails::class)->name('expert.details');
 Route::GET('/today-news',TodayNews::class)->name('today-news');
+Route::GET('/today-news/details/{slug}',TodayNewsDetail::class)->name('today_news.details');
 Route::GET('/contact',Contact::class)->name('contact');
 Route::GET('/franchise-directory', FranchiseDirectory::class)->name('franchise-directory');
 Route::GET('/retail-directory', RetailDirectory::class)->name('retail-directory');
@@ -69,7 +76,7 @@ Route::middleware(['role:admin'])->group(function () {
 
     Route::GET('/admin/today_news',NewsIndex::class)->name('admin.today_news');
     Route::GET('/admin/today_news/add',NewsForm::class)->name('admin.today_news.add');
-
+    Route::GET('/admin/today_news/edit/{slug}',NewsForm::class)->name('admin.today_news.edit');
 
     Route::GET('/admin/retail-directory',RetailIndex::class)->name('admin.retail');
     Route::GET('/admin/retail-directory/add',RetailForm::class)->name('admin.retail.add');
@@ -78,4 +85,17 @@ Route::middleware(['role:admin'])->group(function () {
     Route::GET('/admin/franchise-directory',FranchiseIndex::class)->name('admin.franchise');
     Route::GET('/admin/franchise-directory/add',FranchiseForm::class)->name('admin.franchise.add');
     Route::GET('/admin/franchise/edit/{slug}',FranchiseForm::class)->name('admin.franchise.edit');
+
+    Route::GET('/admin/expert',WidgetExpert::class)->name('admin.expert');
+    Route::GET('/admin/expert/add',ExpertForm::class)->name('admin.experts.add');
+    Route::GET('/admin/expert/edit/{slug}',ExpertForm::class)->name('admin.experts.edit');
+
+    Route::GET('/admin/ask_expert',ExpertIndex::class)->name('admin.ask_expert');
+    Route::GET('/admin/ask_expert/add',ExpertExpertForm::class)->name('admin.ask_expert.add');
+    Route::GET('/admin/ask_expert/edit/{slug}',ExpertExpertForm::class)->name('admin.ask_expert.edit');
+
+    Route::GET('/admin/event',EventIndex::class)->name('admin.event');
+    Route::GET('/admin/event/add',EventForm::class)->name('admin.event.add');
+
+
 });

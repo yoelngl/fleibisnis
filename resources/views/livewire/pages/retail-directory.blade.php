@@ -77,6 +77,7 @@
               </div>
             </div>
             <div class="row">
+                @if($retail->count())
                 @foreach ($retail as $item)
                 <div class="col-lg-12 col-md-12">
                     <div class="utf_listing_item-container list-layout"> <a href="{{ route('retail-details',['slug' => $item->slug]) }}" class="utf_listing_item">
@@ -96,6 +97,9 @@
                     </div>
                   </div>
                 @endforeach
+                @else
+                <img src="{{ asset('backend-assets/images/notFound.jpg') }}" width="auto" alt="">
+                @endif
                 @if($retail->hasMorePages())
                 <div class="col-md-12 centered_content"> <a wire:click="$emit('load-more')" class="button border margin-top-20">{{ trans('message.view-more') }}</a> </div>
                 @endif

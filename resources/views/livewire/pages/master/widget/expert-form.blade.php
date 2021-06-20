@@ -1,5 +1,5 @@
 @section('title')
-Today News Form
+Expert Form
 @endsection
 
 @section('vendor')
@@ -19,12 +19,12 @@ Today News Form
             <div class="content-header-left col-md-9 col-12 mb-2">
               <div class="row breadcrumbs-top">
                 <div class="col-12">
-                  <h2 class="content-header-title float-left mb-0">Today News Form</h2>
+                  <h2 class="content-header-title float-left mb-0">Experts Form</h2>
                   <div class="breadcrumb-wrapper">
                     <ol class="breadcrumb">
-                      <li class="breadcrumb-item">Main App
+                      <li class="breadcrumb-item">Widgets
                       </li>
-                      <li class="breadcrumb-item"><a href="{{ route('admin.today_news') }}">Today News</a>
+                      <li class="breadcrumb-item"><a href="{{ route('admin.today_news') }}">Experts</a>
                       </li>
                       <li class="breadcrumb-item active">Form
                       </li>
@@ -51,36 +51,51 @@ Today News Form
                         </div>
                         </div> --}}
                         <!-- Form -->
-
-                        <form class="mt-2" wire:submit.prevent="{{ isset($edit) ? 'updateNews("'.$edit->slug.'")' : 'createNews' }}" >
+                        <form class="mt-2" wire:submit.prevent="{{ isset($edit) ? 'updateExpert("'.$edit->slug.'")' : 'createExpert' }}" >
                         <div class="row">
-                            <div class="col-md-6 col-12">
+                            <div class="col-md-12 col-12">
                             <div class="form-group mb-2">
-                                <label for="title">Title</label>
+                                <label for="expert_name">Experts Name</label>
                                 <input
                                 type="text"
-                                id="title"
+                                id="expert_name"
                                 class="form-control"
-                                wire:model="title"
-                                placeholder="News title"
+                                wire:model="expert_name"
+                                placeholder="Expert Name"
                                 />
 
 
-                            @error('title') <small class="text-danger">{{ $message }}</small> @enderror
+                            @error('expert_name') <small class="text-danger">{{ $message }}</small> @enderror
                             </div>
                             </div>
                             <div class="col-md-6 col-12">
                                 <div class="form-group mb-2">
-                                    <label for="categories">Category</label>
-                                    <div wire:ignore>
-                                        <select id="categories" wire:model="category" class="select2 form-control">
-                                        <option value="" selected>-- Choose Category --</option>
-                                        @foreach($categories as $category)
-                                            <option value="{{ $category->id }}" >{{ $category->title }}</option>
-                                        @endforeach
-                                        </select>
-                                    </div>
-                                    @error('category') <small class="text-danger">{{ $message }}</small> @enderror
+                                    <label for="address">Address</label>
+                                    <input
+                                    type="text"
+                                    id="address"
+                                    class="form-control"
+                                    wire:model="address"
+                                    placeholder="Expert Adress"
+                                    />
+
+
+                                @error('address') <small class="text-danger">{{ $message }}</small> @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="form-group mb-2">
+                                    <label for="position">Office Position</label>
+                                    <input
+                                    type="text"
+                                    id="position"
+                                    class="form-control"
+                                    wire:model="position"
+                                    placeholder="Ex. Franchise Advisor, Motivator"
+                                    />
+
+
+                                @error('position') <small class="text-danger">{{ $message }}</small> @enderror
                                 </div>
                             </div>
                             <div class="col-12">
@@ -93,13 +108,73 @@ Today News Form
                             </div>
 
                             </div>
+                            <div class="col-md-3 col-12">
+                                <div class="form-group mb-2">
+                                    <label for="facebook">Facebook</label>
+                                    <input
+                                    type="text"
+                                    id="facebook"
+                                    class="form-control"
+                                    wire:model="facebook"
+                                    placeholder="Expert Facebook"
+                                    />
+
+
+                                @error('facebook') <small class="text-danger">{{ $message }}</small> @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-12">
+                                <div class="form-group mb-2">
+                                    <label for="instagram">Instagram</label>
+                                    <input
+                                    type="text"
+                                    id="instagram"
+                                    class="form-control"
+                                    wire:model="instagram"
+                                    placeholder="Expert Instagram"
+                                    />
+
+
+                                @error('instagram') <small class="text-danger">{{ $message }}</small> @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-12">
+                                <div class="form-group mb-2">
+                                    <label for="twitter">Twitter</label>
+                                    <input
+                                    type="text"
+                                    id="twitter"
+                                    class="form-control"
+                                    wire:model="twitter"
+                                    placeholder="Expert Twitter"
+                                    />
+
+
+                                @error('twitter') <small class="text-danger">{{ $message }}</small> @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-12">
+                                <div class="form-group mb-2">
+                                    <label for="linkedin">LinkedIn</label>
+                                    <input
+                                    type="text"
+                                    id="linkedin"
+                                    class="form-control"
+                                    wire:model="linkedin"
+                                    placeholder="Expert LinkedIn"
+                                    />
+
+
+                                @error('linkedin') <small class="text-danger">{{ $message }}</small> @enderror
+                                </div>
+                            </div>
 
                             <div class="col-12 mb-2">
                             <div class="border rounded p-2">
                                 <h4 class="mb-1">Images</h4>
                                 <div class="media flex-column flex-md-row">
                                 <img
-                                <?php isset($edit->images) ? $data = 'storage/'.$edit->images
+                                <?php isset($images) ? $data = 'storage/'.$images
                                                            : $data = 'backend-assets/images/slider/03.jpg' ?>
                                     src="{{ asset($data) }}"
                                     id="blog-feature-image"
@@ -110,7 +185,7 @@ Today News Form
                                     wire:ignore.self
                                 />
                                 <div class="media-body" >
-                                    <small class="text-muted">Recommended image resolution 750x500, image size 10mb.</small>
+                                    <small class="text-muted">Recommended image resolution 200x200, image size 10mb.</small>
                                     <p class="my-50">
                                         <a href="javascript:void(0);" id="blog-image-text" hidden>C:\fakepath\banners.jpg</a>
                                     </p>
@@ -129,10 +204,10 @@ Today News Form
                             </div>
                             </div>
                             <div class="col-12 mt-50">
-                                <img src="{{ asset('icons/loading.gif') }}" wire:loading wire:target="{{ isset($edit) ? 'updateNews("'.$edit->slug.'")' : 'createNews' }}" alt="" width="60px">
-                                <button type="submit" class="btn btn-primary mr-1" wire:target="{{ isset($edit) ? 'updateNews("'.$edit->slug.'")' : 'createNews' }}" wire:loading.attr="hidden"
+                                <img src="{{ asset('icons/loading.gif') }}" wire:loading wire:target="{{ isset($edit) ? 'updateExpert("'.$edit->slug.'")' : 'createExpert' }}" alt="" width="60px">
+                                <button type="submit" class="btn btn-primary mr-1" wire:target="{{ isset($edit) ? 'updateExpert("'.$edit->slug.'")' : 'createExpert' }}" wire:loading.attr="hidden"
                                 wire:loading.attr="hidden"> Submit</button>
-                                <a href="{{ route('admin.today_news') }}" wire:target="{{ isset($edit) ? 'updateNews("'.$edit->slug.'")' : 'createNews' }}"  class="btn btn-danger" wire:loading.class="btn btn-secondary" wire:loading.attr="hidden">Back</a>
+                                <a href="{{ route('admin.expert') }}" wire:target="{{ isset($edit) ? 'updateExpert("'.$edit->slug.'")' : 'createExpert' }}"  class="btn btn-danger" wire:loading.class="btn btn-secondary" wire:loading.attr="hidden">Back</a>
                             </div>
                         </div>
                         </form>
@@ -161,16 +236,16 @@ Today News Form
 
 <script type="text/javascript">
 
-    $('#categories').select2().val({{ isset($category) ? $category->id : $category_null  }}).trigger('change');
+    // $('#categories').select2().val({{ isset($category) ? $category->id : 1  }}).trigger('change');
 
 
-    $(document).ready(function() {
-        @this.set('category',{{ isset($category->id) ? $category->id : $category_null }});
-    });
+    // $(document).ready(function() {
+    //     @this.set('category',{{ isset($category->id) ? $category->id : 1 }});
+    // });
 
-    $(document).on('change','#categories',function(){
-        @this.set('category', this.value);
-    });
+    // $(document).on('change','#categories',function(){
+    //     @this.set('category', this.value);
+    // });
 
     tinymce.init({
         selector: "textarea#description",

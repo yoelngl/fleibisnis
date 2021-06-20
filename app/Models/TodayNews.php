@@ -19,12 +19,14 @@ class TodayNews extends Model
     protected $guarded = ['id'];
 
     public function category(){
-      return $this->belongsTo(NewsCategories::class,'id');
+      return $this->belongsTo(NewsCategories::class,'category_id','id');
     }
 
     public function user(){
       return $this->belongsTo(User::class);
     }
+
+    protected $dates = ['created_at'];
 
     public function sluggable(): array
     {

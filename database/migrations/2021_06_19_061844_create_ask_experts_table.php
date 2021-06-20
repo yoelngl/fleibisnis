@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTodayNewsTable extends Migration
+class CreateAskExpertsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateTodayNewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('today_news', function (Blueprint $table) {
+        Schema::create('ask_experts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('expert_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('title');
+            $table->text('question');
+            $table->text('answer');
             $table->string('slug');
-            $table->text('description');
-            $table->string('images');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreateTodayNewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('today_news');
+        Schema::dropIfExists('ask_experts');
     }
 }
