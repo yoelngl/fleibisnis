@@ -21,6 +21,7 @@ use App\Http\Livewire\Pages\Master\Retail\RetailIndex;
 use App\Http\Livewire\Pages\Directory\FranchiseDetails;
 use App\Http\Livewire\Pages\Master\Event\EventForm;
 use App\Http\Livewire\Pages\Master\Event\EventIndex;
+use App\Http\Livewire\Pages\Master\Event\FranchiseWeek;
 use App\Http\Livewire\Pages\Master\Expert\ExpertForm as ExpertExpertForm;
 use App\Http\Livewire\Pages\Master\Expert\ExpertIndex;
 use App\Http\Livewire\Pages\Master\Franchise\FranchiseForm;
@@ -96,6 +97,11 @@ Route::middleware(['role:admin'])->group(function () {
 
     Route::GET('/admin/event',EventIndex::class)->name('admin.event');
     Route::GET('/admin/event/add',EventForm::class)->name('admin.event.add');
+    Route::GET('/admin/event/edit/{slug}',EventForm::class)->name('admin.event.edit');
+
+
+    Route::GET('/admin/franchise-week',FranchiseWeek::class)->name('admin.franchise-week');
+    Route::GET('/admin/franchise-week/edit/{slug}',FranchiseWeek::class)->name('admin.franchise-week.edit');
 
 
 });

@@ -20,7 +20,7 @@
         </li>
         <li class=" nav-item {{ request()->is('admin/ask_expert') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.ask_expert') }}"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="home">Ask Expert</span></a>
         </li>
-        <li class=" nav-item {{ request()->is('admin/event') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.event') }}"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="home">Event</span></a>
+        <li class=" nav-item {{ request()->is('admin/event') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.event') }}"><i data-feather="gift"></i><span class="menu-title text-truncate" data-i18n="home">Event</span></a>
         </li>
         <li class=" nav-item {{ request()->is('admin/retail-directory') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.retail') }}"><i data-feather="package"></i><span class="menu-title text-truncate" data-i18n="home">Retail Directory</span></a>
         </li>

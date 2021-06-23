@@ -1,11 +1,9 @@
 @section('title')
-Event Schedule
+Franchise Week
 @endsection
 
 @section('vendor')
 <link rel="stylesheet" type="text/css" href="{{ asset('backend-assets/vendors/css/forms/select/select2.min.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('backend-assets/vendors/css/pickers/pickadate/pickadate.css"') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('backend-assets/vendors/css/pickers/flatpickr/flatpickr.min.css') }}">
 
 
 @endsection
@@ -24,14 +22,14 @@ Event Schedule
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-left mb-0">Event Schedule</h2>
+                        <h2 class="content-header-title float-left mb-0">Franchise Week</h2>
                         <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">Home
                             </li>
                             <li class="breadcrumb-item active"><a href="{{ route('admin.event') }}">Event</a>
                             </li>
-                            <li class="breadcrumb-item">Event Schedule</li>
+                            <li class="breadcrumb-item">Franchise Week</li>
                         </ol>
                         </div>
                     </div>
@@ -56,9 +54,9 @@ Event Schedule
                           </div> --}}
                           <!-- Form -->
 
-                          <form class="mt-2" wire:submit.prevent="{{ isset($edit) ? 'updateEvent("'.$edit->slug.'")' : 'createEvent' }}" >
+                          <form class="mt-2" wire:submit.prevent="{{ isset($edit) ? 'updateFranchise("'.$edit->slug.'")' : 'createFranchise' }}" >
                           <div class="row">
-                              <div class="col-md-6 col-12">
+                              <div class="col-md-12 col-12">
                               <div class="form-group mb-2">
                                   <label for="title">Title</label>
                                   <input
@@ -87,61 +85,33 @@ Event Schedule
                                       @error('category') <small class="text-danger">{{ $message }}</small> @enderror
                                   </div>
                               </div>
-                              <div class="col-md-4 col-12">
+                              <div class="col-md-6 col-12">
                                   <div class="form-group mb-2">
-                                    <label for="range">Date</label>
-                                    <input
+                                      <label for="url">Youtube ID</label>
+                                      <input
                                       type="text"
-                                      id="range"
-                                      wire:model="date"
-                                      class="form-control flatpickr-range"
-                                      placeholder="YYYY-MM-DD to YYYY-MM-DD"
-                                    />
-                                  @error('date') <small class="text-danger">{{ $message }}</small> @enderror
-
+                                      id="url"
+                                      class="form-control"
+                                      wire:model="url"
+                                      placeholder="bTrRniT2jyk"
+                                      />
+                                      @error('url') <small class="text-danger">{{ $message }}</small> @enderror
                                   </div>
-
                               </div>
-                              <div class="col-md-4 col-12">
-                                <div class="form-group mb-2">
-                                    <label for="url">Page Link</label>
-                                    <input
-                                    type="text"
-                                    id="url"
-                                    class="form-control"
-                                    wire:model="url"
-                                    placeholder="https://www.google.com/"
-                                    />
-                                    @error('url') <small class="text-danger">{{ $message }}</small> @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-12">
-                                <div class="form-group mb-2">
-                                    <label for="url">Location</label>
-                                    <input
-                                    type="text"
-                                    id="location"
-                                    class="form-control"
-                                    wire:model="location"
-                                    placeholder="Jakarta"
-                                    />
-                                    @error('location') <small class="text-danger">{{ $message }}</small> @enderror
-                                </div>
-                            </div>
                               <div class="col-12">
                               <div class="form-group mb-2" >
-                                  <label>Activities</label>
+                                  <label>Description</label>
                                   <div wire:ignore>
-                                      <textarea id="activities" class="form-control" wire:model="activities"></textarea>
+                                      <textarea id="description" class="form-control" wire:model="description"></textarea>
                                   </div>
-                                      @error('activities') <small class="text-danger">{{ $message }}</small> @enderror
+                                      @error('description') <small class="text-danger">{{ $message }}</small> @enderror
                               </div>
 
                               </div>
 
                               <div class="col-12 mb-2">
                               <div class="border rounded p-2">
-                                  <h4 class="mb-1">Poster</h4>
+                                  <h4 class="mb-1">Thumbnails</h4>
                                   <div class="media flex-column flex-md-row">
                                   <img
                                   <?php isset($edit->images) ? $data = 'storage/'.$edit->images
@@ -151,7 +121,7 @@ Event Schedule
                                       class="rounded mr-2 mb-1 mb-md-0"
                                       width="170"
                                       height="110"
-                                      alt="Poster"
+                                      alt="News Form Images"
                                       wire:ignore.self
                                   />
                                   <div class="media-body" >
@@ -174,11 +144,11 @@ Event Schedule
                               </div>
                               </div>
                               <div class="col-12 mt-50">
-                                <img src="{{ asset('icons/loading.gif') }}" wire:loading wire:target="{{ isset($edit) ? 'updateEvent("'.$edit->slug.'")' : 'createEvent' }}" alt="" width="60px">
-                                <button type="submit" class="btn btn-primary mr-1" wire:target="{{ isset($edit) ? 'updateEvent("'.$edit->slug.'")' : 'createEvent' }}" wire:loading.attr="hidden"
+                                <img src="{{ asset('icons/loading.gif') }}" wire:loading wire:target="{{ isset($edit) ? 'updateFranchise("'.$edit->slug.'")' : 'createFranchise' }}" alt="" width="60px">
+                                <button type="submit" class="btn btn-primary mr-1" wire:target="{{ isset($edit) ? 'updateFranchise("'.$edit->slug.'")' : 'createFranchise' }}" wire:loading.attr="hidden"
                                 wire:loading.attr="hidden"> Submit</button>
-                                <a href="{{ route('admin.today_news') }}" wire:target="{{ isset($edit) ? 'updateEvent("'.$edit->slug.'")' : 'createEvent' }}"  class="btn btn-danger" wire:loading.class="btn btn-secondary" wire:loading.attr="hidden">Back</a>
-                               </div>
+                                <a href="{{ route('admin.today_news') }}" wire:target="{{ isset($edit) ? 'updateFranchise("'.$edit->slug.'")' : 'createFranchise' }}"  class="btn btn-danger" wire:loading.class="btn btn-secondary" wire:loading.attr="hidden">Back</a>
+                            </div>
                           </div>
                           </form>
                           <!--/ Form -->
@@ -200,17 +170,7 @@ Event Schedule
 @push('scripts')
 <script src="{{ asset('backend-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
 <script src="{{ asset('backend-assets/js/scripts/pages/page-blog-edit.min.js') }}"></script>
-<script src="{{ asset('backend-assets/vendors/js/pickers/pickadate/picker.js') }}"></script>
-<script src="{{ asset('backend-assets/vendors/js/pickers/pickadate/picker.date.js') }}"></script>
-<script src="{{ asset('backend-assets/vendors/js/pickers/pickadate/picker.time.js') }}"></script>
-<script src="{{ asset('backend-assets/vendors/js/pickers/pickadate/legacy.js') }}"></script>
-<script src="{{ asset('backend-assets/vendors/js/pickers/flatpickr/flatpickr.min.js') }}"></script>
 <script>
-    $('#range').flatpickr({
-    mode: "range",
-    minDate: "today",
-    dateFormat: "d F, Y",
-});
     $('#categories').select2().val({{ isset($category->id) ? $category->id : 1  }}).trigger('change');
 
     $(document).ready(function() {

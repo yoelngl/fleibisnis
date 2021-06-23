@@ -2,6 +2,15 @@
 Event
 @endsection
 
+@section('vendor')
+<link rel="stylesheet" type="text/css" href="{{ asset('backend-assets/vendors/css/vendors.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('backend-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('backend-assets/vendors/css/tables/datatable/responsive.bootstrap4.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('backend-assets/vendors/css/tables/datatable/buttons.bootstrap4.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('backend-assets/vendors/css/tables/datatable/rowGroup.bootstrap4.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('backend-assets/vendors/css/pickers/flatpickr/flatpickr.min.css') }}">
+@endsection
+
 <div>
     <div class="app-content content ">
         <div class="content-overlay"></div>
@@ -26,7 +35,8 @@ Event
             <div class="content-header-right text-md-right col-md-3 col-12 d-md-block ">
                 <div class="form-group breadcrumb-right">
                 <div class="dropdown">
-                    <a href="{{ route('admin.event.add') }}" class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" >Create Event</a>
+                    <a href="{{ route('admin.event.add') }}" class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" >Create Event Schedule</a>
+                    <a href="{{ route('admin.franchise-week') }}" class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" >Create Franchise Week</a>
                 </div>
                 </div>
             </div>
@@ -35,65 +45,89 @@ Event
                 <div class="content-body"><!-- Blog List -->
                     <div class="blog-list-wrapper">
                       <div class="row">
-                      {{-- @if($franchise->count())
-                        @foreach($franchise as $item)
-                          <div class="col-md-4 col-12">
-                          <div class="card">
-                              <a href="{{ route('franchise-details',['slug' => $item->slug]) }}">
-                              <img class="card-img-top img-fluid" width="200" src="{{ asset('storage/'.$item->brand_image) }}" alt="Blog Post pic" />
-                              </a>
-                              <div class="card-body">
-                              <h4 class="card-title">
-                                  <a href="{{ route('franchise-details',['slug' => $item->slug]) }}" class="blog-title-truncate text-body-heading">
-                                      {{ $item->brand_name }}
-                                  </a>
-                              </h4>
-                              <div class="media">
-                                  <div class="avatar mr-50">
-                                  <img src="{{ asset('backend-assets/images/portrait/small/avatar-s-7.jpg') }}" alt="Avatar" width="24" height="24" />
-                                  </div>
-                                  <div class="media-body">
-                                  <small class="text-muted mr-25">by</small>
-                                  <small><a href="javascript:void(0);" class="text-body">{{ $item->user->username }}</a></small>
-                                  <span class="text-muted ml-50 mr-25">|</span>
-                                  <small class="text-muted">{{ $item->created_at->format('d F, Y') }}</small>
-                                  </div>
-                              </div>
-                              <div class="my-1 py-25">
-                                  <a >
-                                  <div class="badge badge-light-primary mr-50">{{ $item->category->title }}</div>
-                                  </a>
-                              </div>
-                              <hr />
-                              <div class="d-flex justify-content-between align-items-center">
-                                  <a href="page-blog-detail.html#blogComment">
-                                  <div class="d-flex align-items-center">
-                                  </div>
-                                  </a>
-                                  <div>
-                                    <a href="{{ route('franchise-details',['slug' => $item->slug]) }}" class="font-weight-bold  mr-1">Details</a>
-                                  <a href="{{ route('admin.franchise.edit',['slug' => $item->slug]) }}" class="font-weight-bold text-warning mr-1">Edit</a>
-                                  <a wire:click.prevent="$emit('deleteFranchise','{{ $item->slug }}')" class="font-weight-bold text-danger mr-1">Delete</a>
-                                  </div>
-                              </div>
+                        <div class="col-md-12 col-12">
+                            <div class="card">
+                            <div class="card-body">
+                                  <h3>Franchise Week</h3>
+                                  <div class="row col-12" wire:ignore >
+                                          <div class="table-responsive">
+                                            <table id="datatable" class="datatables-basic table ">
+                                              <thead>
+                                                <tr>
+                                                  <th>Images</th>
+                                                  <th>Title</th>
+                                                  <th>Category</th>
+                                                  <th>Actions</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                  @foreach ($franchise_weeks as $item)
+                                                  <tr>
+                                                      <td><img src="{{ asset('storage/'.$item->images) }}" alt="" width="100"></td>
+                                                      <td>{{ $item->title }}</td>
+                                                      <td>{{ $item->category->title }}</td>
+                                                      <td>
+                                                          <a class="badge badge-sm badge-warning cursor-pointer text-light" href="{{ route('admin.franchise-week.edit',['slug' => $item->slug]) }}">edit</a>
+                                                          <span class="badge badge-sm badge-danger cursor-pointer" wire:click.prevent="$emit('deleteFranchiseWeek','{{ $item->slug }}')">delete</span></td>
+                                                  </tr>
+                                                  @endforeach
+                                              </tbody>
+
+                                            </table>
+                                          </div>
+                                    </div>
+                                <div id="blog-editor-wrapper" hidden>
+                                    <div id="blog-editor-container">
+                                      <div class="editor">
+                                      </div>
+                                    </div>
+                               </div>
                             </div>
-                          </div>
-                          </div>
-                        @endforeach
-                        @if($franchise->hasMorePages())
-                        <div class="col-12 d-flex justify-content-center">
-                            <button class="btn btn-primary" wire:click="$emit('load-more')">Load more!</button>
+                            </div>
                         </div>
-                        @endif
-                      @else
-                          <div class="col-12">
-                              <div class="alert alert-warning" role="alert">
-                              <div class="alert-body">
-                                  <strong>Warning:</strong> There is no franchise here yet, please add franchise by pressing the Create Franchise button!
-                              </div>
-                              </div>
-                          </div>
-                      @endif --}}
+
+                        <div class="col-md-12 col-12">
+                            <div class="card">
+                            <div class="card-body">
+                                  <h3>Event Schedule</h3>
+                                  <div class="row col-12" wire:ignore >
+                                          <div class="table-responsive">
+                                            <table id="datatables" class="datatables-basic table ">
+                                              <thead>
+                                                <tr>
+                                                  <th>Poster</th>
+                                                  <th>Title</th>
+                                                  <th>Category</th>
+                                                  <th>Date</th>
+                                                  <th>Actions</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                  @foreach ($event_schedules as $item)
+                                                  <tr>
+                                                      <td><img src="{{ asset('storage/'.$item->images) }}" alt="" width="100"></td>
+                                                      <td>{{ $item->title }}</td>
+                                                      <td>{{ $item->category->title }}</td>
+                                                      <td>{{ $item->date }}</td>
+                                                      <td>
+                                                          <a class="badge badge-sm badge-warning cursor-pointer text-light" href="{{ route('admin.event.edit',['slug' => $item->slug]) }}">edit</a>
+                                                          <span class="badge badge-sm badge-danger cursor-pointer" wire:click.prevent="$emit('deleteEvent','{{ $item->slug }}')">delete</span></td>
+                                                  </tr>
+                                                  @endforeach
+                                              </tbody>
+
+                                            </table>
+                                          </div>
+                                    </div>
+                                <div id="blog-editor-wrapper" hidden>
+                                    <div id="blog-editor-container">
+                                      <div class="editor">
+                                      </div>
+                                    </div>
+                               </div>
+                            </div>
+                            </div>
+                        </div>
                       </div>
                         <!--/ Blog List Items -->
                     </div>
@@ -132,7 +166,7 @@ Event
                                 <button type="submit" class="btn btn-sm btn-primary mr-1" wire:target="categoriesAdd" wire:loading.attr="hidden"> Submit</button>
                         </form>
                     <h6 class="section-label mt-2">Categories</h6>
-                    {{-- @if($categories->count())
+                    @if($categories->count())
                     @foreach ($categories as $category)
                         <div class="mt-1">
                             <div class="d-flex  align-items-center mb-75">
@@ -157,7 +191,7 @@ Event
                             </a>
                         </div>
                     </div>
-                    @endif --}}
+                    @endif
 
                     </div>
                     <!--/ Categories -->
@@ -168,3 +202,112 @@ Event
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script src="{{ asset('backend-assets/js/scripts/extensions/ext-component-sweet-alerts.min.js') }}"></script>
+<script src="{{ asset('backend-assets/vendors/js/tables/datatable/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('backend-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('backend-assets/vendors/js/tables/datatable/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('backend-assets/vendors/js/tables/datatable/responsive.bootstrap4.js') }}"></script>
+<script src="{{ asset('backend-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js') }}"></script>
+<script src="{{ asset('backend-assets/vendors/js/tables/datatable/datatables.buttons.min.js') }}"></script>
+<script src="{{ asset('backend-assets/vendors/js/tables/datatable/jszip.min.js') }}"></script>
+<script src="{{ asset('backend-assets/vendors/js/tables/datatable/pdfmake.min.js') }}"></script>
+<script src="{{ asset('backend-assets/vendors/js/tables/datatable/vfs_fonts.js') }}"></script>
+<script src="{{ asset('backend-assets/vendors/js/tables/datatable/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('backend-assets/vendors/js/tables/datatable/buttons.print.min.js') }}"></script>
+<script src="{{ asset('backend-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js') }}"></script>
+<script src="{{ asset('backend-assets/vendors/js/pickers/flatpickr/flatpickr.min.js') }}"></script>
+<script>
+    @include('vendor.helpers')
+
+    $(document).ready(function () {
+        $('#datatable').DataTable();
+        $('#datatables').DataTable();
+
+        @this.on('deleteFranchiseWeek', slug => {
+            Swal.fire({
+                title: 'Are You Sure?',
+                text: 'Franchise Week will be deleted permanently!',
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#7367F0',
+                cancelButtonColor: '#EA5455',
+                confirmButtonText: 'Yes, Delete!'
+            }).then((result) => {
+            //if user clicks on delete
+                if (result.value) {
+            // calling destroy method to delete
+                    @this.call('deleteFranchiseWeek',slug)
+            // success response
+                    Swal.fire({title: 'Deleted',
+                            text: 'Franchise Week successfully deleted!',
+                            icon: 'success'});
+                } else {
+                    Swal.fire({
+                        title: 'Cancelled!',
+                        text: 'Franchise Week delete Cancelled!',
+                        icon: 'error'
+                    });
+                }
+            });
+        });
+
+        @this.on('deleteEvent', slug => {
+            Swal.fire({
+                title: 'Are You Sure?',
+                text: 'Event Schedule will be deleted permanently!',
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#7367F0',
+                cancelButtonColor: '#EA5455',
+                confirmButtonText: 'Yes, Delete!'
+            }).then((result) => {
+            //if user clicks on delete
+                if (result.value) {
+            // calling destroy method to delete
+                    @this.call('deleteEvent',slug)
+            // success response
+                    Swal.fire({title: 'Deleted',
+                            text: 'Event Schedule successfully deleted!',
+                            icon: 'success'});
+                } else {
+                    Swal.fire({
+                        title: 'Cancelled!',
+                        text: 'Event Schedule delete Cancelled!',
+                        icon: 'error'
+                    });
+                }
+            });
+        });
+
+        @this.on('deleteCategory', slug => {
+            Swal.fire({
+                title: 'Are You Sure?',
+                text: 'Category will be deleted permanently!',
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#7367F0',
+                cancelButtonColor: '#EA5455',
+                confirmButtonText: 'Yes, Delete!'
+            }).then((result) => {
+            //if user clicks on delete
+                if (result.value) {
+            // calling destroy method to delete
+                    @this.call('deleteCategory',slug)
+            // success response
+                    Swal.fire({title: 'Deleted',
+                            text: 'Category successfully deleted!',
+                            icon: 'success'});
+                } else {
+                    Swal.fire({
+                        title: 'Cancelled!',
+                        text: 'Category delete Cancelled!',
+                        icon: 'error'
+                    });
+                }
+            });
+        });
+    });
+</script>
+@endpush
