@@ -30,6 +30,7 @@ class FranchiseForm extends Component
     public $email_address;
     public $phone_number;
     public $enquiries;
+    public $location;
 
     protected $rules = [
         'brand_name' => 'required',
@@ -39,6 +40,7 @@ class FranchiseForm extends Component
         'brand_whatsapp' => 'required|numeric',
         'investment_duration' => 'required|numeric',
         'legal_entity' => 'required',
+        'location' => 'required',
         'year_established' => 'required',
         'brand_images' => 'required|image|mimes:png,jpg,svg,jpeg|max:10024',
         'total_outlets' => 'required',
@@ -59,6 +61,7 @@ class FranchiseForm extends Component
             $this->budget_investment = "'" . $this->edit['investments'] . "'";
             $this->brand_whatsapp = $this->edit['brand_whatsapp'];
             $this->year_established = $this->edit['year_of_established'];
+            $this->location = $this->edit['location'];
             $this->total_outlets = $this->edit['total_outlet'];
             $this->brand_brochure = $this->edit['brand_brochure'];
             $this->brand_logo = $this->edit['brand_logo'];
@@ -101,6 +104,7 @@ class FranchiseForm extends Component
             'investment_duration' => $this->investment_duration,
             'brand_whatsapp' => $this->brand_whatsapp,
             'legal_entity' => $this->legal_entity,
+            'location' => $this->location,
             'year_of_established' => $this->year_established,
             'total_outlet' => $this->total_outlets,
             'brand_information' => $this->brand_information,
@@ -149,6 +153,7 @@ class FranchiseForm extends Component
             'investment_duration' => $this->investment_duration,
             'brand_whatsapp' => $this->brand_whatsapp,
             'legal_entity' => $this->legal_entity,
+            'location' => $this->location,
             'year_of_established' => $this->year_established,
             'total_outlet' => $this->total_outlets,
             'brand_information' => $this->brand_information,

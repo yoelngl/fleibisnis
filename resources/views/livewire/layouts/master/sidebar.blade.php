@@ -33,6 +33,8 @@
         </li>
         <li class=" nav-item {{ request()->is('admin/slider') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.slider') }}"><i data-feather="image"></i><span class="menu-title text-truncate" data-i18n="home">Slider</span></a>
         </li>
+        <li class=" nav-item {{ request()->is('admin/brand') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.brand') }}"><i data-feather="image"></i><span class="menu-title text-truncate" data-i18n="home">Franchise Brand</span></a>
+        </li>
       </ul>
     </div>
   </div>

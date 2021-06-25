@@ -30,7 +30,7 @@
       				data-hoffset="['0','0','0','0']"
       				data-y="['20','20','20','20']"
       				data-voffset="['-40','-40','-20','-80']"
-      				data-fontsize="['46','46','46','46','46']"
+                    data-fontsize="['45','35','30','28','22']"
       				data-lineheight="['70','60','34','30','25']"
       				data-width="['960','620', 640','420','320']"
       				data-height="none" data-whitespace="normal"
@@ -45,7 +45,7 @@
       				data-responsive="off"
       				style="z-index:6;color:#fff;letter-spacing:0px;font-weight:500;">{{ $value->title }}</div>
                   <div class="utf_rev_description_text">{{ $value->description }}</div>
-                  <a href="{{ ($value->link) ? $value->link : '#' }}" class="button medium">View More</a>
+                  <a href="{{ ($value->link) ? $value->link : '#' }}" target="_blank" class="button medium">View More</a>
       		 </div>
              </li>
             @endforeach
@@ -72,23 +72,22 @@
   @endif
 
 
-    <div data-background-image="images/home_section_2.jpg" >
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 ">
-                        <div class="main_input_search_part">
+    <div style="padding-bottom: 50px; background: url({{ isset($search) ? asset('storage/'.$search->image) : '../../images/page-title.jpg' }})" >
+            <div class="container" >
+                <div class="row d-flex align-items-center" >
+                    <div class="col-md-12 d-flex align-items-center">
+                        <div class="main_input_search_part d-flex align-items-center">
                             <div class="main_input_search_part_item">
-                                <input type="text" placeholder="Ex. Franchise Boba"/>
+                                <input type="text" wire:model.defer="search" placeholder="Ex. Franchise Boba"/>
                             </div>
                             <div class="main_input_search_part_item intro-search-field">
-                                <select data-placeholder="All Category" class="selectpicker default" title="All Category" data-live-search="true" data-selected-text-format="count" data-size="5">
-                                  <option>Shop & Education</option>
-                                  <option>Education</option>
-                                  <option>Business</option>
-                                  <option>Events</option>
+                                <select wire:model.defer="categories" data-placeholder="All Category" class="selectpicker default" title="All Category" data-live-search="true" data-selected-text-format="count" data-size="5">
+                                    @foreach ($categories as $item)
+                                    <option value="{{ $item->slug }}">{{ $item->title }}</option>
+                                    @endforeach
                                 </select>
                             </div>
-                            <button class="button" onclick="window.location.href='listings_half_screen_map_list.html'">{{ trans('message.find') }}</button>
+                            <button class="button" wire:click="find">{{ trans('message.find') }}</button>
                         </div>
                     </div>
                 </div>
@@ -96,7 +95,7 @@
       </div>
 
     <a href="{{ isset($ads) ? url($ads->link) : 'javascript:void(0)' }}" target="_blank" >
-        <img src="{{ isset($ads) ? asset('storage/'.$ads->image) : '../../images/page-title.jpg' }}" class="flip-banner-content margin-top-50" width="auto" alt="Ads images">
+        <img src="{{ isset($ads) ? asset('storage/'.$ads->image) : '../../images/page-title.jpg' }}" width="100%" class="flip-banner-content " width="auto" alt="Ads images">
     </a>
 
     <section class="fullwidth_block margin-bottom-0 padding-top-30 padding-bottom-65" data-background-color="linear-gradient(to bottom, #f9f9f9 0%, rgba(255, 255, 255, 1))">
@@ -107,27 +106,11 @@
                 </div>
                 <div class="col-md-12">
                     <div class="companie-logo-slick-carousel utf_dots_nav margin-bottom-10">
+                        @foreach ($brand as $item)
                         <div class="item">
-                            <img src="images/brand_logo_01.png" alt="">
+                            <a href="{{ $item->link }}" target="_blank"><img src="{{ asset('storage/'.$item->images) }}" alt=""></a>
                         </div>
-                        <div class="item">
-                            <img src="images/brand_logo_02.png" alt="">
-                        </div>
-                        <div class="item">
-                            <img src="images/brand_logo_03.png" alt="">
-                        </div>
-                        <div class="item">
-                            <img src="images/brand_logo_04.png" alt="">
-                        </div>
-                        <div class="item">
-                            <img src="images/brand_logo_05.png" alt="">
-                        </div>
-                        <div class="item">
-                            <img src="images/brand_logo_06.png" alt="">
-                        </div>
-                        <div class="item">
-                            <img src="images/brand_logo_07.png" alt="">
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -153,9 +136,9 @@
                         <div class="utf_carousel_item"> <a href="{{ route('franchise-details',['slug' => $item->slug]) }}" class="utf_listing_item-container compact">
                             <div class="utf_listing_item"> <img src="{{ asset('storage/'.$item->brand_image) }}" alt="Franchise Images"> <span class="tag"><i class="im  im-icon-Tag-3"></i> {{ $item->category->title }}</span>
                                 <div class="utf_listing_item_content">
-                                    <h3>{{ $item->title }}</h3>
-                                    <span><i class="sl sl-icon-location"></i> Jakarta, Indonesia</span>
-                                    <span><i class="sl sl-icon-phone"></i> {{ $item->brand_whatsapp }}</span>
+                                    <h3>{{ $item->brand_name }}</h3>
+                                    <span><i class="sl sl-icon-location"></i> {{ $item->location }}</span>
+                                    <span><i class="sl sl-icon-tag"></i> {{ $item->investments }}</span>
                                 </div>
                                 </div>
                             </a>

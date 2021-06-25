@@ -19,6 +19,7 @@ class CreateFranchiseDirectoriesTable extends Migration
             $table->string('brand_image');
             $table->string('brand_logo');
             $table->string('slug');
+            $table->string('location');
             $table->foreignId('category_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->text('brand_information');
             $table->string('legal_entity');

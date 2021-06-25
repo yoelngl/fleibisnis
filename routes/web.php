@@ -33,6 +33,8 @@ use App\Http\Livewire\Pages\Master\Widget\ExpertForm;
 use App\Http\Livewire\Pages\TodayNewsDetail;
 use App\Http\Livewire\Pages\Master\Widget\Banner\BannerIndex;
 use App\Http\Livewire\Pages\Master\Widget\Banner\BannerForm;
+use App\Http\Livewire\Pages\Master\Widget\Franchise\BrandForm;
+use App\Http\Livewire\Pages\Master\Widget\Franchise\BrandIndex;
 use App\Http\Livewire\Pages\Master\Widget\Slider\SliderForm;
 use App\Http\Livewire\Pages\Master\Widget\Slider\SliderIndex;
 
@@ -115,6 +117,10 @@ Route::middleware(['role:admin'])->group(function () {
     Route::GET('/admin/slider',SliderIndex::class)->name('admin.slider');
     Route::GET('/admin/slider/add',SliderForm::class)->name('admin.slider.add');
     Route::GET('/admin/slider/edit/{id}',SliderForm::class)->name('admin.slider.edit');
+
+    Route::GET('/admin/brand',BrandIndex::class)->name('admin.brand');
+    Route::GET('/admin/brand/add',BrandForm::class)->name('admin.brand.add');
+    Route::GET('/admin/brand/edit/{id}',BrandForm::class)->name('admin.brand.edit');
 
 
 

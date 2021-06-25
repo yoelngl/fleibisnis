@@ -84,7 +84,7 @@ Franchise Form
                                 @error('brand_name') <small class="text-danger">{{ $message }}</small> @enderror
                                 </div>
                             </div>
-                            <div class="col-md-4 col-12">
+                            <div class="col-md-3 col-12">
                                 <div class="form-group mb-2">
                                     <label for="brand_category">Brand Category</label>
                                     <div wire:ignore>
@@ -98,7 +98,7 @@ Franchise Form
                                     @error('brand_category') <small class="text-danger">{{ $message }}</small> @enderror
                                 </div>
                             </div>
-                            <div class="col-md-4 col-12">
+                            <div class="col-md-3 col-12">
                                 <div class="form-group mb-2">
                                     <label for="origin_brands">Origin Brands</label>
                                     <div wire:ignore>
@@ -112,7 +112,7 @@ Franchise Form
                                     @error('origin_brands') <small class="text-danger">{{ $message }}</small> @enderror
                                 </div>
                             </div>
-                            <div class="col-md-4 col-12">
+                            <div class="col-md-3 col-12">
                                 <div class="form-group mb-2">
                                     <label for="budget_investment">Budget Of Investment</label>
                                     <div wire:ignore>
@@ -124,6 +124,19 @@ Franchise Form
                                         </select>
                                     </div>
                                     @error('budget_investment') <small class="text-danger">{{ $message }}</small> @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-12">
+                                <div class="form-group mb-2">
+                                    <label for="location">Location</label>
+                                    <input
+                                    type="text"
+                                    id="location"
+                                    class="form-control"
+                                    wire:model.defer="location"
+                                    placeholder="Ex: Jakarta, Medan"
+                                    />
+                                @error('location') <small class="text-danger">{{ $message }}</small> @enderror
                                 </div>
                             </div>
                             <div class="col-md-6 col-12">
@@ -192,6 +205,7 @@ Franchise Form
                                 @error('total_outlets') <small class="text-danger">{{ $message }}</small> @enderror
                                 </div>
                             </div>
+
 
                             <div class="col-12">
                             <div class="form-group mb-2" >
