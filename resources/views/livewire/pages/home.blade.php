@@ -3,6 +3,58 @@
 @endsection
 
 <div>
+    @if($slider->count())
+    <div id="utf_rev_slider_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-alias="classicslider1" style="margin:0px auto;background-color:transparent;padding:0px;margin-top:0px;margin-bottom:0px;">
+      <div id="utf_rev_slider_block" class="rev_slider home fullwidthabanner" style="display:none;" data-version="5.0.7">
+        <ul>
+            @foreach ($slider as $key => $value)
+              <li data-index="rs-{{ $key }}" data-transition="fade" data-slotamount="default" data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="1000" data-rotate="0" data-fstransition="fade" data-fsmasterspeed="800" data-fsslotamount="7" data-saveperformance="off">
+                <img src="{{ isset($value) ? asset('storage/'.$value->images) : asset('images/search_slider_bg_1.jpg') }}" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina data-kenburns="on" data-duration="12000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="112" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0">
+                  <div class="tp-caption centered utf_custom_caption tp-shape tp-shapewrapper tp-resizeme rs-parallaxlevel-0"
+      				id="utf_slide_layer_item_one"
+      				data-x="['center','center','center','center']" data-hoffset="['0']"
+      				data-y="['70','30','20','0']" data-voffset="['0']"
+      				data-width="['900','620', 640','420','320']"
+      				data-height="auto"
+      				data-whitespace="nowrap"
+      				data-transform_idle="o:1;"
+      				data-transform_in="y:0;opacity:0;s:1000;e:Power2.easeOutExpo;s:400;e:Power2.easeOutExpo"
+      				data-transform_out=""
+      				data-mask_in="x:0px;y:[20%];s:inherit;e:inherit;"
+      				data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+      				data-start="1000"
+      				data-responsive_offset="on">
+                  <div class="utf_item_title margin-bottom-15"
+      				id="utf_slide_layer_detail_one"
+      				data-x="['center','center','center','center']"
+      				data-hoffset="['0','0','0','0']"
+      				data-y="['20','20','20','20']"
+      				data-voffset="['-40','-40','-20','-80']"
+      				data-fontsize="['46','46','46','46','46']"
+      				data-lineheight="['70','60','34','30','25']"
+      				data-width="['960','620', 640','420','320']"
+      				data-height="none" data-whitespace="normal"
+      				data-transform_idle="o:1;"
+      				data-transform_in="y:-50px;sX:2;sY:2;opacity:0;s:1000;e:Power4.easeOut;"
+      				data-transform_out="opacity:0;s:300;"
+      				data-start="600"
+      				data-splitin="none"
+      				data-splitout="none"
+      				data-basealign="slide"
+      				data-responsive_offset="off"
+      				data-responsive="off"
+      				style="z-index:6;color:#fff;letter-spacing:0px;font-weight:500;">{{ $value->title }}</div>
+                  <div class="utf_rev_description_text">{{ $value->description }}</div>
+                  <a href="{{ ($value->link) ? $value->link : '#' }}" class="button medium">View More</a>
+      		 </div>
+             </li>
+            @endforeach
+
+        </ul>
+        <div class="tp-static-layers"></div>
+      </div>
+    </div>
+    @else
     <div class="search_container_block home_main_search_part main_search_block" data-background-image="images/city_search_background.jpg">
         <div class="main_inner_search_block">
           <div class="container">
@@ -17,6 +69,7 @@
           </div>
         </div>
       </div>
+  @endif
 
 
     <div data-background-image="images/home_section_2.jpg" >
@@ -42,10 +95,8 @@
             </div>
       </div>
 
-    <a href="listings_grid_full_width.html" class="flip-banner parallax" style="margin-top: 50px" data-background="images/slider-bg-02.jpg" data-color="#0a345a" data-color-opacity="0.85" data-img-width="2200" data-img-height="1666">
-        <div class="flip-banner-content">
-            <h2 class="flip-visible">Google Ads Spot</h2>
-        </div>
+    <a href="{{ isset($ads) ? url($ads->link) : 'javascript:void(0)' }}" target="_blank" >
+        <img src="{{ isset($ads) ? asset('storage/'.$ads->image) : '../../images/page-title.jpg' }}" class="flip-banner-content margin-top-50" width="auto" alt="Ads images">
     </a>
 
     <section class="fullwidth_block margin-bottom-0 padding-top-30 padding-bottom-65" data-background-color="linear-gradient(to bottom, #f9f9f9 0%, rgba(255, 255, 255, 1))">
@@ -150,6 +201,108 @@
 
 @push('scripts')
 <script>
+    var tpj=jQuery;
+    var revapi4;
+    tpj(document).ready(function() {
+    if(tpj("#utf_rev_slider_block").revolution == undefined){
+    	revslider_showDoubleJqueryError("#utf_rev_slider_block");
+    }else{
+    	revapi4 = tpj("#utf_rev_slider_block").show().revolution({
+    		sliderType:"standard",
+    		jsFileLocation:"scripts/",
+    		sliderLayout:"auto",
+    		dottedOverlay:"none",
+    		delay:6000,
+    		navigation: {
+    			keyboardNavigation:"off",
+    			keyboard_direction: "horizontal",
+    			mouseScrollNavigation:"off",
+    			onHoverStop:"on",
+    			touch:{
+    				touchenabled:"on",
+    				swipe_threshold: 75,
+    				swipe_min_touches: 1,
+    				swipe_direction: "horizontal",
+    				drag_block_vertical: false
+    			}
+    			,
+    			arrows: {
+    				style:"zeus",
+    				enable:true,
+    				hide_onmobile:true,
+    				hide_under:600,
+    				hide_onleave:true,
+    				hide_delay:200,
+    				hide_delay_mobile:1200,
+    				tmp:'<div class="tp-title-wrap"></div>',
+    				left: {
+    					h_align:"left",
+    					v_align:"center",
+    					h_offset:40,
+    					v_offset:0
+    				},
+    				right: {
+    					h_align:"right",
+    					v_align:"center",
+    					h_offset:40,
+    					v_offset:0
+    				}
+    			}
+    			,
+    			bullets: {
+    			enable:false,
+    			hide_onmobile:true,
+    			hide_under:600,
+    			style:"hermes",
+    			hide_onleave:true,
+    			hide_delay:200,
+    			hide_delay_mobile:1200,
+    			direction:"horizontal",
+    			h_align:"center",
+    			v_align:"bottom",
+    			h_offset:0,
+    			v_offset:30,
+    			space:6,
+    			tmp:''
+    			}
+    		},
+    		viewPort: {
+    		enable:true,
+    		outof:"pause",
+    		visible_area:"80%"
+    	},
+    	responsiveLevels:[1200,992,768,480],
+    	visibilityLevels:[1200,992,768,480],
+    	gridwidth:[1180,1024,778,480],
+    	gridheight:[565,900,800,800],
+    	lazyType:"none",
+    	parallax: {
+    		type:"mouse",
+    		origo:"slidercenter",
+    		speed:2200,
+    		levels:[2,3,4,5,6,7,12,16,10,25,47,48,49,50,51,55],
+    		type:"mouse",
+    	},
+    	shadow:0,
+    	spinner:"off",
+    	stopLoop:"off",
+    	stopAfterLoops:-1,
+    	stopAtSlide:-1,
+    	shuffle:"off",
+    	autoHeight:"off",
+    	hideThumbsOnMobile:"off",
+    	hideSliderAtLimit:0,
+    	hideCaptionAtLimit:0,
+    	hideAllCaptionAtLilmit:0,
+    	debugMode:false,
+    	fallbacks: {
+    		simplifyAll:"off",
+    		nextSlideOnWindowFocus:"off",
+    		disableFocusListener:false,
+    	}
+    });
+    }
+    });
     var typed = new Typed('.typed-words', {
     strings: ["Terbaik"," Terlengkap"," Termurah"],
         typeSpeed: 80,

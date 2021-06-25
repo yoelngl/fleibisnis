@@ -27316,7 +27316,6 @@ span.like-icon {
 	position: relative;
     padding-top: 70px;
     padding-bottom: 70px;
-    background-image: url(../../images/page-title.jpg);
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
@@ -27332,6 +27331,11 @@ span.like-icon {
     background: rgba(10, 52, 90, 0.8);
     opacity: .88;
 }
+
+/*  */
+
+
+
 .gradient nav#breadcrumbs ul li{
 	color:#d9d9d9;
 }

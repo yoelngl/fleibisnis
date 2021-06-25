@@ -6,7 +6,7 @@ use App\Models\EventCategory;
 use App\Models\EventSchedule;
 use App\Models\FranchiseWeek;
 use Livewire\Component;
-
+use App\Models\Banner;
 class Event extends Component
 {
     public $load_more = 6;
@@ -30,6 +30,7 @@ class Event extends Component
     public function render()
     {
         $searchTerm = '%' . $this->search . '%';
+        $banner = Banner::where('category','=','Events')->first();
 
         $franchise_week = FranchiseWeek::latest()->where('title','like',$searchTerm)->paginate($this->load_more);
         $event_schedule = EventSchedule::latest()->where('title','like',$searchTerm)->paginate($this->load_mores);
@@ -39,6 +40,6 @@ class Event extends Component
 
         }
         $categories = EventCategory::all();
-        return view('livewire.pages.event',compact('franchise_week','event_schedule','categories'))->extends('layouts.app')->section('content');
+        return view('livewire.pages.event',compact('franchise_week','event_schedule','categories','banner'))->extends('layouts.app')->section('content');
     }
 }

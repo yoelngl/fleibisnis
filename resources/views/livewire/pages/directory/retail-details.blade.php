@@ -3,7 +3,7 @@ Retail Detail
 @endsection
 
 <div>
-    <div id="titlebar" class="gradient">
+    <div id="titlebar" class="gradient" style="background-image: url({{ isset($banner) ? asset('storage/'.$banner->image) : '../../images/page-title.jpg' }}">
         <div class="container">
           <div class="row">
             <div class="col-md-12">
@@ -29,84 +29,23 @@ Retail Detail
           <div class="row">
             <div class="col-lg-4 col-md-4">
               <div class="sidebar right">
-                <div class="utf_box_widget">
-                  <h3><i class="sl sl-icon-magnifier"></i>{{ trans('message.find') }}</h3>
-                  <div class="utf_search_blog_input">
-                    <div class="input">
-                      <input class="search-field" type="text" placeholder="{{ trans('message.find') }}..." value="">
-                    </div>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="utf_box_widget margin-top-35">
-                  <h3><i class="sl sl-icon-folder-alt"></i>{{ trans('message.categories') }}</h3>
-                  <ul class="utf_listing_detail_sidebar">
-                    <li><i class="fa fa-angle-double-right"></i> <a href="#">Waralaba, Kemitraan &amp; Peluang Usaha</a>
-                        <li><i class="fa fa-angle-double-right"></i>
-                            <a href="#">Beauty &amp; Health</a>
-                        </li>
-                        <li><i class="fa fa-angle-double-right"></i>
-                            <a href="#">Education</a>
-                        </li>
-                        <li><i class="fa fa-angle-double-right"></i>
-                            <a href="#">Fashion &amp; Lifestyle</a>
-                        </li>
-                        <li><i class="fa fa-angle-double-right"></i>
-                            <a href="#">Food &amp; Beverage</a>
-                        </li>
-                        <li><i class="fa fa-angle-double-right"></i>
-                            <a href="#">Retail &amp; Wholesales</a>
-                        </li>
-                        <li><i class="fa fa-angle-double-right"></i>
-                            <a href="#">Specialized Retail</a>
-                        </li
-                        ><li><i class="fa fa-angle-double-right"></i>
-                            <a href="#">Others</a>
-                        </li>
-                        <li><i class="fa fa-angle-double-right"></i>
-                            <a href="#">Produk &amp; Kebutuhan Bisnis Ritel</a>
-                        </li>
-                        <li><i class="fa fa-angle-double-right"></i>
-                            <a href="#">Business Consultant &amp; Firm</a>
-                        </li>
-                        <li><i class="fa fa-angle-double-right"></i>
-                            <a href="#">Property Developer</a>
-                        </li>
-                        <li><i class="fa fa-angle-double-right"></i>
-                            <a href="#">Retail Tech-Equipment</a>
-                        </li>
-                        <li><i class="fa fa-angle-double-right"></i>
-                            <a href="#">Retail Services</a>
-                        </li>
-                        <li><i class="fa fa-angle-double-right"></i>
-                            <a href="#">Store Furnishing</a>
-                        </li>
-                        <li><i class="fa fa-angle-double-right"></i>
-                            <a href="#">Internet &amp; IT</a></li>
-                        </li>
-                    </ul>
-                </div>
-                <div class="utf_box_widget margin-top-35">
-                  <h3><i class="sl sl-icon-folder-alt"></i>{{ trans('message.merk') }}</h3>
-                  <ul class="utf_listing_detail_sidebar">
-                    <li><i class="fa fa-angle-double-right"></i>
-                        <a href="#">Lokal</a>
-                    </li>
-                    <li><i class="fa fa-angle-double-right"></i>
-                        <a href="#">Luar Negeri</a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="utf_box_widget margin-top-35">
-                    <h3><i class="sl sl-icon-folder-alt"></i> {{ trans('message.investment') }}</h3>
-                      <input class="distance-radius" type="range" min="1" max="5" step="1" value="1" data-title="Select Range">
-                      <div class="panel-buttons"></div>
-                  </div>
+
                 <div class="utf_box_widget margin-top-35">
                     <h3>{{ trans('message.disclaimer') }}</h3>
                     <ul class="utf_listing_detail_sidebar">
                        <p>{{ trans('message.disclaimer-desc') }}</p>
                    </ul>
+                </div>
+                <div class="utf_box_widget margin-top-35">
+                  <h3><i class="sl sl-icon-phone"></i> {{ trans('message.need-help') }}</h3>
+                  <p>{{ trans('message.need-help-desc') }}</p>
+                  <ul class="utf_social_icon rounded">
+                    <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
+                    <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
+                    <li><a class="linkedin" href="#"><i class="icon-linkedin"></i></a></li>
+                    <li><a class="instagram" href="#"><i class="icon-instagram"></i></a></li>
+                  </ul>
+                  <a class="utf_progress_button button fullwidth_block margin-top-5" href="contact.html">{{ trans('message.contact-us') }}</a>
                 </div>
                 <div class="clearfix"></div>
               </div>
@@ -152,32 +91,13 @@ Retail Detail
                 </div>
               </div>
             <div style="margin-top: 20px">
-                <div class="row container " style=" margin-bottom: 130px">
+                <div class="row container">
                     <a  href="{{ asset('storage/'.$data['brand_brochure']) }}" download class="button gray btn btn-sm"><i class="fa fa-download"></i> Download Brochure</a>
                 @auth
                 <a href="https://wa.me/{{ $data['brand_whatsapp'] }}" class="button gray btn btn-sm"><i class="fa fa-phone"></i> Whatsapp Contact</a>
                 @endauth
                 </div>
 
-            </div>
-             <div id="utf_listing_faq" class="utf_listing_section">
-              <div class="style-2">
-                <div class="accordion">
-                  <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-utf_widget_content" style="display: none;">
-                    <p>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum is simply dummy text of the printing and type setting industry.</p>
-                  </div>
-                  <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-utf_widget_content" style="display: none;">
-                    <p>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum is simply dummy text of the printing and type setting industry.</p>
-                  </div>
-                  <br>
-                  <div id="utf_listing_tags" class="utf_listing_section listing_tags_section margin-bottom-10 margin-top-0">
-                <a href="#"><i class="fa fa-download" aria-hidden="true"></i> Download Brochure</a>
-                <a href="#"><i class="fa fa-whatsapp" aria-hidden="true"></i> Chat with Brand</a>
-              </div><div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-utf_widget_content" style="display: none;">
-                    <p>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum is simply dummy text of the printing and type setting industry.</p>
-                  </div>
-                </div>
-              </div>
             </div>
             <div id="utf_add_review" class="utf_add_review-box">
               <h3 class="utf_listing_headline_part margin-bottom-20"> {{ trans('message.form-question') }}</h3>

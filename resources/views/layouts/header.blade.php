@@ -2,7 +2,7 @@
     <div id="header">
       <div class="container">
         <div class="utf_left_side">
-          <div id="logo"> <a href="{{ route('home') }}"><img src="{{ asset('images/logo-fleibisnis.png') }}" style="width: 150px;" alt=""></a> </div>
+          <div id="logo"> <a href="{{ route('home') }}"><img src="{{ asset('images/logo-fleibisnis.png') }}" style="width: 110px;" alt=""></a> </div>
           <div class="mmenu-trigger">
             <button class="hamburger utfbutton_collapse" type="button">
                 <span class="utf_inner_button_box">
@@ -22,7 +22,7 @@
                     <li><a class="{{ request()->is('retail-directory') ? 'active' : '' }}" href="{{ route('retail-directory') }}">Retail Directory</a></li>
                   </ul>
               </li>
-              <li><a class="{{ request()->is('contact') ? 'current' : '' }}" href="{{ route('contact') }}">Contact Us</a></li>
+              <li><a class="{{ request()->is('contact') ? 'current' : '' }}" href="{{ route('contact') }}">Contact</a></li>
 
             </ul>
           </nav>

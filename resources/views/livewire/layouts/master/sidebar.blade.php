@@ -29,6 +29,10 @@
         <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">WIDGETS</span><i data-feather="more-horizontal"></i>
         <li class=" nav-item {{ request()->is('admin/expert') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.expert') }}"><i data-feather="archive"></i><span class="menu-title text-truncate" data-i18n="home">Expert</span></a>
         </li>
+        <li class=" nav-item {{ request()->is('admin/banner') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.banner') }}"><i data-feather="image"></i><span class="menu-title text-truncate" data-i18n="home">Banner</span></a>
+        </li>
+        <li class=" nav-item {{ request()->is('admin/slider') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.slider') }}"><i data-feather="image"></i><span class="menu-title text-truncate" data-i18n="home">Slider</span></a>
+        </li>
       </ul>
     </div>
   </div>

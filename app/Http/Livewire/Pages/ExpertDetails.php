@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Pages;
 use App\Models\AskExpert;
 use App\Models\Expert;
 use Livewire\Component;
+use App\Models\Banner;
 
 class ExpertDetails extends Component
 {
@@ -18,7 +19,7 @@ class ExpertDetails extends Component
 
     public function render()
     {
-
-        return view('livewire.pages.expert-details')->extends('layouts.app')->section('content');
+        $banner = Banner::where('category','=','Ask Expert')->first();
+        return view('livewire.pages.expert-details',compact('banner'))->extends('layouts.app')->section('content');
     }
 }

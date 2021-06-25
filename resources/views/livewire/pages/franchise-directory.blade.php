@@ -3,7 +3,7 @@
 @endsection
 
 <div>
-    <div id="titlebar" class="gradient">
+    <div id="titlebar" class="gradient" style="background-image: url({{ isset($banner) ? asset('storage/'.$banner->image) : '../../images/page-title.jpg' }}">
         <div class="container">
           <div class="row">
             <div class="col-md-12">
@@ -28,7 +28,7 @@
           <div class="col-lg-8 col-md-8">
             <div class="listing_filter_block">
               <div class="col-md-2 col-xs-2">
-                <div class="utf_layout_nav">  <a href="#" class="list active"><i class="fa fa-align-justify"></i></a> </div>
+                <div class="utf_layout_nav">  <a href="javscript:void(0)" class="list active"><i class="fa fa-align-justify"></i></a> </div>
               </div>
               <div class="col-md-10 col-xs-10">
                 <div class="sort-by">
@@ -124,7 +124,9 @@
                 <p>{{ trans('message.disclaimer-desc') }}</p>
             </div>
             <div class="margin-top-35">
-                <img src="{{ asset('images/600x900.jpg') }}" height="955px" alt="">
+                <a href="{{ isset($ads) ? url($ads->link) : 'javascript:void(0)' }}" target="_blank">
+                <img src="{{ isset($ads) ? asset('storage/'.$ads->image) : asset('images/600x900.jpg') }}"  alt="">
+                </a>
             </div>
           </div>
         </div>

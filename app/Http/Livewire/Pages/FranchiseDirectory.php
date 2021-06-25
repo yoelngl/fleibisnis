@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Pages;
 use Livewire\Component;
 use App\Models\Categories;
 use App\Models\FranchiseDirectory as Franchise;
+use App\Models\Banner;
 
 
 class FranchiseDirectory extends Component
@@ -26,6 +27,8 @@ class FranchiseDirectory extends Component
 
     public function render()
     {
+        $banner = Banner::where('category','=','Franchise')->first();
+        $ads = Banner::where('category','=','Ads Franchise')->first();
 
         $searchTerm = '%' . $this->search . '%';
         $investment = ['Below IDR 100.000.000','IDR 100.000.001 - IDR 200.000.000','IDR 200.000.001 - IDR 500.000.000','IDR 500.000.001 - IDR 1.000.000.000','IDR 1.000.000.001 - IDR 2.000.000.000','Above IDR 2.000.000.000'];
@@ -42,6 +45,6 @@ class FranchiseDirectory extends Component
             $franchises = Franchise::with('user','category')->where('origin',$this->origins)->paginate($this->load_more);
         }
         $categories = Categories::all();
-        return view('livewire.pages.franchise-directory',compact('categories','origin','investment','franchises'))->extends('layouts.app')->section('content');
+        return view('livewire.pages.franchise-directory',compact('categories','origin','investment','franchises','banner','ads'))->extends('layouts.app')->section('content');
     }
 }

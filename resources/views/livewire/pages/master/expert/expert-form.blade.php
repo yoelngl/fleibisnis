@@ -81,7 +81,7 @@ Ask Expert
                                             @endforeach
                                             </select>
                                         </div>
-                                        @error('expert') <small class="text-danger">{{ $message }}</small> @enderror
+                                        @error('experts') <small class="text-danger">{{ $message }}</small> @enderror
                                     </div>
                                 </div>
                                 <div class="col-12">

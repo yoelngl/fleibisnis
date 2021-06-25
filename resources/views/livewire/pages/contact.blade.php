@@ -2,7 +2,7 @@
 Contact Us
 @endsection
 <div>
-    <div id="titlebar" data-color="#0a345a" class="gradient margin-bottom-70">
+    <div id="titlebar" data-color="#0a345a" class="gradient margin-bottom-70" style="background-image: url({{ isset($banner) ? asset('storage/'.$banner->image) : '../../images/page-title.jpg' }}">
         <div class="container">
           <div class="row">
             <div class="col-md-12">
@@ -64,4 +64,3 @@ Contact Us
       </div>
 </div>
 @include('layouts.footer')
-

@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Pages;
 
 use App\Models\TodayNews;
 use Livewire\Component;
+use App\Models\Banner;
 
 class TodayNewsDetail extends Component
 {
@@ -17,6 +18,7 @@ class TodayNewsDetail extends Component
 
     public function render()
     {
-        return view('livewire.pages.today-news-detail')->extends('layouts.app')->section('content');
+        $banner = Banner::where('category','=','Today News')->first();
+        return view('livewire.pages.today-news-detail',compact('banner'))->extends('layouts.app')->section('content');
     }
 }

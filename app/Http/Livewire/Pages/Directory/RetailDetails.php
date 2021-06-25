@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Pages\Directory;
 
 use Livewire\Component;
 use App\Models\RetailDirectory;
+use App\Models\Banner;
 
 class RetailDetails extends Component
 {
@@ -15,6 +16,8 @@ class RetailDetails extends Component
 
     public function render()
     {
-        return view('livewire.pages.directory.retail-details')->extends('layouts.app')->section('content');
+        $banner = Banner::where('category','=','Retail')->first();
+
+        return view('livewire.pages.directory.retail-details',compact('banner'))->extends('layouts.app')->section('content');
     }
 }

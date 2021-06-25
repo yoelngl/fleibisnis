@@ -31,6 +31,11 @@ use App\Http\Livewire\Pages\Master\News\NewsForm;
 use App\Http\Livewire\Pages\Master\Widget\Expert as WidgetExpert;
 use App\Http\Livewire\Pages\Master\Widget\ExpertForm;
 use App\Http\Livewire\Pages\TodayNewsDetail;
+use App\Http\Livewire\Pages\Master\Widget\Banner\BannerIndex;
+use App\Http\Livewire\Pages\Master\Widget\Banner\BannerForm;
+use App\Http\Livewire\Pages\Master\Widget\Slider\SliderForm;
+use App\Http\Livewire\Pages\Master\Widget\Slider\SliderIndex;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -102,6 +107,16 @@ Route::middleware(['role:admin'])->group(function () {
 
     Route::GET('/admin/franchise-week',FranchiseWeek::class)->name('admin.franchise-week');
     Route::GET('/admin/franchise-week/edit/{slug}',FranchiseWeek::class)->name('admin.franchise-week.edit');
+
+    Route::GET('/admin/banner',BannerIndex::class)->name('admin.banner');
+    Route::GET('/admin/banner/add',BannerForm::class)->name('admin.banner.add');
+    Route::GET('/admin/banner/edit/{id}',BannerForm::class)->name('admin.banner.edit');
+
+    Route::GET('/admin/slider',SliderIndex::class)->name('admin.slider');
+    Route::GET('/admin/slider/add',SliderForm::class)->name('admin.slider.add');
+    Route::GET('/admin/slider/edit/{id}',SliderForm::class)->name('admin.slider.edit');
+
+
 
 
 });

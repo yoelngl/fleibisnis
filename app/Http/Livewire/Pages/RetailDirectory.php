@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Pages;
 use App\Models\Categories;
 use Livewire\Component;
 use App\Models\RetailDirectory as Retail;
+use App\Models\Banner;
 
 class RetailDirectory extends Component
 {
@@ -19,12 +20,15 @@ class RetailDirectory extends Component
 
     public function render()
     {
+        $banner = Banner::where('category','=','Retail')->first();
+        $ads = Banner::where('category','=','Ads Retail')->first();
+
         $searchTerm = '%' . $this->search . '%';
         $category = Categories::all();
         $retail = Retail::with('user','category')->where('product_name','like',$searchTerm)->latest()->paginate($this->load_more);
         if($this->category_id != null){
             $retail = Retail::with('user','category')->where('category_id',$this->category_id)->latest()->paginate($this->load_more);
         }
-        return view('livewire.pages.retail-directory',compact('retail','category'))->extends('layouts.app')->section('content');
+        return view('livewire.pages.retail-directory',compact('retail','category','banner','ads'))->extends('layouts.app')->section('content');
     }
 }

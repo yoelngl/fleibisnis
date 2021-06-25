@@ -2,7 +2,8 @@
     Today News
 @endsection
 <div>
-    <div id="titlebar" class="gradient">
+    <div id="titlebar" class="gradient" style="background-image: url({{ isset($banner) ? asset('storage/'.$banner->image) : '../../images/page-title.jpg' }});
+">
         <div class="container">
           <div class="row">
             <div class="col-md-12">
@@ -164,4 +165,3 @@
       </div>
 </div>
 @include('layouts.footer')
-
