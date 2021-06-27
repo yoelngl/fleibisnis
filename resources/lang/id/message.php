@@ -47,7 +47,7 @@ return [
     'event' => 'Acara',
     'activities' => 'Kegiatan',
     'more-event' => 'Lebih banyak Acara...',
-    'feature' => 'Fitur',
+    'feature' => 'FITUR',
 
     // Directory
     'directory-desc' => "Temukan Peluang Bisnis Pilihanmu Disini. Kategori Waralaba, Kemitraan, Peluang Usaha, Peralatan dan Kebutuhan Bisnis Ritel.",
@@ -137,7 +137,7 @@ return [
     'networking' => 'Menambah jejaring',
     'other' => 'Lain-lain',
 
-    // Select 2 
+    // Select 2
     'range-franchise' => 'Budget atau nilai investasi dari Peluang Bisnis yang sedang dicari',
 
     // Select 3

@@ -52,10 +52,10 @@ Contact Us
                 <h3><i class="sl sl-icon-map"></i> {{ trans('message.office-address') }}</h3>
                 <div class="utf_sidebar_textbox">
                   <ul class="utf_contact_detail">
-                    <li><strong>{{ trans('message.phone') }}: </strong> <span>+ 001 245 0154</span></li>
-                    <li><strong>{{ trans('message.web') }}: </strong> <span><a href="#">www.sitename.com</a></span></li>
-                    <li><strong>{{ trans('message.email') }}: </strong> <span><a href="mailto:info@example.com">info@example.com</a></span></li>
-                    <li><strong>{{ trans('message.address') }}: </strong> <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</span></li>
+                    <li><strong>{{ trans('message.phone') }}: </strong> <span><a href="https://wa.me/{{ isset($footer->phone) ? $footer->phone : '#' }}">{{ isset($footer->phone) ? $footer->phone : '+62-8xx-xxxx-xxxx' }}</a></span></li>
+                    <li><strong>{{ trans('message.web') }}: <a target="_blank" href="{{ isset($footer->website) ? $footer->website : 'www.google.com' }}">{{ isset($footer->website) ? $footer->website : 'www.google.com' }}</a></strong></li>
+                    <li><strong>{{ trans('message.email') }}: </strong> <span><a href="mailto:{{ isset($footer->email) ? $footer->email : 'email@gmail.com' }}">{{ isset($footer->email) ? $footer->email : 'email@gmail.com' }}</a></span></li>
+                    <li><strong>{{ trans('message.address') }}: </strong> <span>{{ isset($footer->address) ? $footer->address : 'Indonesia' }}</span></li>
                   </ul>
                 </div>
             </div>

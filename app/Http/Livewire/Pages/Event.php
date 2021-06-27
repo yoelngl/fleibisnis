@@ -37,7 +37,6 @@ class Event extends Component
         if($this->category != null){
             $franchise_week = FranchiseWeek::where('category_id',$this->category)->paginate($this->load_more);
             $event_schedule = EventSchedule::where('category_id',$this->category)->paginate($this->load_more);
-
         }
         $categories = EventCategory::all();
         return view('livewire.pages.event',compact('franchise_week','event_schedule','categories','banner'))->extends('layouts.app')->section('content');

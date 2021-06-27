@@ -35,6 +35,8 @@
         </li>
         <li class=" nav-item {{ request()->is('admin/brand') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.brand') }}"><i data-feather="image"></i><span class="menu-title text-truncate" data-i18n="home">Franchise Brand</span></a>
         </li>
+        <li class=" nav-item {{ request()->is('admin/footer') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.footer') }}"><i data-feather="layout"></i><span class="menu-title text-truncate" data-i18n="home">Footer</span></a>
+        </li>
       </ul>
     </div>
   </div>

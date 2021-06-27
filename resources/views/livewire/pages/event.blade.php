@@ -4,6 +4,18 @@ Events
 
 @section('css')
     <style>
+
+    .card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+@media (max-width:767px) {
+ .optionalstuff {
+display: none;
+}
+}
+
         #headerPopup{
   width:75%;
   margin:0 auto;
@@ -93,7 +105,7 @@ Events
                 <h4 style="background-color: rgba(10, 52, 90, 0.8)"><i class="sl sl-icon-star"></i>{{ trans('message.biz-event') }}</h4>
             </div>
                 <ul class="margin-top-10">
-                    <li><h4 class="margin-bottom-10 margin-top-10">{{ trans('message.feature') }}</h4></li>
+                    <li><h4 class="margin-bottom-10 margin-top-10" style="color:#f52084;font-weight:bolder">{{ trans('message.feature') }}</h4></li>
                 </ul>
             <ul>
                 <li>
@@ -101,14 +113,32 @@ Events
                         <table class="table">
                             <th>{{ trans('message.date') }}</th>
                             <th>{{ trans('message.event') }} , {{ trans('message.activities') }}</th>
-                            <th>Poster</th>
                             <tbody>
                                 @if($event_schedule->count())
                                 @foreach ($event_schedule as $item)
                                 <tr>
-                                    <td>{{ $item->date }}</td>
-                                    <td><a href="{{ $item->url }}">{{ $item->title }}</a> </td>
-                                    <td><a href="{{ asset('storage/'.$item->images) }}" download="" class="text-primary">Download</a></td>
+                                    <td><h4>{{ $item->date }}</h4></td>
+                                    <td width="65%"><a target="_blank" href="{{ url($item->link) }}"><h4 style="font-weight:bolder">{{ $item->title }}</h4></a>
+                                    <small class="text-muted">{{ $item->location }}</small>
+                                    <div class="container-fluid margin-top-20">
+                                        <div class="row">
+                                            <div class="col-12 mt-3">
+                                                <div class="card">
+                                                    <div class="card-horizontal">
+                                                        <div class="img-square-wrapper" wire:ignore>
+                                                            <div class="" >
+                                                                <img class="optionalstuff"  src="{{ asset('storage/'.$item->images) }}" alt="Card image cap">
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <p class="card-text"> {{ Str::limit($item->activities,150) }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     </td>
                                 </tr>
                                 @endforeach
                                 @else

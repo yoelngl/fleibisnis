@@ -47,7 +47,7 @@ return [
     'event' => 'Event',
     'activities' => 'Activities',
     'more-event' => 'More Event for You...',
-    'feature' => 'Feature',
+    'feature' => 'FEATURE',
 
     // Directory
     'directory-desc' => "Find Your Preferred Business Opportunity Here. Category Franchise, Partnership, Business Opportunity, Equipment and Retail Business Needs.",
@@ -136,7 +136,7 @@ return [
     'networking' => 'Networking',
     'other' => 'Others',
 
-    // Select 2 
+    // Select 2
     'range-franchise' => 'Range of Franchise or bussines opportunities Values that I am looking for',
 
     // Select 3
@@ -150,4 +150,4 @@ return [
 
 
 
-]; 
+];

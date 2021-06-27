@@ -36,17 +36,8 @@ Retail Detail
                        <p>{{ trans('message.disclaimer-desc') }}</p>
                    </ul>
                 </div>
-                <div class="utf_box_widget margin-top-35">
-                  <h3><i class="sl sl-icon-phone"></i> {{ trans('message.need-help') }}</h3>
-                  <p>{{ trans('message.need-help-desc') }}</p>
-                  <ul class="utf_social_icon rounded">
-                    <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
-                    <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-                    <li><a class="linkedin" href="#"><i class="icon-linkedin"></i></a></li>
-                    <li><a class="instagram" href="#"><i class="icon-instagram"></i></a></li>
-                  </ul>
-                  <a class="utf_progress_button button fullwidth_block margin-top-5" href="contact.html">{{ trans('message.contact-us') }}</a>
-                </div>
+                @include('vendor.contact')
+
                 <div class="clearfix"></div>
               </div>
             </div>

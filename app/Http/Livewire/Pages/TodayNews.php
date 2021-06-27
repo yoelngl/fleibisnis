@@ -7,12 +7,14 @@ use App\Models\NewsCategories;
 use Illuminate\Support\Facades\DB;
 use App\Models\Banner;
 use App\Models\TodayNews as ModelsTodayNews;
+use App\Models\NewsViews;
 
 class TodayNews extends Component
 {
     public $load_more = 4;
     public $search;
     public $category_id = null;
+    public $views;
 
     public $listeners = ['load-more' => 'loadMore'];
 
@@ -32,6 +34,8 @@ class TodayNews extends Component
         $searchTerm = '%' . $this->search . '%';
 
         $today_news = DB::table('today_news')->join('users','today_news.user_id','=','users.id')->select('today_news.*','users.username')->latest('today_news.created_at')->first();
+        $this->views = NewsViews::where('id_post',$today_news->id)->count();
+
 
         $more_news = ModelsTodayNews::with('category')->where('id','!=',$today_news->id)->where('title','like',$searchTerm)->paginate($this->load_more);
         if(isset($this->category_id)){

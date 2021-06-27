@@ -532,7 +532,7 @@ em.mm-counter+a.mm-fullsubopen+a, em.mm-counter+a.mm-fullsubopen+span {
 	color:rgba(255, 255, 255, 0.45);
 	line-height: 20px;
 	font-size: 14px;
-	font-weight: 400;	
+	font-weight: 400;
 }
 .mmenu-trigger {
 	height: 48px;
@@ -540,7 +540,7 @@ em.mm-counter+a.mm-fullsubopen+a, em.mm-counter+a.mm-fullsubopen+span {
 	display: none;
 	position: relative;
 	margin: 0 0 20px;
-	background-color: #ff2222;
+	background-color: #f52084;
 	border-radius: 30px;
 	cursor: pointer
 }

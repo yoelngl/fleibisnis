@@ -40,7 +40,7 @@
                     <div class="accordion">
                         @if($qna->count())
                         @foreach ($qna as $key => $value)
-                        <h3><span class="ui-accordion-header-icon ui-icon ui-accordion-icon"></span><i class="sl sl-icon-plus"></i> ({{ $key + 1 }}) {!! $value->question !!}?</h3>
+                        <h3><span class="ui-accordion-header-icon ui-icon ui-accordion-icon"></span><i class="sl sl-icon-plus"></i> ({{ $key + 1 }}) {!! $value->question !!}</h3>
                         <div>
                             {!! $value->answer !!}
                         </div>

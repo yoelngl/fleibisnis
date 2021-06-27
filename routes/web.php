@@ -37,7 +37,8 @@ use App\Http\Livewire\Pages\Master\Widget\Franchise\BrandForm;
 use App\Http\Livewire\Pages\Master\Widget\Franchise\BrandIndex;
 use App\Http\Livewire\Pages\Master\Widget\Slider\SliderForm;
 use App\Http\Livewire\Pages\Master\Widget\Slider\SliderIndex;
-
+use App\Http\Livewire\Pages\Master\Widget\Footer\FooterForm;
+use App\Http\Livewire\Pages\Master\Widget\Footer\FooterIndex;
 
 /*
 |--------------------------------------------------------------------------
@@ -122,6 +123,9 @@ Route::middleware(['role:admin'])->group(function () {
     Route::GET('/admin/brand/add',BrandForm::class)->name('admin.brand.add');
     Route::GET('/admin/brand/edit/{id}',BrandForm::class)->name('admin.brand.edit');
 
+    Route::GET('/admin/footer',FooterIndex::class)->name('admin.footer');
+    Route::GET('/admin/footer/add',FooterForm::class)->name('admin.footer.add');
+    Route::GET('/admin/footer/edit/{id}',FooterForm::class)->name('admin.footer.edit');
 
 
 

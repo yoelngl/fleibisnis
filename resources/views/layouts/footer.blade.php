@@ -1,4 +1,5 @@
 <section class="utf_cta_area_item utf_cta_area2_block">
+    <?php $footer = App\Models\Footer::first(); ?>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -33,11 +34,11 @@
         <div class="col-md-2 col-sm-3 col-xs-6">
             <h4>{{ trans('message.social-media') }}</h4>
             <ul class="social_footer_link">
-              <li><a href="#">Instagram</a></li>
-              <li><a href="#">Facebook</a></li>
-              <li><a href="#">Twitter</a></li>
-              <li><a href="#">LinkedIn</a></li>
-              <li><a href="#">YouTube</a></li>
+              <li><a href="{{ isset($footer->instagram) ? $footer->instagram : 'javascript:void(0)' }}" target="_blank">Instagram</a></li>
+              <li><a href="{{ isset($footer->facebook) ? $footer->facebook : 'javascript:void(0)' }}" target="_blank">Facebook</a></li>
+              <li><a href="{{ isset($footer->twitter) ? $footer->twitter : 'javascript:void(0)' }}" target="_blank">Twitter</a></li>
+              <li><a href="{{ isset($footer->linkedin) ? $footer->linkedin : 'javascript:void(0)' }}" target="_blank">LinkedIn</a></li>
+              <li><a href="{{ isset($footer->youtube) ? $footer->youtube : 'javascript:void(0)' }}" target="_blank">YouTube</a></li>
             </ul>
           </div>
           <div class="col-md-2 col-sm-3 col-xs-6">
@@ -70,24 +71,22 @@
 
         <div class="col-md-4 col-sm-12 col-xs-12">
           <h4>{{ trans('message.about-flei') }}</h4>
-          <p>{{ trans('message.about-flei-desc') }}</p>
+          <p>{{ isset($footer->about) ? $footer->about : trans('message.about-flei-desc') }}</p>
           <ul class="utf_social_icon rounded">
-            <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
-            <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-
-            <li><a class="linkedin" href="#"><i class="icon-linkedin"></i></a></li>
-            <li><a class="instagram" href="#"><i class="icon-instagram"></i></a></li>
+            <li><a class="facebook" href="{{ isset($footer->facebook) ? $footer->facebook : 'javascript:void(0)' }}" target="_blank"><i class="icon-facebook"></i></a></li>
+            <li><a class="twitter" href="{{ isset($footer->twitter) ? $footer->twitter : 'javascript:void(0)' }}" target="_blank"><i class="icon-twitter"></i></a></li>
+            <li><a class="linkedin" href="{{ isset($footer->linkedin) ? $footer->linkedin : 'javascript:void(0)' }}" target="_blank"><i class="icon-linkedin"></i></a></li>
+            <li><a class="instagram" href="{{ isset($footer->instagram) ? $footer->instagram : 'javascript:void(0)' }}" target="_blank"><i class="icon-instagram"></i></a></li>
           </ul>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-12">
-          <div class="footer_copyright_part">Copyright © 2021 All Rights Reserved. <br> Developed By PT. Pameran Masa Kini</div>
+          <div class="footer_copyright_part">Copyright © {{ date('Y') }} All Rights Reserved. <br> Developed By {{ isset($footer->copyright) ? $footer->copyright : 'PT. Uknown' }}</div>
         </div>
       </div>
     </div>
   </div>
 <div id="bottom_backto_top"><a href="#"></a>
 </div>
-

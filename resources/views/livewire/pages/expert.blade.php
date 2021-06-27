@@ -68,18 +68,8 @@ Ask The Expert
           </div>
           <div class="clearfix"></div>
         </div>
-                <div class="utf_box_widget margin-top-35">
-                  <h3><i class="sl sl-icon-phone"></i>{{ trans('message.need-help') }}</h3>
-                  <p>{{ trans('message.need-help-desc') }}</p>
-                  <ul class="utf_social_icon rounded">
-                    <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
-                    <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
+        @include('vendor.contact')
 
-                    <li><a class="linkedin" href="#"><i class="icon-linkedin"></i></a></li>
-                    <li><a class="instagram" href="#"><i class="icon-instagram"></i></a></li>
-                  </ul>
-                  <a class="utf_progress_button button fullwidth_block margin-top-5" href="contact.html">{{ trans('message.contact-us') }}<div class="progress-bar"></div></a>
-                </div>
 
                 <div class="clearfix"></div>
               </div>
@@ -98,6 +88,7 @@ Ask The Expert
                   </div>
                 </div>
                 <ul>
+                @if($qna->count())
                     @foreach ($qna as $item)
                     <li>
                         <div class="comments utf_listing_reviews dashboard_review_item">
@@ -110,9 +101,9 @@ Ask The Expert
                                 <div class="pertanyaan"><b>{{ trans('message.question') }}</b></div>
                               <div class="jawaban">{!! $item->question !!}</div>
                                 <div class="pertanyaan"><b>{{ trans('message.answer') }}</b></div>
-                                <div class="jawaban">{!! $item->answer !!}</div>
+                                <div class="jawaban">{!! Str::limit($item->answer,500,$end='..... <a href="'. route('expert.details',['slug' => $expert->slug]) .'">Lihat selengkapnya!</a>') !!}</div>
                                 <br>
-                                    <div class="utf_by_comment"><a href="#" >{{ $item->expert->name }}</a>
+                                    <div class="utf_by_comment"><a href="{{ route('expert.details',['slug' => $expert->slug]) }}" >{{ $item->expert->name }}</a>
                                     <span class="date">{{ $item->expert->position }}</span>
                                     </div>
                                 </div>
@@ -121,6 +112,9 @@ Ask The Expert
                         </div>
                       </li>
                     @endforeach
+                @else
+                <img src="{{ asset('backend-assets/images/notFound.jpg') }}" width="auto" alt="">
+                @endif
                 </ul>
               </div>
             <div class="clearfix"></div>

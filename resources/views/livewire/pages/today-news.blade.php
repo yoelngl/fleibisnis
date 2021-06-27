@@ -43,53 +43,9 @@
                   </ul>
                 </div>
 
-                <div class="utf_box_widget margin-top-40">
-                  <h3><i class="sl sl-icon-book-open"></i> {{ trans('message.popular-post') }}</h3>
-                  <ul class="utf_widget_tabs">
-                    <li>
-                      <div class="utf_widget_content">
-                        <div class="utf_widget_thum"> <a href="blog_detail_right_sidebar.html"><img src="images/blog-widget-03.jpg" alt=""></a> </div>
-                        <div class="utf_widget_text">
-                          <h5><a href="blog_detail_right_sidebar.html">Lorem ipsum dolor sit amet consectetur...</a></h5>
-                          <span><i class="fa fa-clock-o"></i> Feb 02, 2019 at 12:52 pm</span>
-                        </div>
-                        <div class="clearfix"></div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="utf_widget_content">
-                        <div class="utf_widget_thum"> <a href="blog_detail_right_sidebar.html"><img src="images/blog-widget-02.jpg" alt=""></a> </div>
-                        <div class="utf_widget_text">
-                          <h5><a href="blog_detail_right_sidebar.html">Lorem ipsum dolor sit amet consectetur...</a></h5>
-                          <span><i class="fa fa-clock-o"></i> Feb 02, 2019 at 12:52 pm</span>
-                        </div>
-                        <div class="clearfix"></div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="utf_widget_content">
-                        <div class="utf_widget_thum"> <a href="blog_detail_right_sidebar.html"><img src="images/blog-widget-01.jpg" alt=""></a> </div>
-                        <div class="utf_widget_text">
-                          <h5><a href="blog_detail_right_sidebar.html">Lorem ipsum dolor sit amet consectetur...</a></h5>
-                          <span><i class="fa fa-clock-o"></i> Feb 02, 2019 at 12:52 pm</span>
-                        </div>
-                        <div class="clearfix"></div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
+                @include('vendor.popular')
 
-                <div class="utf_box_widget margin-top-35">
-                  <h3><i class="sl sl-icon-phone"></i> {{ trans('message.need-help') }}</h3>
-                  <p>{{ trans('message.need-help-desc') }}</p>
-                  <ul class="utf_social_icon rounded">
-                    <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
-                    <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-                    <li><a class="linkedin" href="#"><i class="icon-linkedin"></i></a></li>
-                    <li><a class="instagram" href="#"><i class="icon-instagram"></i></a></li>
-                  </ul>
-                  <a class="utf_progress_button button fullwidth_block margin-top-5" href="contact.html">{{ trans('message.contact-us') }}</a>
-                </div>
+                @include('vendor.contact')
 
                 <div class="clearfix"></div>
               </div>
@@ -106,7 +62,7 @@
                   <ul class="utf_post_text_meta">
                     <li>{{ Carbon\Carbon::parse($today_news->created_at)->format('d F, Y') }}</li>
                     <li>{{ trans('message.created-by') }} <a href="#">{{ $today_news->username }}</a></li>
-                    <li><a href="#">5,122 Views</a></li>
+                    <li><a href="#">{{ $views }} Views</a></li>
                   </ul>
                   <p>{!! Str::limit($today_news->description,500) !!}</p>
                   <a href="{{ route('today_news.details',['slug' => $today_news->slug]) }}" class="read-more">{{ trans('message.read-more') }}<i class="fa fa-angle-right"></i></a>
