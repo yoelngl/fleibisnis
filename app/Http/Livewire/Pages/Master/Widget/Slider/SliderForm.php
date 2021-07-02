@@ -19,8 +19,6 @@ class SliderForm extends Component
     public $edit;
 
     protected $rules = [
-        'title' => 'required',
-        'description' => 'required',
         'images' => 'required|image|mimes:png,svg,jpg,jpeg'
     ];
 

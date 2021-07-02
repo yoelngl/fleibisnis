@@ -83,13 +83,13 @@
                     <div class="utf_listing_item-container list-layout"> <a href="{{ route('retail-details',['slug' => $item->slug]) }}" class="utf_listing_item">
                       <div class="utf_listing_item-image">
                           <img src="{{ asset('storage/'.$item->product_images) }}" alt="">
-                          <span class="tag"><i class="im im-icon-Hotel"></i> REKOMENDASI</span>
+                          <span class="tag"></i> {{ $item->tag }}</span>
                       </div>
                       <div class="utf_listing_item_content">
                         <div class="utf_listing_item-inner">
                           <h3>{{ $item->product_name }}</h3>
                           <span><i class="sl sl-icon-book-open"></i> {{ $item->category->title }}</span>
-                          <span><i class="sl sl-icon-tag"></i> IDR <b class="price">{{ $item->price }}</b> </span>
+                          <span><i class="sl sl-icon-tag"></i> IDR <b class="price">{{ $item->product_price }}</b> </span>
                           <p>{!! Str::limit($item->product_information, 200) !!}</p>
                         </div>
                       </div>

@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Pages\Master\Franchise;
 
 use Livewire\Component;
-use App\Models\Categories;
+use App\Models\FranchiseCategory;
 use App\Models\FranchiseDirectory;
 use Illuminate\Support\Facades\Storage;
 
@@ -32,7 +32,7 @@ class FranchiseIndex extends Component
     public function categoriesAdd(){
         $this->validate();
 
-        Categories::create([
+        FranchiseCategory::create([
             'title' => $this->title,
         ]);
         session()->flash('success','Category added successfully!');
@@ -41,7 +41,7 @@ class FranchiseIndex extends Component
     }
 
     public function deleteCategory($slug){
-        Categories::where('slug',$slug)->delete();
+        FranchiseCategory::where('slug',$slug)->delete();
         session()->flash('success','Category deleted successfully');
         return redirect()->route('admin.franchise');
     }
@@ -63,7 +63,7 @@ class FranchiseIndex extends Component
     {
         $searchTerm = '%' . $this->search . '%';
         $franchise = FranchiseDirectory::with('category','user')->where('brand_name','like',$searchTerm)->latest()->paginate($this->load_more);
-        $categories = Categories::all();
+        $categories = FranchiseCategory::all();
         return view('livewire.pages.master.franchise.franchise-index',compact('franchise','categories'))->extends('layouts.master.app')->section('content');
     }
 }

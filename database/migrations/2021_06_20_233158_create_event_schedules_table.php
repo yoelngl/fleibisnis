@@ -19,7 +19,7 @@ class CreateEventSchedulesTable extends Migration
             $table->string('title');
             $table->string('date');
             $table->string('link');
-            $table->string('images');
+            $table->string('images')->nullable();
             $table->string('location');
             $table->text('activities');
             $table->string('slug');

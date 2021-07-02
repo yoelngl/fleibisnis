@@ -101,9 +101,9 @@ Ask The Expert
                                 <div class="pertanyaan"><b>{{ trans('message.question') }}</b></div>
                               <div class="jawaban">{!! $item->question !!}</div>
                                 <div class="pertanyaan"><b>{{ trans('message.answer') }}</b></div>
-                                <div class="jawaban">{!! Str::limit($item->answer,500,$end='..... <a href="'. route('expert.details',['slug' => $expert->slug]) .'">Lihat selengkapnya!</a>') !!}</div>
+                                <div class="jawaban">{!! Str::limit($item->answer,500,$end='..... <a href="'. route('expert.details',['slug' => $item->expert->slug]) .'">Lihat selengkapnya!</a>') !!}</div>
                                 <br>
-                                    <div class="utf_by_comment"><a href="{{ route('expert.details',['slug' => $expert->slug]) }}" >{{ $item->expert->name }}</a>
+                                    <div class="utf_by_comment"><a href="{{ route('expert.details',['slug' => $item->expert->slug]) }}" >{{ $item->expert->name }}</a>
                                     <span class="date">{{ $item->expert->position }}</span>
                                     </div>
                                 </div>

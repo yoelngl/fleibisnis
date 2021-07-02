@@ -10,19 +10,19 @@
                 </span>
             </button>
           </div>
-          <nav id="navigation" class="style_one">
+          <nav id="navigation" class="style_one" >
             <ul id="responsive">
-              <li><a class="{{ request()->is('/') ? 'current' : '' }}" href="{{ route('home') }}">Home</a></li>
-              <li><a class="{{ request()->is('today-news') ? 'current' : '' }}" href="{{ route('today-news') }}" >Today News</a></li>
-              <li><a class="{{ request()->is('ask-the-expert') ? 'current' : '' }}" href="{{ route('expert') }}">Ask The Experts</a></li>
-              <li><a class="{{ request()->is('events') ? 'current' : '' }}" href="{{ route('events') }}">Events</a></li>
-              <li><a href="#" class="{{ request()->is('franchise-directory') || request()->is('retail-directory') ? 'current' : '' }}">Directory</a>
+              <li><a class="{{ request()->is('/') ? 'current' : '' }}" style="font-weight:bold" href="{{ route('home') }}">Home</a></li>
+              <li><a class="{{ request()->is('today-news') ? 'current' : '' }}" style="font-weight:bold" href="{{ route('today-news') }}" >Today News</a></li>
+              <li><a class="{{ request()->is('ask-the-expert') ? 'current' : '' }}" style="font-weight:bold" href="{{ route('expert') }}">Ask The Experts</a></li>
+              <li><a class="{{ request()->is('events') ? 'current' : '' }}" style="font-weight:bold" href="{{ route('events') }}">Events</a></li>
+              <li><a href="#" style="font-weight:bold" class="{{ request()->is('franchise-directory') || request()->is('retail-directory') ? 'current' : '' }}">Directory</a>
                   <ul>
                     <li><a class="{{ request()->is('franchise-directory') ? 'active' : '' }}" href="{{ route('franchise-directory') }}">Franchise Directory</a></li>
                     <li><a class="{{ request()->is('retail-directory') ? 'active' : '' }}" href="{{ route('retail-directory') }}">Retail Directory</a></li>
                   </ul>
               </li>
-              <li><a class="{{ request()->is('contact') ? 'current' : '' }}" href="{{ route('contact') }}">Contact</a></li>
+              <li><a style="font-weight:bold" class="{{ request()->is('contact') ? 'current' : '' }}" href="{{ route('contact') }}">Contact</a></li>
 
             </ul>
           </nav>

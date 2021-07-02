@@ -148,4 +148,36 @@ return [
     '1b-2b' => 'IDR 1,000,000,001 - IDR 2,000,000,000',
     'above' => 'Diatas IDR 2,000,000,000',
 
+    'product_information' => 'Informasi Produk',
+    'product_features' => 'Fitur Produk',
+    'details' => 'Rincian',
+
+    'product_name' => 'Nama Produk',
+    'product_type' => 'Tipe Produk',
+    'category' => 'Kategori',
+    'product_origin' => 'Asal Produk',
+    'product_country' => 'Negara Pembuat',
+    'company_name' => 'Nama Perusahaan',
+    'company_address' => 'Alamat perusahaan',
+    'currency' => 'Mata Uang',
+    'price' => 'Harga',
+    'guarantee' => 'Jaminan(Tahun)',
+    'practices' => 'Pelatihan Penggunaan',
+    'books' => 'Buku panduan Penggunaan',
+    'services' => 'Layanan Purna Jual',
+    'company_type' => 'Jenis Perusahan',
+    'additional_information' => 'Deskripsi Tambahan',
+
+    'year' => 'Tahun',
+    'yes' => 'Ya',
+    'no' => 'Tidak',
+
+    // Franchise
+    'bussiness_information' => 'Informasi Bisnis',
+    'investment_information' => 'Informasi Investasi',
+    'additional_information' => 'Informasi Tambahan',
+    'grow' => 'Pertumbuhan Gerai dalam 5 tahun terakhir',
+    'supported' => 'Gambar Pendukung',
+    'packet' => 'Paket Investasi'
+
 ];

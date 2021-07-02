@@ -25,7 +25,7 @@ class EventForm extends Component
         'title' => 'required',
         'category' => 'required',
         'activities' => 'required',
-        'images' => 'required|image|mimes:png,jpg,jpeg,svg',
+        // 'images' => 'required|image|mimes:png,jpg,jpeg,svg',
         'url' => 'required',
         'date' => 'required',
         'location' => 'required',

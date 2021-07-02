@@ -9,7 +9,8 @@
         <ul>
             @foreach ($slider as $key => $value)
               <li data-index="rs-{{ $key }}" data-transition="fade" data-slotamount="default" data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="1000" data-rotate="0" data-fstransition="fade" data-fsmasterspeed="800" data-fsslotamount="7" data-saveperformance="off">
-                <img src="{{ isset($value) ? asset('storage/'.$value->images) : asset('images/search_slider_bg_1.jpg') }}" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina data-kenburns="on" data-duration="12000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="112" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0">
+                  <a href="{{ $value->link }}" target="_blank">
+                <img src="{{ isset($value) ? asset('storage/'.$value->images) : asset('images/search_slider_bg_1.jpg') }}" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina data-kenburns="on" data-duration="12000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="112" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0"></a>
                   <div class="tp-caption centered utf_custom_caption tp-shape tp-shapewrapper tp-resizeme rs-parallaxlevel-0"
       				id="utf_slide_layer_item_one"
       				data-x="['center','center','center','center']" data-hoffset="['0']"
@@ -30,7 +31,7 @@
       				data-hoffset="['0','0','0','0']"
       				data-y="['20','20','20','20']"
       				data-voffset="['-40','-40','-20','-80']"
-                    data-fontsize="['45','35','30','28','22']"
+                    data-fontsize="['45','23','23','23','23']"
       				data-lineheight="['70','60','34','30','25']"
       				data-width="['960','620', 640','420','320']"
       				data-height="none" data-whitespace="normal"
@@ -45,7 +46,9 @@
       				data-responsive="off"
       				style="z-index:6;color:#fff;letter-spacing:0px;font-weight:500;">{{ $value->title }}</div>
                   <div class="utf_rev_description_text">{{ $value->description }}</div>
-                  <a href="{{ ($value->link) ? $value->link : '#' }}" target="_blank" class="button medium">View More</a>
+                  @if($value->title != null && $value->description != null)
+                      <a href="{{ ($value->link) ? $value->link : '#' }}" target="_blank" class="button medium">View More</a>
+                  @endif
       		 </div>
              </li>
             @endforeach
@@ -72,16 +75,16 @@
   @endif
 
 
-    <div style="padding-bottom: 50px; background: url({{ isset($search) ? asset('storage/'.$search->image) : '../../images/page-title.jpg' }})" >
+    <div style="padding-bottom: 50px; background: url({{ isset($search_bg) ? asset('storage/'.$search_bg->image) : '../../images/page-title.jpg' }})" >
             <div class="container" >
-                <div class="row d-flex align-items-center" >
+                <div class="row d-flex align-items-center">
                     <div class="col-md-12 d-flex align-items-center">
                         <div class="main_input_search_part d-flex align-items-center">
                             <div class="main_input_search_part_item">
                                 <input type="text" wire:model.defer="search" placeholder="Ex. Franchise Boba"/>
                             </div>
-                            <div class="main_input_search_part_item intro-search-field">
-                                <select wire:model.defer="categories" data-placeholder="All Category" class="selectpicker default" title="All Category" data-live-search="true" data-selected-text-format="count" data-size="5">
+                            <div class="main_input_search_part_item intro-search-field" wire:ignore>
+                                <select  id="categories" data-placeholder="All Category" class="selectpicker default" title="All Category" data-live-search="true" data-selected-text-format="count" data-size="5">
                                     @foreach ($categories as $item)
                                     <option value="{{ $item->slug }}">{{ $item->title }}</option>
                                     @endforeach
@@ -137,8 +140,8 @@
                             <div class="utf_listing_item"> <img src="{{ asset('storage/'.$item->brand_image) }}" alt="Franchise Images"> <span class="tag"><i class="im  im-icon-Tag-3"></i> {{ $item->category->title }}</span>
                                 <div class="utf_listing_item_content">
                                     <h3>{{ $item->brand_name }}</h3>
-                                    <span><i class="sl sl-icon-location"></i> {{ $item->location }}</span>
-                                    <span><i class="sl sl-icon-tag"></i> {{ $item->investments }}</span>
+                                    <span><i class="sl sl-icon-location"></i> {{ $item->brand_country }}</span>
+                                    <span><i class="sl sl-icon-tag"></i> {{ $item->investment_value }}</span>
                                 </div>
                                 </div>
                             </a>
@@ -297,6 +300,9 @@
     });
     $(document).ready(function (){
         @include('vendor.helpers')
+        $('#categories').on('change',function(){
+            @this.set('category',this.value);
+        });
     });
 
 

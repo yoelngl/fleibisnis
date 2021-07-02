@@ -184,7 +184,6 @@ Footer
                                 <img src="{{ asset('icons/loading.gif') }}" wire:loading wire:target="{{ isset($edit) ? 'updateFooter("'.$edit->id.'")' : 'createFooter' }}" alt="" width="60px">
                                 <button type="submit" class="btn btn-primary mr-1" wire:target="{{ isset($edit) ? 'updateFooter("'.$edit->id.'")' : 'createFooter' }}" wire:loading.attr="hidden"
                                 wire:loading.attr="hidden"> Submit</button>
-                                <a href="{{ route('admin.ask_expert') }}" wire:target="{{ isset($edit) ? 'updateFooter("'.$edit->id.'")' : 'createFooter' }}"  class="btn btn-danger" wire:loading.class="btn btn-secondary" wire:loading.attr="hidden">Back</a>
                             </div>
                         </div>
                         </form>

@@ -76,7 +76,7 @@
                     aria-expanded="true"
                     >
                     <div class="row">
-                        <div class="col-md-12 col-12">
+                        <div class="col-md-6 col-12">
                             <div class="form-group mb-2">
                                 <label for="product_name">Product Name</label>
                                 <input
@@ -91,16 +91,137 @@
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group mb-2">
-                                <label for="product_category">Product Category</label>
+                                <label for="retail_category">Retail Category</label>
                                 <div wire:ignore>
-                                    <select id="product_category" wire:model.defer="product_category" class="select2 form-control">
-                                    <option value="">-- Product Category --</option>
+                                    <select id="retail_category" wire:model.defer="category" class="select2 form-control">
+                                    <option value="">-- Retail Category --</option>
                                     @foreach($categories as $category)
-                                        <option {{ ($product_category == $category->id) ? 'selected' : '' }} value="{{ $category->id }}" >{{ $category->title }}</option>
+                                        <option {{ ($retail_category == $category->id) ? 'selected' : '' }} value="{{ $category->id }}" >{{ $category->title }}</option>
                                     @endforeach
                                     </select>
                                 </div>
-                                @error('product_category') <small class="text-danger">{{ $message }}</small> @enderror
+                                @error('retail_category') <small class="text-danger">{{ $message }}</small> @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-12">
+                            <div class="form-group mb-2">
+                                <label for="product_origin">Product Origin</label>
+                                <div class="form-check form-check-primary">
+                                    <input type="radio" wire:model="product_origin" id="product_origin_local" value="Local(Indonesia)" class="form-check-input">
+                                    <label for="product_origin_local" class="form-check-label">Local (Indonesia)</label>
+                                </div>
+                                <div class="form-check form-check-primary ">
+                                    <input type="radio" wire:model="product_origin" id="product_origin_overseas" value="Overseas(International)" class="form-check-input">
+                                    <label for="product_origin_overseas" class="form-check-label">Overseas (International)</label>
+                                </div>
+                                @error('product_origin') <small class="text-danger">{{ $message }}</small> @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-12">
+                            <div class="form-group mb-2">
+                                <label for="practices">Usage Training</label>
+                                <div class="form-check form-check-primary">
+                                    <input type="radio" wire:model="practices" id="practices1" value="Y" class="form-check-input">
+                                    <label for="practices1" class="form-check-label">Yes</label>
+                                </div>
+                                <div class="form-check form-check-primary ">
+                                    <input type="radio" wire:model="practices" id="practices2" value="N" class="form-check-input">
+                                    <label for="practices2" class="form-check-label">No</label>
+                                </div>
+                                @error('practices') <small class="text-danger">{{ $message }}</small> @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-12">
+                            <div class="form-group mb-2">
+                                <label for="books">Books Guide</label>
+                                <div class="form-check form-check-primary">
+                                    <input type="radio" wire:model="books" id="books1" value="Y" class="form-check-input">
+                                    <label for="books1" class="form-check-label">Yes</label>
+                                </div>
+                                <div class="form-check form-check-primary ">
+                                    <input type="radio" wire:model="books" id="books2" value="N" class="form-check-input">
+                                    <label for="books2" class="form-check-label">No</label>
+                                </div>
+                                @error('books') <small class="text-danger">{{ $message }}</small> @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-12">
+                            <div class="form-group mb-2">
+                                <label for="services">After-Sales Service</label>
+                                <div class="form-check form-check-primary">
+                                    <input type="radio" wire:model="services" id="services1" value="Y" class="form-check-input">
+                                    <label for="services" class="form-check-label">Yes</label>
+                                </div>
+                                <div class="form-check form-check-primary ">
+                                    <input type="radio" wire:model="services" id="services2" value="N" class="form-check-input">
+                                    <label for="services" class="form-check-label">No</label>
+                                </div>
+                                @error('services') <small class="text-danger">{{ $message }}</small> @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-12">
+                            <div class="form-group mb-2">
+                                <label for="currency">Currency</label>
+                                <input
+                                type="text"
+                                id="currency"
+                                class="form-control"
+                                wire:model.defer="currency"
+                                placeholder="Ex. Rupiah,Dollar"
+                                />
+                            @error('currency') <small class="text-danger">{{ $message }}</small> @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-12">
+                            <div class="form-group mb-2">
+                                <label for="price">Price</label>
+                                <input
+                                type="number"
+                                id="price"
+                                class="form-control"
+                                wire:model.defer="price"
+                                placeholder="Price"
+                                />
+                            @error('price') <small class="text-danger">{{ $message }}</small> @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-12">
+                            <div class="form-group mb-2">
+                                <label for="guarantee">Guarantee (Year)</label>
+                                <input
+                                type="number"
+                                id="guarantee"
+                                class="form-control"
+                                wire:model.defer="guarantee"
+                                placeholder="Ex. 2020, 2021"
+                                />
+                            @error('guarantee') <small class="text-danger">{{ $message }}</small> @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-12">
+                            <div class="form-group mb-2">
+                                <label for="product_country">Product Country</label>
+                                <input
+                                type="text"
+                                id="product_country"
+                                class="form-control"
+                                wire:model.defer="product_country"
+                                placeholder="Ex. Jakarta, Tokyo"
+                                />
+                            @error('product_country') <small class="text-danger">{{ $message }}</small> @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group mb-2">
+                                <label for="product_category">Product Category</label>
+                                <input
+                                type="text"
+                                id="product_category"
+                                class="form-control"
+                                wire:model.defer="product_category"
+                                placeholder="Product Category"
+                                />
+                            @error('product_category') <small class="text-danger">{{ $message }}</small> @enderror
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
@@ -116,34 +237,20 @@
                             @error('product_type') <small class="text-danger">{{ $message }}</small> @enderror
                             </div>
                         </div>
-                        <div class="col-md-6 col-12">
-                            <div class="form-group mb-2">
-                                <label for="product_type">Price</label>
-                                <input
-                                type="text"
-                                id="price"
-                                class="form-control"
-                                wire:model.defer="price"
-                                placeholder="Price"
-                                />
-                            @error('price') <small class="text-danger">{{ $message }}</small> @enderror
+                        <div class="col-md-12 col-12">
+                            <label for="tag">Tag</label>
+                            <div class="form-group ">
+                                @foreach ($tag_data as $key => $value)
+                                    <div class="form-check form-check-primary form-check-inline">
+                                        <input type="radio" wire:model="tag" id="tag{{ $value }}" value="{{ $value }}" class="form-check-input">
+                                        <label for="tag{{ $value }}" class="form-check-label">{{ $value }}</label>
+                                    </div>
+                                @endforeach
                             </div>
-                        </div>
-                        <div class="col-md-6 col-12">
-                            <div class="form-group mb-2">
-                                <label for="product_type">Guarantee</label>
-                                <input
-                                type="text"
-                                id="product_type"
-                                class="form-control"
-                                wire:model.defer="guarantee"
-                                placeholder="Guarantee"
-                                />
-                            @error('guarantee') <small class="text-danger">{{ $message }}</small> @enderror
-                            </div>
+                            @error('tag') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
                         <div class="col-12">
-                        <div class="form-group mb-2" >
+                        <div class="form-group mb-2 mt-2" >
                             <label>Product Information</label>
                             <div wire:ignore>
                                 <textarea id="product_information"  wire:model.defer="product_information"></textarea>
@@ -164,11 +271,18 @@
                             </div>
                                 @error('product_spesification') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
+                        <div class="form-group mb-2" >
+                            <label>Additional Information</label>
+                            <div wire:ignore>
+                                <textarea id="description_add" wire:model.defer="description_add"></textarea>
+                            </div>
+                                @error('description_add') <small class="text-danger">{{ $message }}</small> @enderror
+                        </div>
                         </div>
                         <div class="col-12 mb-2">
                         <div class="border rounded p-2">
                             <h4 class="mb-1">Product Image</h4>
-                            <div class="media flex-column flex-md-row " wire:ignore>
+                            <div class="media flex-column flex-md-row ">
 
                             <img
                                 <?php if(isset($edit->product_images)) {
@@ -183,6 +297,7 @@
                                 width="170"
                                 height="110"
                                 alt="Retail Directory Form Images"
+                                 wire:ignore.self
                             />
                             <div class="media-body" >
                                 <small class="text-muted">Recommended image resolution 620x430, image size 10mb.</small>
@@ -226,45 +341,6 @@
                             @error('company_name') <small class="text-danger">{{ $message }}</small> @enderror
                             </div>
                         </div>
-                        <div class="col-md-4 col-12">
-                            <div class="form-group mb-2">
-                                <label for="product_type">Company City</label>
-                                <input
-                                type="text"
-                                id="company_city"
-                                class="form-control"
-                                wire:model.defer="company_city"
-                                placeholder="Company City"
-                                />
-                            @error('company_city') <small class="text-danger">{{ $message }}</small> @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-12">
-                            <div class="form-group mb-2">
-                                <label for="product_type">Company Country</label>
-                                <input
-                                type="text"
-                                id="company_country"
-                                class="form-control"
-                                wire:model.defer="company_country"
-                                placeholder="Company Country"
-                                />
-                            @error('company_country') <small class="text-danger">{{ $message }}</small> @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-12">
-                            <div class="form-group mb-2">
-                                <label for="product_type">Legal Entity</label>
-                                <input
-                                type="text"
-                                id="legal_entity"
-                                class="form-control"
-                                wire:model.defer="legal_entity"
-                                placeholder="Legal Entity"
-                                />
-                            @error('legal_entity') <small class="text-danger">{{ $message }}</small> @enderror
-                            </div>
-                        </div>
                         <div class="col-12">
                         <div class="form-group mb-2" >
                             <label>Company Address</label>
@@ -273,45 +349,10 @@
                             </div>
                                 @error('company_address') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
-                        <div class="form-group mb-2" >
-                            <label>Company Information</label>
-                            <div wire:ignore>
-                                <textarea id="company_information" wire:model.defer="company_information"></textarea>
-                            </div>
-                                @error('company_information') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
-                        </div>
-                        <div class="col-md-4 col-12">
+                        <div class="col-md-3 col-12">
                             <div class="form-group mb-2">
-                                <label for="product_category">Company Type</label>
-                                <div wire:ignore>
-                                    <select id="company_type" wire:model.defer="company_type" class="select2 form-control">
-                                    <option value="" selected>-- Company Type --</option>
-                                    @foreach($company_type_data as $value)
-                                        <option {{ ($company_type == $value) ? 'selected' : '' }} value="{{ $value }}" >{{ $value }}</option>
-                                    @endforeach
-                                    </select>
-                                </div>
-                                @error('company_type') <small class="text-danger">{{ $message }}</small> @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-12">
-                            <div class="form-group mb-2">
-                                <label for="product_category">Looking For?</label>
-                                <div wire:ignore>
-                                    <select id="looking_for" wire:model.defer="looking_for" class="select2 form-control">
-                                    <option value="">-- Looking For? --</option>
-                                    @foreach($looking_for_data as $key => $value)
-                                        <option {{ ($looking_for == $value) ? 'selected' : '' }} value="{{ $value }}" >{{ $value }}</option>
-                                    @endforeach
-                                    </select>
-                                </div>
-                                @error('company_type') <small class="text-danger">{{ $message }}</small> @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-12">
-                            <div class="form-group mb-2">
-                                <label for="product_type">Whatsapp Contact</label>
+                                <label for="whatsapp_contact">Whatsapp Contact</label>
                                 <input
                                 type="text"
                                 id="whatsapp_contact"
@@ -322,6 +363,58 @@
                             @error('whatsapp_contact') <small class="text-danger">{{ $message }}</small> @enderror
                             </div>
                         </div>
+                        <div class="col-md-3 col-12">
+                            <div class="form-group mb-2">
+                                <label for="instagram">Instagram</label>
+                                <input
+                                type="text"
+                                id="instagram"
+                                class="form-control"
+                                wire:model.defer="instagram"
+                                placeholder="Instagram"
+                                />
+                            @error('instagram') <small class="text-danger">{{ $message }}</small> @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-12">
+                            <div class="form-group mb-2">
+                                <label for="company_email">Email</label>
+                                <input
+                                type="email"
+                                id="company_email"
+                                class="form-control"
+                                wire:model.defer="company_email"
+                                placeholder="Email"
+                                />
+                            @error('company_email') <small class="text-danger">{{ $message }}</small> @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-12">
+                            <div class="form-group mb-2">
+                                <label for="website">Website</label>
+                                <input
+                                type="text"
+                                id="website"
+                                class="form-control"
+                                wire:model.defer="website"
+                                placeholder="Website"
+                                />
+                            @error('website') <small class="text-danger">{{ $message }}</small> @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group mb-2">
+                                <label for="partner">Wanted Partner</label>
+                                @foreach($partner_data as $key => $value)
+                                    <div class="form-check form-check-primary">
+                                        <input type="checkbox" wire:model="partner.{{ $key }}" id="partner{{ $key }}" value="{{ $value }}" name="partner" class=" form-check-input">
+                                        <label for="partner{{ $key }}" class="form-check-label">{{ $value }}</label>
+                                    </div>
+                                @endforeach
+                                @error('partner') <small class="text-danger">{{ $message }}</small> @enderror
+                            </div>
+                        </div>
+
                         <div class="col-12 mb-2">
                         <div class="border rounded p-2">
                             <h4 class="mb-1">Catalog/Brochure</h4>
@@ -357,7 +450,7 @@
                     <div class="row">
                         <div class="col-md-12 col-12">
                             <div class="form-group mb-2">
-                                <label for="product_name">Full Name</label>
+                                <label for="fullname">Full Name</label>
                                 <input
                                 type="text"
                                 id="fullname"
@@ -370,10 +463,10 @@
                         </div>
                         <div class="col-md-4 col-12">
                             <div class="form-group mb-2">
-                                <label for="product_type">Email Address</label>
+                                <label for="contact_email">Email Address</label>
                                 <input
                                 type="email"
-                                id="email_address"
+                                id="contact_email"
                                 class="form-control"
                                 wire:model.defer="email_address"
                                 placeholder="Email Address"
@@ -383,7 +476,7 @@
                         </div>
                         <div class="col-md-4 col-12">
                             <div class="form-group mb-2">
-                                <label for="product_type">Phone Number</label>
+                                <label for="phone_number">Phone Number</label>
                                 <input
                                 type="text"
                                 id="phone_number"
@@ -396,15 +489,15 @@
                         </div>
                         <div class="col-md-4 col-12">
                             <div class="form-group mb-2">
-                                <label for="product_type">Enquiries</label>
+                                <label for="position">Position</label>
                                 <input
                                 type="text"
-                                id="enquiries"
+                                id="position"
                                 class="form-control"
-                                wire:model.defer="enquiries"
-                                placeholder="Enquiries"
+                                wire:model.defer="position"
+                                placeholder="Ex. CTO, CEO, Franchises"
                                 />
-                            @error('enquiries') <small class="text-danger">{{ $message }}</small> @enderror
+                            @error('position') <small class="text-danger">{{ $message }}</small> @enderror
                             </div>
                         </div>
                     </div>
@@ -431,28 +524,16 @@
 <script src="https://cdn.tiny.cloud/1/hbjeuw3i2rynhza5stqc8laavo0yd57y5q6chx8fr61bvmhr/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
 <script>
-
-    $('#product_category').select2().val({{ isset($product_category) ? $product_category : 1  }}).trigger('change');
-    $('#company_type').select2().val({!! isset($company_type) ? $company_type : 1 !!}).trigger('change');
-    $('#looking_for').select2().val({!! isset($looking_for) ? $looking_for : 1 !!}).trigger('change');
+    $('#retail_category').select2().val({!! isset($retail_category) ? $retail_category :  "\"\"" !!}).trigger('change');
 
     $(document).ready(function() {
-        @this.set('product_category',{{ isset($product_category) ? $product_category : 1 }});
-        @this.set('company_type',{!! isset($company_type) ? $company_type : 1 !!});
-        @this.set('looking_for',{!! isset($looking_for) ? $looking_for : 1 !!});
+        @this.set('retail_category',{!! isset($retail_category) ? $retail_category :  "\"\"" !!});
     });
 
 
 
-    $(document).on('change','#product_category',function(){
-        @this.set('product_category', this.value);
-    });
-    $(document).on('change','#company_type',function(){
-        console.log(this.value);
-        @this.set('company_type', this.value);
-    });
-    $(document).on('change','#looking_for',function(){
-        @this.set('looking_for', this.value);
+    $(document).on('change','#retail_category',function(){
+        @this.set('retail_category', this.value);
     });
 
     tinymce.init({
@@ -501,6 +582,55 @@
             });
             editor.on('change', function (e) {
                 @this.set('product_information', editor.getContent());
+            });
+        },
+    });
+    tinymce.init({
+        selector: "textarea#description_add",
+        skin: "bootstrap",
+        plugins: "lists, link, image, media",
+        menubar: true,
+        file_picker_types: 'file image media',
+        a11y_advanced_options: true,
+        file_picker_callback: function (cb, value, meta) {
+            var input = document.createElement('input');
+            input.setAttribute('type', 'file');
+            input.setAttribute('accept', 'image/*');
+
+            input.onchange = function () {
+            var file = this.files[0];
+
+            var reader = new FileReader();
+            reader.onload = function () {
+                var id = 'blobid' + (new Date()).getTime();
+                var blobCache =  tinymce.activeEditor.editorUpload.blobCache;
+                var base64 = reader.result.split(',')[1];
+                var blobInfo = blobCache.create(id, file, base64);
+                blobCache.add(blobInfo);
+                cb(blobInfo.blobUri(), { title: file.name });
+            };
+            reader.readAsDataURL(file);
+            };
+            input.click();
+        },
+        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+        setup: (editor) => {
+            // Apply the focus effect
+            editor.on("init", () => {
+            editor.getContainer().style.transition =
+                "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out";
+            });
+            editor.on("focus", () => {
+            (editor.getContainer().style.boxShadow =
+                "0 0 0 .2rem rgba(0, 123, 255, .25)"),
+                (editor.getContainer().style.borderColor = "#80bdff");
+            });
+            editor.on("blur", () => {
+            (editor.getContainer().style.boxShadow = ""),
+                (editor.getContainer().style.borderColor = "");
+            });
+            editor.on('change', function (e) {
+                @this.set('description_add', editor.getContent());
             });
         },
     });
@@ -651,55 +781,5 @@
             });
         },
     });
-    tinymce.init({
-        selector: "textarea#company_information",
-        skin: "bootstrap",
-        plugins: "lists, link, image, media",
-        menubar: true,
-        file_picker_types: 'file image media',
-        a11y_advanced_options: true,
-        file_picker_callback: function (cb, value, meta) {
-            var input = document.createElement('input');
-            input.setAttribute('type', 'file');
-            input.setAttribute('accept', 'image/*');
-
-            input.onchange = function () {
-            var file = this.files[0];
-
-            var reader = new FileReader();
-            reader.onload = function () {
-                var id = 'blobid' + (new Date()).getTime();
-                var blobCache =  tinymce.activeEditor.editorUpload.blobCache;
-                var base64 = reader.result.split(',')[1];
-                var blobInfo = blobCache.create(id, file, base64);
-                blobCache.add(blobInfo);
-                cb(blobInfo.blobUri(), { title: file.name });
-            };
-            reader.readAsDataURL(file);
-            };
-            input.click();
-        },
-        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
-        setup: (editor) => {
-            // Apply the focus effect
-            editor.on("init", () => {
-            editor.getContainer().style.transition =
-                "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out";
-            });
-            editor.on("focus", () => {
-            (editor.getContainer().style.boxShadow =
-                "0 0 0 .2rem rgba(0, 123, 255, .25)"),
-                (editor.getContainer().style.borderColor = "#80bdff");
-            });
-            editor.on("blur", () => {
-            (editor.getContainer().style.boxShadow = ""),
-                (editor.getContainer().style.borderColor = "");
-            });
-            editor.on('change', function (e) {
-                @this.set('company_information', editor.getContent());
-            });
-        },
-    });
 </script>
 @endpush
-

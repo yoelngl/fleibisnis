@@ -177,7 +177,7 @@ Event Schedule
                                 <img src="{{ asset('icons/loading.gif') }}" wire:loading wire:target="{{ isset($edit) ? 'updateEvent("'.$edit->slug.'")' : 'createEvent' }}" alt="" width="60px">
                                 <button type="submit" class="btn btn-primary mr-1" wire:target="{{ isset($edit) ? 'updateEvent("'.$edit->slug.'")' : 'createEvent' }}" wire:loading.attr="hidden"
                                 wire:loading.attr="hidden"> Submit</button>
-                                <a href="{{ route('admin.today_news') }}" wire:target="{{ isset($edit) ? 'updateEvent("'.$edit->slug.'")' : 'createEvent' }}"  class="btn btn-danger" wire:loading.class="btn btn-secondary" wire:loading.attr="hidden">Back</a>
+                                <a href="{{ route('admin.event') }}" wire:target="{{ isset($edit) ? 'updateEvent("'.$edit->slug.'")' : 'createEvent' }}"  class="btn btn-danger" wire:loading.class="btn btn-secondary" wire:loading.attr="hidden">Back</a>
                                </div>
                           </div>
                           </form>
@@ -205,7 +205,58 @@ Event Schedule
 <script src="{{ asset('backend-assets/vendors/js/pickers/pickadate/picker.time.js') }}"></script>
 <script src="{{ asset('backend-assets/vendors/js/pickers/pickadate/legacy.js') }}"></script>
 <script src="{{ asset('backend-assets/vendors/js/pickers/flatpickr/flatpickr.min.js') }}"></script>
+<script src="https://cdn.tiny.cloud/1/hbjeuw3i2rynhza5stqc8laavo0yd57y5q6chx8fr61bvmhr/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
+    tinymce.init({
+        selector: "textarea#activities",
+        skin: "bootstrap",
+        plugins: "lists, link, image, media",
+        menubar: true,
+        file_picker_types: 'file image media',
+        a11y_advanced_options: true,
+        file_picker_callback: function (cb, value, meta) {
+            var input = document.createElement('input');
+            input.setAttribute('type', 'file');
+            input.setAttribute('accept', 'image/*');
+
+            input.onchange = function () {
+            var file = this.files[0];
+
+            var reader = new FileReader();
+            reader.onload = function () {
+                var id = 'blobid' + (new Date()).getTime();
+                var blobCache =  tinymce.activeEditor.editorUpload.blobCache;
+                var base64 = reader.result.split(',')[1];
+                var blobInfo = blobCache.create(id, file, base64);
+                blobCache.add(blobInfo);
+                cb(blobInfo.blobUri(), { title: file.name });
+            };
+            reader.readAsDataURL(file);
+            };
+            input.click();
+        },
+        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+        setup: (editor) => {
+            // Apply the focus effect
+            editor.on("init", () => {
+            editor.getContainer().style.transition =
+                "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out";
+            });
+            editor.on("focus", () => {
+            (editor.getContainer().style.boxShadow =
+                "0 0 0 .2rem rgba(0, 123, 255, .25)"),
+                (editor.getContainer().style.borderColor = "#80bdff");
+            });
+            editor.on("blur", () => {
+            (editor.getContainer().style.boxShadow = ""),
+                (editor.getContainer().style.borderColor = "");
+            });
+            editor.on('change', function (e) {
+                @this.set('activities', editor.getContent());
+            });
+        },
+    });
+
     $('#range').flatpickr({
     mode: "range",
     minDate: "today",

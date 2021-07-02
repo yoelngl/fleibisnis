@@ -95,7 +95,7 @@ Brand Form
                                 <img src="{{ asset('icons/loading.gif') }}" wire:loading wire:target="{{ isset($edit) ? 'updateBrand("'.$edit->id.'")' : 'createBrand' }}" alt="" width="60px">
                                 <button type="submit" class="btn btn-primary mr-1" wire:target="{{ isset($edit) ? 'updateBrand("'.$edit->id.'")' : 'createBrand' }}" wire:loading.attr="hidden"
                                 wire:loading.attr="hidden"> Submit</button>
-                                <a href="{{ route('admin.ask_expert') }}" wire:target="{{ isset($edit) ? 'updateBrand("'.$edit->id.'")' : 'createBrand' }}"  class="btn btn-danger" wire:loading.class="btn btn-secondary" wire:loading.attr="hidden">Back</a>
+                                <a href="{{ route('admin.brand') }}" wire:target="{{ isset($edit) ? 'updateBrand("'.$edit->id.'")' : 'createBrand' }}"  class="btn btn-danger" wire:loading.class="btn btn-secondary" wire:loading.attr="hidden">Back</a>
                             </div>
                         </div>
                         </form>

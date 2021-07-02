@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Pages\Master\Retail;
 
-use App\Models\Categories;
+use App\Models\RetailCategory;
 use Livewire\Component;
 use App\Models\RetailDirectory;
 use Illuminate\Support\Facades\Storage;
@@ -33,7 +33,7 @@ class RetailIndex extends Component
     public function categoriesAdd(){
         $this->validate();
 
-        Categories::create([
+        RetailCategory::create([
             'title' => $this->title,
         ]);
         session()->flash('success','Category added successfully!');
@@ -42,7 +42,7 @@ class RetailIndex extends Component
     }
 
     public function deleteCategory($slug){
-        Categories::where('slug',$slug)->delete();
+        RetailCategory::where('slug',$slug)->delete();
         session()->flash('success','Category deleted successfully');
         return redirect()->route('admin.retail');
     }
@@ -65,7 +65,7 @@ class RetailIndex extends Component
         $searchTerm = '%' . $this->search . '%';
 
         $retail = RetailDirectory::with('category','user')->where('product_name','like',$searchTerm)->latest()->paginate($this->load_more);
-        $categories = Categories::all();
+        $categories = RetailCategory::all();
         return view('livewire.pages.master.retail.retail-index',compact('retail','categories'))->extends('layouts.master.app')->section('content');
     }
 }

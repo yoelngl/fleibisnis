@@ -147,6 +147,40 @@ return [
     '1b-2b' => 'IDR 1,000,000,001 - IDR 2,000,000,000',
     'above' => 'Above IDR 2,000,000,000',
 
+    'product_information' => 'Product Information',
+    'product_features' => 'Product Features',
+    'details' => 'Details',
+
+    'product_name' => 'Product Name',
+    'product_type' => 'Product Type',
+    'category' => 'Category',
+    'product_origin' => 'Product Origin',
+    'product_country' => 'Product Country',
+    'company_name' => 'Company Name',
+    'company_address' => 'Product Address',
+    'currency' => 'Currency',
+    'price' => 'Price',
+    'guarantee' => 'Guarantee(Tahun)',
+    'practices' => 'Usage Training',
+    'books' => 'User Manual',
+    'services' => 'After-Sales Service',
+    'company_type' => 'Company Type',
+    'additional_information' => 'Additional Description',
+
+    'year' => 'Year',
+    'yes' => 'Yes',
+    'no' => 'No',
+
+    // Franchise
+    'bussiness_information' => 'Bussiness Information',
+    'investment_information' => 'Investment Information',
+    'additional_information' => 'Additional Information',
+    'grow' => 'Store Growth in the last 5 years',
+    'supported' => 'Supported Images',
+    'packet' => 'Investment Package'
+
+
+
 
 
 

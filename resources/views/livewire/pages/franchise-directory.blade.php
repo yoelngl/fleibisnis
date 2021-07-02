@@ -79,14 +79,14 @@
                 <div class="utf_listing_item-container list-layout"> <a href="{{ route('franchise-details',['slug' => $franchise->slug]) }}" class="utf_listing_item">
                   <div class="utf_listing_item-image">
                       <img src="{{ asset('storage/'.$franchise->brand_image) }}" alt="">
-                      <span class="tag"><i class="im im-icon-Hotel"></i> REKOMENDASI</span>
+                      <span class="tag">{{ $franchise->tag }}</span>
                   </div>
                   <div class="utf_listing_item_content">
                     <div class="utf_listing_item-inner">
                       <h3>{{ $franchise->brand_name }}</h3>
                       <span><i class="sl sl-icon-book-open"></i> {{ $franchise->category->title }}</span>
 
-                      <p>{!! Str::limit($franchise->brand_information,250) !!}</p>
+                      <p>{!! Str::limit($franchise->brand_description,250) !!}</p>
                     </div>
                   </div>
                   </a>

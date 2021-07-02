@@ -12,11 +12,11 @@
           </div>
           <nav id="navigation" class="style_one">
             <ul id="responsive">
-              <li><a class="{{ request()->is('/') ? 'current' : '' }}" href="{{ route('home') }}">Home</a></li>
-              <li><a class="{{ request()->is('today-news') ? 'current' : '' }}" href="{{ route('today-news') }}" >Today News</a></li>
-              <li><a class="{{ request()->is('ask-the-expert') ? 'current' : '' }}" href="{{ route('expert') }}">Ask The Experts</a></li>
-              <li><a class="{{ request()->is('events') ? 'current' : '' }}" href="{{ route('events') }}">Events</a></li>
-              <li><a href="#" class="{{ request()->is('franchise-directory') || request()->is('retail-directory') ? 'current' : '' }}">Directory</a>
+              <li><a class="{{ request()->is('/') ? 'current' : '' }}"  href="{{ route('home') }}"><b>Home</b></a></li>
+              <li><a class="{{ request()->is('today-news') ? 'current' : '' }}" href="{{ route('today-news') }}" ><b>Today News</b></a></li>
+              <li><a class="{{ request()->is('ask-the-expert') ? 'current' : '' }}" href="{{ route('expert') }}"><b>Ask The Experts</b></a></li>
+              <li><a class="{{ request()->is('events') ? 'current' : '' }}" href="{{ route('events') }}"><b>Events</b></a></li>
+              <li><a href="#" class="{{ request()->is('franchise-directory') || request()->is('retail-directory') ? 'current' : '' }}"><b>Directory</b></a>
                   <ul>
                     <li><a class="{{ request()->is('franchise-directory') ? 'active' : '' }}" href="{{ route('franchise-directory') }}">Franchise Directory</a></li>
                     <li><a class="{{ request()->is('retail-directory') ? 'active' : '' }}" href="{{ route('retail-directory') }}">Retail Directory</a></li>

@@ -3,7 +3,7 @@
  ?>
   <h3><i class="sl sl-icon-book-open"></i> {{ trans('message.popular-post') }}</h3>
   <ul class="utf_widget_tabs">
-      @foreach ($popular as $item)
+      @foreach ($popular->take(3) as $item)
           <li>
             <div class="utf_widget_content">
               <div class="utf_widget_thum"> <a href="blog_detail_right_sidebar.html"><img src="{{ asset('storage/'.$item->images) }}" alt=""></a> </div>

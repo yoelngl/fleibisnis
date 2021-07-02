@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
-use App\Models\Categories;
+use App\Models\RetailCategory;
 use App\Models\User;
 
 class RetailDirectory extends Model
@@ -20,7 +20,7 @@ class RetailDirectory extends Model
     ];
 
     public function category(){
-      return $this->belongsTo(Categories::class);
+      return $this->belongsTo(RetailCategory::class);
     }
 
     public function user(){

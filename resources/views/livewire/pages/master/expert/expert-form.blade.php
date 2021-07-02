@@ -88,7 +88,7 @@ Ask Expert
                                 <div class="form-group mb-2" >
                                     <label>Question</label>
                                     <div wire:ignore>
-                                        <textarea class="form-control" wire:model="question"></textarea>
+                                        <textarea id="question" wire:model="question"></textarea>
                                     </div>
                                         @error('question') <small class="text-danger">{{ $message }}</small> @enderror
                                 </div>
@@ -134,7 +134,7 @@ Ask Expert
 <script src="https://cdn.tiny.cloud/1/hbjeuw3i2rynhza5stqc8laavo0yd57y5q6chx8fr61bvmhr/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
 <script>
-    $('#expert').select2().val({{ isset($experts) ? $experts : 1  }}).trigger('change');
+    $('#expert').select2().val({!! isset($experts) ? $experts : "\"\""  !!}).trigger('change');
 
     $(document).on('change','#expert',function(){
         @this.set('experts', this.value);
