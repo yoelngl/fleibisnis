@@ -20,6 +20,26 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700,800" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lity/2.4.1/lity.min.css" integrity="sha512-UiVP2uTd2EwFRqPM4IzVXuSFAzw+Vo84jxICHVbOA1VZFUyr4a6giD9O3uvGPFIuB2p3iTnfDVLnkdY7D/SJJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <style media="screen">
+        .float{
+            position:fixed;
+            width:60px;
+            height:60px;
+            bottom:20px;
+            right:40px;
+            background-color:#25d366;
+            color:#FFF;
+            border-radius:50px;
+            text-align:center;
+            font-size:30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index:100;
+            }
+
+        .my-float{
+            margin-top:16px;
+        }
+        </style>
         @yield('css')
         @livewireStyles()
     </head>
@@ -32,7 +52,12 @@
 
             @yield('content')
 
+
         </div>
+        <?php $whatsapp = App\Models\Footer::first(); ?>
+        <a href="https://wa.me/{{ ($whatsapp) ? $whatsapp['phone'] : '' }}" class="float" target="_blank" style="margin-right:40px;">
+        <i class="fa fa-whatsapp my-float"></i>
+        </a>
         @livewireScripts()
 
 

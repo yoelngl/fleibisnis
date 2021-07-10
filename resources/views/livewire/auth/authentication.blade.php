@@ -7,4 +7,7 @@
     <div class="tab_content" id="tab2" style="display:none;" wire:ignore.self>
         @livewire('auth.register')
     </div>
+    <div class="tab_content" id="tab3"  wire:ignore.self>
+        @livewire('auth.forgot')
+    </div>
 </div>

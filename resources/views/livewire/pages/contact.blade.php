@@ -9,7 +9,7 @@ Contact Us
               <h2>Contact Us</h2>
               <nav id="breadcrumbs">
                 <ul>
-                  <li><a href="index_1.html">Home</a></li>
+                  <li><a href="{{ route('home') }}">Home</a></li>
                   <li>Contact Us</li>
                 </ul>
               </nav>
@@ -24,22 +24,24 @@ Contact Us
           <div class="col-md-8">
             <section id="contact" class="margin-bottom-70">
               <h4><i class="sl sl-icon-phone"></i>{{ trans('message.contact-form') }}</h4>
-              <form id="contactform">
+              <form id="contactform" wire:submit.prevent="contact">
                 <div class="row">
+                  <div class="col-md-12">
+                      <input wire:model.lazy="name" type="text" placeholder="{{ trans('message.fullname') }}" required />
+                      @error('name') <small class="text-danger">{{ $message }}</small> @enderror
+                  </div>
+
                   <div class="col-md-6">
-                      <input name="name" type="text" placeholder="{{ trans('message.first-name') }}" required />
+                      <input wire:model.lazy="email" type="email" placeholder="{{ trans('message.email') }}" required />
+                      @error('email') <small class="text-danger">{{ $message }}</small> @enderror
                   </div>
                   <div class="col-md-6">
-                      <input name="name" type="text" placeholder="{{ trans('message.last-name') }}" required />
-                  </div>
-                  <div class="col-md-6">
-                      <input name="email" type="email" placeholder="{{ trans('message.email') }}" required />
-                  </div>
-                  <div class="col-md-6">
-                      <input name="subject" type="text" placeholder="{{ trans('message.subject') }}" required />
+                      <input wire:model.lazy="subject" type="text" placeholder="{{ trans('message.subject') }}" required />
+                      @error('subject') <small class="text-danger">{{ $message }}</small> @enderror
                   </div>
                   <div class="col-md-12">
-                      <textarea name="comments" cols="40" rows="2" id="comments" placeholder="{{ trans('message.message-desc') }}" required></textarea>
+                      <textarea wire:model.lazy="comments" cols="40" rows="2" id="comments" placeholder="{{ trans('message.message-desc') }}" required></textarea>
+                      @error('comments') <small class="text-danger">{{ $message }}</small> @enderror
                   </div>
                 </div>
                 <input type="submit" class="submit button" id="submit" value="{{ trans('message.submit') }}" />
@@ -64,3 +66,11 @@ Contact Us
       </div>
 </div>
 @include('layouts.footer')
+
+@push('scripts')
+    <script type="text/javascript">
+        $(document).ready(function (){
+            @include('vendor.helpers')
+        });
+    </script>
+@endpush

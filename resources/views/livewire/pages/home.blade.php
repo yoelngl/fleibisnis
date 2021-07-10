@@ -137,11 +137,11 @@
                     <div class="simple_slick_carousel_block utf_dots_nav">
                         @foreach ($franchises->take(3) as $item)
                         <div class="utf_carousel_item"> <a href="{{ route('franchise-details',['slug' => $item->slug]) }}" class="utf_listing_item-container compact">
-                            <div class="utf_listing_item"> <img src="{{ asset('storage/'.$item->brand_image) }}" alt="Franchise Images"> <span class="tag"><i class="im  im-icon-Tag-3"></i> {{ $item->category->title }}</span>
+                            <div class="utf_listing_item"> <img src="{{ asset($item->brand_image ? '/storage/'.$item->brand_image : '/images/No_images.png')  }}" alt="Franchise Images"> <span class="tag"><i class="im  im-icon-Tag-3"></i> {{ $item->category->title }}</span>
                                 <div class="utf_listing_item_content">
                                     <h3>{{ $item->brand_name }}</h3>
-                                    <span><i class="sl sl-icon-location"></i> {{ $item->brand_country }}</span>
-                                    <span><i class="sl sl-icon-tag"></i> {{ $item->investment_value }}</span>
+                                    <span><i class="sl sl-icon-location"></i> {{ $item->brand_country ? $item->brand_country : 'Tidak ada data' }}</span>
+                                    <span ><i class="sl sl-icon-tag"></i> <b class="price">{{ $item->investment_value ? $item->investment_value : 'Tidak ada data' }}</b></span>
                                 </div>
                                 </div>
                             </a>
@@ -170,7 +170,7 @@
                     <ul class="blog_post_tag_part">
                       <li>{{ $item->category->title }} / {{ Carbon\Carbon::parse($item->created_at)->format('d F, Y') }}</li>
                     </ul>
-                    <p>{!! Str::limit($item->description,50) !!}</p>
+                    
                   </div>
                 </div>
                 </a>
@@ -186,7 +186,12 @@
 
 
 @push('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
+
 <script>
+    $('.price').mask('000.000.000.000.000',
+    {reverse: true}
+    );
     var tpj=jQuery;
     var revapi4;
     tpj(document).ready(function() {

@@ -39,6 +39,8 @@ use App\Http\Livewire\Pages\Master\Widget\Slider\SliderForm;
 use App\Http\Livewire\Pages\Master\Widget\Slider\SliderIndex;
 use App\Http\Livewire\Pages\Master\Widget\Footer\FooterForm;
 use App\Http\Livewire\Pages\Master\Widget\Footer\FooterIndex;
+use App\Http\Livewire\Vendor\ResetPassword;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +65,8 @@ Route::middleware(['role:users','permission:not-valid'])->group(function () {
 });
 
 Route::POST('/logout',[AuthenticationController::class, 'logout'])->name('logout');
+
+Route::GET('/reset-password',ResetPassword::class)->name('reset-password');
 
 
 

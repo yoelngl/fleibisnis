@@ -42,7 +42,9 @@ class EventForm extends Component
             'link'              => $this->url,
             'location'          => $this->location,
         ];
-        $data['images'] = $this->images->store('event_schedule', 'public');
+        if($this->images){
+            $data['images'] = $this->images->store('event_schedule', 'public');
+        }
 
         EventSchedule::create($data);
         Session::flash('success', 'Event Schedule successfully created!');
@@ -64,11 +66,6 @@ class EventForm extends Component
 
     public function updateEvent($slug){
         $event_schedule = EventSchedule::where('slug',$slug)->first();
-        if($event_schedule['images'] == $this->images){
-            $this->rules['images'] = 'required';
-        }else{
-            $this->rules['images'] = 'required|image|mimes:png,jpg,jpeg,svg';
-        }
 
         $this->validate($this->rules);
 

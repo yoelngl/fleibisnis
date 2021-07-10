@@ -161,11 +161,11 @@ Today News Form
 
 <script type="text/javascript">
 
-    $('#categories').select2().val({{ isset($category) ? $category->id : $category_null  }}).trigger('change');
+    $('#categories').select2().val({!! isset($category->id) ? $category->id :  "\"\"" !!}).trigger('change');
 
 
     $(document).ready(function() {
-        @this.set('category',{{ isset($category->id) ? $category->id : $category_null }});
+        @this.set('category',{!! isset($category->id) ? $category->id :  "\"\"" !!});
     });
 
     $(document).on('change','#categories',function(){

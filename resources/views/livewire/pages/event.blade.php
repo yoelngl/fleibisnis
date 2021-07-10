@@ -41,7 +41,7 @@ display: none;
               </nav>
               <nav id="breadcrumbs">
                 <ul>
-                  <li><a href="index_1.html">Home</a></li>
+                  <li><a href="{{ route('home') }}">Home</a></li>
                   <li>Events</li>
                 </ul>
               </nav>
@@ -127,11 +127,15 @@ display: none;
                                                     <div class="card-horizontal">
                                                         <div class="img-square-wrapper" wire:ignore>
                                                             <div class="" >
-                                                                <img class="optionalstuff"  src="{{ asset('storage/'.$item->images) }}" alt="Card image cap">
+                                                                @if ($item->images)
+                                                                    <img class="optionalstuff"  src="{{ asset('storage/'.$item->images) }}" alt="Card image cap">
+                                                                @endif
                                                             </div>
                                                         </div>
                                                         <div class="card-body">
-                                                            <p class="card-text"> {{ Str::limit($item->activities,150) }}</p>
+                                                            <div class="card-text">
+                                                            {!! Str::limit($item->activities,500) !!}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

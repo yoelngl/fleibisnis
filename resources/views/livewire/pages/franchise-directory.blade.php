@@ -15,7 +15,7 @@
               </nav>
             <nav id="breadcrumbs">
                 <ul>
-                  <li><a href="index_1.html">Home</a></li>
+                  <li><a href="{{ route('home') }}">Home</a></li>
                   <li>Franchise Directory</li>
                 </ul>
               </nav></div>
@@ -31,16 +31,6 @@
                 <div class="utf_layout_nav">  <a href="javscript:void(0)" class="list active"><i class="fa fa-align-justify"></i></a> </div>
               </div>
               <div class="col-md-10 col-xs-10">
-                <div class="sort-by">
-                  <div class="utf_sort_by_select_item sort_by_margin" wire:ignore>
-                    <select data-placeholder="Investment" id="investments" class="utf_chosen_select_single">
-                      <option value="">Investment</option>
-                      @foreach ($investment as $value)
-                        <option value="{{ $value }}">{{ $value }}</option>
-                      @endforeach
-                    </select>
-                  </div>
-                </div>
                 <div class="sort-by">
                   <div class="utf_sort_by_select_item sort_by_margin" wire:ignore>
                     <select data-placeholder="Origins" id="origins" class="utf_chosen_select_single" >
@@ -78,15 +68,16 @@
               <div class="col-lg-12 col-md-12">
                 <div class="utf_listing_item-container list-layout"> <a href="{{ route('franchise-details',['slug' => $franchise->slug]) }}" class="utf_listing_item">
                   <div class="utf_listing_item-image">
-                      <img src="{{ asset('storage/'.$franchise->brand_image) }}" alt="">
+                      <img src="{{ asset($franchise->brand_image ? '/storage/'.$franchise->brand_image : '/images/No_images.png')  }}" alt="">
                       <span class="tag">{{ $franchise->tag }}</span>
                   </div>
                   <div class="utf_listing_item_content">
                     <div class="utf_listing_item-inner">
                       <h3>{{ $franchise->brand_name }}</h3>
                       <span><i class="sl sl-icon-book-open"></i> {{ $franchise->category->title }}</span>
-
-                      <p>{!! Str::limit($franchise->brand_description,250) !!}</p>
+                      <div class="">
+                          {!! Str::limit($franchise->brand_description,500) !!}
+                      </div>
                     </div>
                   </div>
                   </a>
@@ -137,7 +128,7 @@
             @this.set('origins',this.value);
         });
 
-        $( '.price' ).mask('000.000.000',
+        $( '.price' ).mask('000.000.000.000.000',
         {reverse: true}
         );
     </script>

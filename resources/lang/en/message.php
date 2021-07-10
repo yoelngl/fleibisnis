@@ -177,11 +177,13 @@ return [
     'additional_information' => 'Additional Information',
     'grow' => 'Store Growth in the last 5 years',
     'supported' => 'Supported Images',
-    'packet' => 'Investment Package'
+    'packet' => 'Investment Package',
 
-
-
-
+    // Contact
+    'email_deliver' => 'Email Successfully delivered!',
+    'user_exist' => 'User does not exists!',
+    'reset_link' => 'A reset link has been sent to your email address.',
+    'network_error' => 'A Network Error occurred. Please try again.',
 
 
 ];

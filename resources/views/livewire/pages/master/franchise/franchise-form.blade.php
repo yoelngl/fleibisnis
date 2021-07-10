@@ -275,7 +275,7 @@ Franchise Form
                                     id="royalty_fee"
                                     class="form-control"
                                     wire:model.defer="royalty_fee"
-                                    placeholder="Ex. Rp. 20.000"
+                                    placeholder="Ex. 10%/bulan"
                                     />
                                 @error('royalty_fee') <small class="text-danger">{{ $message }}</small> @enderror
                                 </div>
@@ -301,7 +301,7 @@ Franchise Form
                                     id="roi"
                                     class="form-control"
                                     wire:model.defer="roi"
-                                    placeholder="Ex. Rp. 20.000/Tahun"
+                                    placeholder="Ex. 10%"
                                     />
                                 @error('roi') <small class="text-danger">{{ $message }}</small> @enderror
                                 </div>

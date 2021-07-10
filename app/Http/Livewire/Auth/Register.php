@@ -34,18 +34,18 @@ class Register extends Component
             'password' => Hash::make($this->password),
             'role' => 'users',
         ]);
-        if($user){
-            $user->assignRole('users');
-            $user->givePermissionTo('not-valid');
-            $verifyUser = VerifyUser::create([
-                'user_id' => $user->id,
-                'token' => sha1(time()),
-            ]);
-            Mail::to($user->email)->send(new VerifyMail($user));
-            session()->flash('success',trans('message.register-success'));
-            Auth::logout();
-            return redirect()->route('home');
+        $user->assignRole('users');
+        $user->givePermissionTo('not-valid');
+        $verifyUser = VerifyUser::create([
+            'user_id' => $user->id,
+            'token' => sha1(time()),
+        ]);
+        $send = Mail::to($user->email)->send(new VerifyMail($user));
+        if(!$send){
+            User::whereId($user->id)->delete();
         }
+        session()->flash('success',trans('message.register-success'));
+        Auth::logout();
         return redirect()->route('home');
     }
 

@@ -46,8 +46,8 @@
             </div>
             <div class="utf_signin_form style_one">
                 <ul class="utf_tabs_nav">
-                    <li class=""><a href="#tab1">{{ trans('message.login') }}</a></li>
-                    <li><a href="#tab2">{{ trans('message.register2') }}</a></li>
+                    <li id="tabs"><a href="#tab1">{{ trans('message.login') }}</a></li>
+                    <li><a href="#tab2" >{{ trans('message.register2') }}</a></li>
                 </ul>
             @livewire('auth.authentication')
             </div>

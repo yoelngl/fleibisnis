@@ -10,7 +10,7 @@
               <h2>Today News</h2>
               <nav id="breadcrumbs">
                 <ul>
-                  <li><a href="index_1.html">Home</a></li>
+                  <li><a href="{{ route('home') }}">Home</a></li>
                   <li>Today News</li>
                 </ul>
               </nav>
@@ -88,7 +88,7 @@
                             <ul class="blog_post_tag_part">
                               <li>{{ $item->category->title }} / {{ Carbon\Carbon::parse($item->created_at)->format('d F, Y') }}</li>
                             </ul>
-                            <p>{!! Str::limit($item->description,50) !!}</p>
+                            {{-- <div>{!! Str::limit($item->description,50) !!}</div> --}}
                           </div>
                         </div>
                         </a>

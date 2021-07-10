@@ -2,8 +2,13 @@
 
 namespace App\Http\Livewire\Auth;
 
+use App\Models\User;
 use Livewire\Component;
+use App\Mail\VerifyMail;
+use App\Models\VerifyUser;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class Login extends Component
 {
@@ -21,6 +26,11 @@ class Login extends Component
 
         if(Auth::attempt(['email' => $this->email, 'password' => $this->password])){
             if(Auth::user()->verified == "0"){
+                $verifyUser = VerifyUser::create([
+                    'user_id' => Auth::user()->id,
+                    'token' => sha1(time()),
+                ]);
+                $send = Mail::to(Auth::user()->email)->send(new VerifyMail(Auth::user()));
                 session()->flash('warning',trans('message.not-verified'));
                 Auth::logout();
                 return redirect()->route('home');

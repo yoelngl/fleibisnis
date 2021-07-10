@@ -1,4 +1,6 @@
-<a href="#" class="utf_dashboard_nav_responsive"><i class="fa fa-reorder"></i> Dashboard Sidebar Menu</a>
+@auth
+    <a href="#" class="utf_dashboard_nav_responsive"><i class="fa fa-reorder"></i> Dashboard Sidebar Menu</a>
+@endauth
 <div class="utf_dashboard_navigation js-scrollbar">
     <div class="utf_dashboard_navigation_inner_block">
         <ul>
@@ -23,12 +25,14 @@
                 </ul>
             </li>
             <li><a href="dashboard_bookmark.html"><i class="sl sl-icon-heart"></i> Bookmark</a></li> --}}
+            @auth
             <li class="{{ request()->is('my-profile') ? 'active' : '' }}"><a href="dashboard_my_profile.html"><i class="sl sl-icon-user"></i> {{ trans('message.my-profile') }}</a></li>
             {{-- <li><a href="dashboard_change_password.html"><i class="sl sl-icon-key"></i> Change Password</a></li> --}}
             <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="sl sl-icon-power"></i> Logout</a></li>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
             </form>
+        @endauth
         </ul>
     </div>
 </div>

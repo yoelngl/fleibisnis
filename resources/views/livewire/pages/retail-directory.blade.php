@@ -15,7 +15,7 @@
               </nav>
             <nav id="breadcrumbs">
                 <ul>
-                  <li><a href="index_1.html">Home</a></li>
+                  <li><a href="{{ route('home') }}">Home</a></li>
                   <li>Retail Directory</li>
                 </ul>
               </nav></div>
@@ -82,7 +82,7 @@
                 <div class="col-lg-12 col-md-12">
                     <div class="utf_listing_item-container list-layout"> <a href="{{ route('retail-details',['slug' => $item->slug]) }}" class="utf_listing_item">
                       <div class="utf_listing_item-image">
-                          <img src="{{ asset('storage/'.$item->product_images) }}" alt="">
+                          <img src="{{ asset($item->product_images ? '/storage/'.$item->product_images : '/images/No_images.png') }}" alt="">
                           <span class="tag"></i> {{ $item->tag }}</span>
                       </div>
                       <div class="utf_listing_item_content">
@@ -149,8 +149,7 @@
         $('#categories').on('change',function(){
             @this.set('category_id',this.value);
         });
-
-        $( '.price' ).mask('000.000.000',
+        $('.price').mask('000.000.000.000.000',
         {reverse: true}
         );
     </script>

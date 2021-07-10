@@ -51,32 +51,32 @@ class RetailForm extends Component
 
 
     protected $rules = [
-        'product_name' => 'required',
+        // 'product_name' => 'required',
         'retail_category' => 'required',
-        'product_type' => 'required',
-        'product_information' => 'required',
-        'product_features' => 'required',
-        'product_spesification' => 'required',
-        'price' => 'required|numeric',
-        'product_origin' => 'required',
-        'practices' => 'required',
-        'guarantee' => 'required',
-        'books' => 'required',
-        'services' => 'required',
-        'currency' => 'required',
-        'product_country' => 'required',
-        'product_category' => 'required',
-        'product_images' => 'required|image|mimes:png,jpg,svg,jpeg||max:10024',
-        'tag' => 'required',
-
-        // company
-        'company_name' => 'required',
-        'company_email' => 'required|email',
-        'company_address' => 'required',
-        'catalog_brochure' => 'required|mimes:pdf,jpg,png,svg,jpeg|max:10024',
-        'whatsapp_contact' => 'required|numeric',
-        'instagram' => 'required',
-        'partner' => 'required'
+        // 'product_type' => 'required',
+        // 'product_information' => 'required',
+        // 'product_features' => 'required',
+        // 'product_spesification' => 'required',
+        // 'price' => 'required|numeric',
+        // 'product_origin' => 'required',
+        // 'practices' => 'required',
+        // 'guarantee' => 'required',
+        // 'books' => 'required',
+        // 'services' => 'required',
+        // 'currency' => 'required',
+        // 'product_country' => 'required',
+        // 'product_category' => 'required',
+        // 'product_images' => 'required|image|mimes:png,jpg,svg,jpeg||max:10024',
+        // 'tag' => 'required',
+        //
+        // // company
+        // 'company_name' => 'required',
+        // 'company_email' => 'required|email',
+        // 'company_address' => 'required',
+        // 'catalog_brochure' => 'required|mimes:pdf,jpg,png,svg,jpeg|max:10024',
+        // 'whatsapp_contact' => 'required|numeric',
+        // 'instagram' => 'required',
+        // 'partner' => 'required'
     ];
 
     public function mount($slug = null){
@@ -111,8 +111,10 @@ class RetailForm extends Component
             $this->website = $this->edit['website'];
             $this->company_email = $this->edit['company_email'];
             $partner = explode(",", $this->edit['partner']);
-            foreach($partner as $key => $value){
-                $this->partner[$key] = $value;
+            if($partner){
+                foreach($partner as $key => $value){
+                    $this->partner[$key] = $value;
+                }
             }
             $this->catalog_brochure = $this->edit['brand_brochure'];
 
@@ -127,16 +129,16 @@ class RetailForm extends Component
 
     public function updateRetail($slug){
         $retail = RetailDirectory::where('slug',$slug)->first();
-        if($retail['product_images'] == $this->product_images){
-            $this->rules['product_images'] = 'required';
-        }else{
-            $this->rules['product_images'] = 'required|image|mimes:png,jpg,svg,jpeg||max:10024';
-        }
-        if($retail['brand_brochure'] == $this->catalog_brochure){
-            $this->rules['catalog_brochure'] = 'required';
-        }else{
-            $this->rules['catalog_brochure'] = 'required|mimes:pdf,jpg,png,svg,jpeg|max:10024';
-        }
+        // if($retail['product_images'] == $this->product_images){
+        //     $this->rules['product_images'] = 'required';
+        // }else{
+        //     $this->rules['product_images'] = 'required|image|mimes:png,jpg,svg,jpeg||max:10024';
+        // }
+        // if($retail['brand_brochure'] == $this->catalog_brochure){
+        //     $this->rules['catalog_brochure'] = 'required';
+        // }else{
+        //     $this->rules['catalog_brochure'] = 'required|mimes:pdf,jpg,png,svg,jpeg|max:10024';
+        // }
 
         $this->validate($this->rules);
         $data = [
@@ -237,8 +239,12 @@ class RetailForm extends Component
         'user_id' => auth()->user()->id
       ];
 
+      if($this->catalog_brochure){
       $data['brand_brochure'] = $this->catalog_brochure->store('catalog', 'public');
-      $data['product_images'] = $this->product_images->store('product', 'public');
+      }
+      if($this->product_images){
+          $data['product_images'] = $this->product_images->store('product', 'public');
+      }
 
       RetailDirectory::create($data);
       session()->flash('success','Retail Directory added Successfully!');

@@ -39,7 +39,7 @@ Retail Directory
                           <div class="col-md-4 col-12">
                           <div class="card">
                               <a href="{{ route('retail-details',['slug' => $item->slug]) }}">
-                              <img class="card-img-top img-fluid" width="200" src="{{ asset('storage/'.$item->product_images) }}" alt="Blog Post pic" />
+                              <img class="card-img-top img-fluid" width="200" src="{{ asset($item->product_images ? '/storage/'.$item->product_images : '/images/No_images.png') }}" alt="Blog Post pic" />
                               </a>
                               <div class="card-body">
                               <h4 class="card-title">

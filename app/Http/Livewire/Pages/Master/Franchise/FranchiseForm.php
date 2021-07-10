@@ -80,51 +80,52 @@ class FranchiseForm extends Component
 
     protected $rules = [
         // Brand
-        'brand_name' => 'required',
         'franchise_category' => 'required',
-        'bussiness_concept' => 'required',
-        'bussiness_type' => 'required',
-        'bussiness_category' => 'required',
-        'company_outlet' => 'required|numeric',
-        'company_year' => 'required|numeric',
-        'brand_origin' => 'required',
-        'brand_country' => 'required',
-        'brand_description' => 'required',
-        'brand_images' => 'required|image|mimes:png,jpg,svg,jpeg|max:10024',
-        'brand_logo' => 'required|image|mimes:png,jpg,svg,jpeg|max:10024',
-        'brand_brochure' => 'required|mimes:pdf,jpg,png,svg,jpeg|max:10024',
-        'tag' => 'required',
-
-        // Investment
-        'investment_value' => 'required|numeric',
-        'initial_cost' => 'required|numeric',
-        'royalty_fee' => 'required|numeric',
-        'license_time' => 'required|numeric',
-        'roi' => 'required|numeric',
-        'estimated_profit' => 'required|numeric',
-        'currency' => 'required',
-
-        // Company
-        'company_name' => 'required',
-        'company_email' => 'required|email',
-        'company_address' => 'required',
-        'whatsapp_contact' => 'required|numeric',
-        'instagram' => 'required',
-        'website' => 'required',
-        'store_images' => 'required|image|mimes:png,jpg,svg,jpeg|max:10024',
-
-        // Additional Informations
-        'employees_number' => 'required|numeric',
-        'store_area' => 'required|numeric',
-        'store_location_requirements' => 'required',
-        'store_services_requirements' => 'required',
-        'employees_training' => 'required',
-        'sop' => 'required',
-        'operational' => 'required',
-        'hki' => 'required',
-        'stpw' => 'required',
-        'nib' => 'required',
-        'crm_system' => 'required',
+        // 'brand_name' => 'required',
+        // 'franchise_category' => 'required',
+        // 'bussiness_concept' => 'required',
+        // 'bussiness_type' => 'required',
+        // 'bussiness_category' => 'required',
+        // 'company_outlet' => 'required|numeric',
+        // 'company_year' => 'required|numeric',
+        // 'brand_origin' => 'required',
+        // 'brand_country' => 'required',
+        // 'brand_description' => 'required',
+        // 'brand_images' => 'required|image|mimes:png,jpg,svg,jpeg|max:10024',
+        // 'brand_logo' => 'required|image|mimes:png,jpg,svg,jpeg|max:10024',
+        // 'brand_brochure' => 'required|mimes:pdf,jpg,png,svg,jpeg|max:10024',
+        // 'tag' => 'required',
+        //
+        // // Investment
+        // 'investment_value' => 'required|numeric',
+        // 'initial_cost' => 'required|numeric',
+        // 'royalty_fee' => 'required|numeric',
+        // 'license_time' => 'required|numeric',
+        // 'roi' => 'required|numeric',
+        // 'estimated_profit' => 'required|numeric',
+        // 'currency' => 'required',
+        //
+        // // Company
+        // 'company_name' => 'required',
+        // 'company_email' => 'required|email',
+        // 'company_address' => 'required',
+        // 'whatsapp_contact' => 'required|numeric',
+        // 'instagram' => 'required',
+        // 'website' => 'required',
+        // 'store_images' => 'required|image|mimes:png,jpg,svg,jpeg|max:10024',
+        //
+        // // Additional Informations
+        // 'employees_number' => 'required|numeric',
+        // 'store_area' => 'required|numeric',
+        // 'store_location_requirements' => 'required',
+        // 'store_services_requirements' => 'required',
+        // 'employees_training' => 'required',
+        // 'sop' => 'required',
+        // 'operational' => 'required',
+        // 'hki' => 'required',
+        // 'stpw' => 'required',
+        // 'nib' => 'required',
+        // 'crm_system' => 'required',
 
     ];
 
@@ -177,16 +178,18 @@ class FranchiseForm extends Component
             $this->stpw = $this->edit['stpw'];
             $this->nib = $this->edit['nib'];
             $this->i = 1;
-            foreach(json_decode($this->edit['packet']) as $key => $value) {
-                $this->packet_name[$key + 1] = $value->packet_name;
-                $this->jenis_paket[$key + 1] = $value->jenis_paket;
-                $this->ukuran_gerai[$key + 1] = $value->ukuran_gerai;
-                $this->harga_investasi[$key + 1] = $value->harga_investasi;
-                $this->biaya_awal[$key + 1] = $value->biaya_awal;
-                $this->return_investment[$key + 1] = $value->return_investment;
-                $this->perkiraan_laba[$key + 1] = $value->perkiraan_laba;
-                $this->i = $this->i + 1;
-                array_push($this->inputs ,$this->i);
+            if($this->edit['packet']){
+                foreach(json_decode($this->edit['packet']) as $key => $value) {
+                    $this->packet_name[$key + 1] = $value->packet_name;
+                    $this->jenis_paket[$key + 1] = $value->jenis_paket;
+                    $this->ukuran_gerai[$key + 1] = $value->ukuran_gerai;
+                    $this->harga_investasi[$key + 1] = $value->harga_investasi;
+                    $this->biaya_awal[$key + 1] = $value->biaya_awal;
+                    $this->return_investment[$key + 1] = $value->return_investment;
+                    $this->perkiraan_laba[$key + 1] = $value->perkiraan_laba;
+                    $this->i = $this->i + 1;
+                    array_push($this->inputs ,$this->i);
+                }
             }
             $this->fullname = $this->edit['contact_name'];
             $this->email_address = $this->edit['contact_email'];
@@ -211,26 +214,26 @@ class FranchiseForm extends Component
 
     public function updateFranchise($slug){
         $franchise = FranchiseDirectory::where('slug',$slug)->first();
-        if($franchise['brand_image'] == $this->brand_images){
-            $this->rules['brand_images'] = 'required';
-        }else{
-            $this->rules['brand_images'] = 'required|image|mimes:png,jpg,svg,jpeg||max:10024';
-        }
-        if($franchise['brand_brochure'] == $this->brand_brochure){
-            $this->rules['brand_brochure'] = 'required';
-        }else{
-            $this->rules['brand_brochure'] = 'required|mimes:pdf,jpg,png,svg,jpeg|max:10024';
-        }
-        if($franchise['brand_logo'] == $this->brand_logo){
-            $this->rules['brand_logo'] = 'required';
-        }else{
-            $this->rules['brand_logo'] = 'required|mimes:pdf,jpg,png,svg,jpeg|max:10024';
-        }
-        if($franchise['store_images'] == $this->store_images){
-            $this->rules['store_images'] = 'required';
-        }else{
-            $this->rules['store_images'] = 'required|mimes:pdf,jpg,png,svg,jpeg|max:10024';
-        }
+        // if($franchise['brand_image'] == $this->brand_images){
+        //     $this->rules['brand_images'] = 'required';
+        // }else{
+        //     $this->rules['brand_images'] = 'required|image|mimes:png,jpg,svg,jpeg||max:10024';
+        // }
+        // if($franchise['brand_brochure'] == $this->brand_brochure){
+        //     $this->rules['brand_brochure'] = 'required';
+        // }else{
+        //     $this->rules['brand_brochure'] = 'required|mimes:pdf,jpg,png,svg,jpeg|max:10024';
+        // }
+        // if($franchise['brand_logo'] == $this->brand_logo){
+        //     $this->rules['brand_logo'] = 'required';
+        // }else{
+        //     $this->rules['brand_logo'] = 'required|mimes:pdf,jpg,png,svg,jpeg|max:10024';
+        // }
+        // if($franchise['store_images'] == $this->store_images){
+        //     $this->rules['store_images'] = 'required';
+        // }else{
+        //     $this->rules['store_images'] = 'required|mimes:pdf,jpg,png,svg,jpeg|max:10024';
+        // }
 
         $this->validate($this->rules);
 
@@ -302,19 +305,21 @@ class FranchiseForm extends Component
                 Storage::disk('public')->delete($franchise['store_images']);
                 $data['store_images'] = $this->store_images->store('grow', 'public');
           }
-
-          foreach($this->packet_name as $key => $value){
-              $this->packet[] = [
-                  'packet_name' => $this->packet_name[$key],
-                  'jenis_paket' => $this->jenis_paket[$key],
-                  'ukuran_gerai' => $this->ukuran_gerai[$key],
-                  'harga_investasi' => $this->harga_investasi[$key],
-                  'biaya_awal' => $this->biaya_awal[$key],
-                  'return_investment' => $this->return_investment[$key],
-                  'perkiraan_laba' => $this->perkiraan_laba[$key],
-              ];
+          if($this->packet_name){
+              foreach($this->packet_name as $key => $value){
+                  $this->packet[] = [
+                      'packet_name' => $this->packet_name[$key],
+                      'jenis_paket' => $this->jenis_paket[$key],
+                      'ukuran_gerai' => $this->ukuran_gerai[$key],
+                      'harga_investasi' => $this->harga_investasi[$key],
+                      'biaya_awal' => $this->biaya_awal[$key],
+                      'return_investment' => $this->return_investment[$key],
+                      'perkiraan_laba' => $this->perkiraan_laba[$key],
+                  ];
+              }
+              $data['packet'] = json_encode($this->packet);
           }
-          $data['packet'] = json_encode($this->packet);
+
 
           FranchiseDirectory::where('slug',$slug)->update($data);
           session()->flash('success', 'Franchise successfully updated!');
@@ -368,24 +373,34 @@ class FranchiseForm extends Component
             'contact_position' => $this->position,
             'user_id' => auth()->user()->id
           ];
-
-          $data['brand_brochure'] = $this->brand_brochure->store('catalog', 'public');
-          $data['brand_image'] = $this->brand_images->store('brand', 'public');
-          $data['brand_logo'] = $this->brand_logo->store('logo', 'public');
-          $data['store_images'] = $this->brand_logo->store('grow', 'public');
-
-          foreach($this->packet_name as $key => $value){
-              $this->packet[] = [
-                  'packet_name' => $this->packet_name[$key],
-                  'jenis_paket' => $this->jenis_paket[$key],
-                  'ukuran_gerai' => $this->ukuran_gerai[$key],
-                  'harga_investasi' => $this->harga_investasi[$key],
-                  'biaya_awal' => $this->biaya_awal[$key],
-                  'return_investment' => $this->return_investment[$key],
-                  'perkiraan_laba' => $this->perkiraan_laba[$key],
-              ];
+          if($this->brand_brochure){
+              $data['brand_brochure'] = $this->brand_brochure->store('catalog', 'public');
           }
-          $data['packet'] = json_encode($this->packet);
+          if($this->brand_images){
+              $data['brand_image'] = $this->brand_images->store('brand', 'public');
+          }
+          if($this->brand_logo){
+              $data['brand_logo'] = $this->brand_logo->store('logo', 'public');
+          }
+          if($this->store_images){
+              $data['store_images'] = $this->brand_logo->store('grow', 'public');
+          }
+
+          if($this->packet_name){
+              foreach($this->packet_name as $key => $value){
+                  $this->packet[] = [
+                      'packet_name' => $this->packet_name[$key],
+                      'jenis_paket' => $this->jenis_paket[$key],
+                      'ukuran_gerai' => $this->ukuran_gerai[$key],
+                      'harga_investasi' => $this->harga_investasi[$key],
+                      'biaya_awal' => $this->biaya_awal[$key],
+                      'return_investment' => $this->return_investment[$key],
+                      'perkiraan_laba' => $this->perkiraan_laba[$key],
+                  ];
+              }
+              $data['packet'] = json_encode($this->packet);
+          }
+
 
 
 

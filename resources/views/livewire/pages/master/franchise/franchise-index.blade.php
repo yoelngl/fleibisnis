@@ -39,7 +39,7 @@ Franchise Directory
                           <div class="col-md-4 col-12">
                           <div class="card">
                               <a href="{{ route('franchise-details',['slug' => $item->slug]) }}">
-                              <img class="card-img-top img-fluid" width="200" src="{{ asset('storage/'.$item->brand_image) }}" alt="Blog Post pic" />
+                              <img class="card-img-top img-fluid" width="200" src="{{ asset($item->brand_image ? '/storage/'.$item->brand_image : '/images/No_images.png') }}" alt="Blog Post pic" />
                               </a>
                               <div class="card-body">
                               <h4 class="card-title">

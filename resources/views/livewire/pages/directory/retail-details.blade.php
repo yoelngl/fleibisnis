@@ -15,7 +15,7 @@
               </nav>
               <nav id="breadcrumbs">
                 <ul>
-                  <li><a href="index_1.html">Home</a></li>
+                  <li><a href="{{ route('home') }}">Home</a></li>
                   <li>Directory</li>
                 </ul>
               </nav>
@@ -52,13 +52,13 @@
             <div id="titlebar" class="utf_listing_titlebar">
               <li>
                 <div class="utf_list_box_listing_item">
-                    <div class="utf_list_box_listing_item-img"><a href="#"><img src="{{ asset('storage/'.$data['product_images']) }}" alt=""></a></div>
+                    <div class="utf_list_box_listing_item-img"><a href="#"><img src="{{ asset($data->product_images ? '/storage/'.$data->product_images : '/images/No_images.png') }}" alt=""></a></div>
                     <div class="utf_list_box_listing_item_content">
                     <div class="inner">
-                        <h3>{{ $data['product_name'] }}</h3>
-                        <span><i class="im im-icon-Hotel"></i> {{ $data['product_type'] }}</span><br>
+                        <h3>{{ $data->product_name }}</h3>
+                        <span><i class="im im-icon-Hotel"></i> {{ $data->product_type }}</span><br>
                         <p>{!! $data['product_description'] !!} </p>
-                    <p>Harga<b> IDR <b class="price">{{ $data['product_price'] }}</b></b></p></div>
+                    <p>Harga<b> IDR <b class="price">{{ $data->product_price }}</b></b></p></div>
                     </div>
                 </div>
 
@@ -70,22 +70,22 @@
                 <div class="col-md-12">
                     <a  href="{{ asset('storage/'.$data['brand_brochure']) }}" download class="button gray btn btn-sm"><i class="fa fa-download"></i> Download Brochure</a>
                 @auth
-                <a href="https://wa.me/{{ $data['company_phone'] }}" class="button gray btn btn-sm"><i class="fa fa-phone"></i> Whatsapp Contact</a>
+                <a href="https://wa.me/{{ $data['company_phone'] ? $data['company_phone'] : '' }}" class="button gray btn btn-sm"><i class="fa fa-phone"></i> Whatsapp Contact</a>
                 @endauth
                     <h3 class="utf_listing_headline_part margin-top-30 margin-bottom-30">Product Details</h3>
                   <div class="style-2">
                     <div class="accordion">
                         <h3><span class="ui-accordion-header-icon ui-icon ui-accordion-icon"></span><i class="sl sl-icon-plus"></i> {{ trans('message.product_information') }}</h3>
                         <div>
-                          <p>{!! $data['product_description'] !!}</p>
+                          <p>{!! $data['product_description'] ? $data['product_description'] : 'Tidak ada data' !!}</p>
                         </div>
                         <h3><span class="ui-accordion-header-icon ui-icon ui-accordion-icon"></span><i class="sl sl-icon-plus"></i> {{ trans('message.spesification') }}</h3>
                         <div>
-                            <p>{!! $data['product_spesification'] !!}</p>
+                            <p>{!! $data['product_spesification'] ? $data['product_spesification'] : 'Tidak ada data' !!}</p>
                         </div>
                         <h3><span class="ui-accordion-header-icon ui-icon ui-accordion-icon"></span><i class="sl sl-icon-plus"></i> {{ trans('message.product_features') }} </h3>
                         <div>
-                            <p>{!! $data['product_features'] !!}</p>
+                            <p>{!! $data['product_features'] ? $data['product_features'] : 'Tidak ada data' !!}</p>
                         </div>
                         <h3><span class="ui-accordion-header-icon ui-icon ui-accordion-icon"></span><i class="sl sl-icon-plus"></i> {{ trans('message.details') }}</h3>
                         <div>
@@ -97,35 +97,35 @@
                                 <tbody>
                                     <tr>
                                         <td>{{ trans('message.product_name') }}</td>
-                                        <td align="right">{{ $data['product_name'] }}</td>
+                                        <td align="right">{{ $data['product_name'] ? $data['product_name'] : 'Tidak ada data' }}</td>
                                     </tr>
                                     <tr>
                                         <td>{{ trans('message.product_type') }}</td>
-                                        <td align="right">{{ $data['product_type'] }}</td>
+                                        <td align="right">{{ $data['product_type'] ? $data['product_type'] : 'Tidak ada data' }}</td>
                                     </tr>
                                     <tr>
                                         <td>{{ trans('message.category') }}</td>
-                                        <td align="right">{{ $data['product_category'] }}</td>
+                                        <td align="right">{{ $data['product_category'] ? $data['product_category'] : 'Tidak ada data' }}</td>
                                     </tr>
                                     <tr>
                                         <td>{{ trans('message.product_origin') }}</td>
-                                        <td align="right">{{ $data['product_origin'] }}</td>
+                                        <td align="right">{{ $data['product_origin'] ? $data['product_origin'] : 'Tidak ada data' }}</td>
                                     </tr>
                                     <tr>
                                         <td>{{ trans('message.product_country') }}</td>
-                                        <td align="right">{{ $data['product_country'] }}</td>
+                                        <td align="right">{{ $data['product_country'] ? $data['product_country'] : 'Tidak ada data' }}</td>
                                     </tr>
                                     <tr>
                                         <td>{{ trans('message.company_name') }}</td>
-                                        <td align="right">{{ $data['company_name'] }}</td>
+                                        <td align="right">{{ $data['company_name'] ? $data['company_name'] : 'Tidak ada data' }}</td>
                                     </tr>
                                     <tr>
                                         <td>{{ trans('message.currency') }}</td>
-                                        <td align="right">{{ $data['currency'] }}</td>
+                                        <td align="right">{{ $data['currency'] ? $data['currency'] : 'Tidak ada data' }}</td>
                                     </tr>
                                     <tr>
                                         <td>{{ trans('message.price') }}</td>
-                                        <td align="right" class="price">{{ $data['product_price'] }}</td>
+                                        <td align="right" class="price">{{ $data['product_price'] ? $data['product_price'] : 'Tidak ada data' }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -136,41 +136,57 @@
                                 <tbody>
                                     <tr>
                                         <td>{{ trans('message.guarantee') }}</td>
-                                        <td align="right">{{ $data['guarantee'] }} {{ trans('message.year') }} </td>
+                                        <td align="right">{{ $data['guarantee'] ? $data['guarantee'] . trans('message.year') : 'Tidak ada data' }} </td>
                                     </tr>
                                     <tr>
                                         <td>{{ trans('message.practices') }}</td>
                                         <td align="right">
-                                            @if ($data['practices'] == "Y")
-                                                {{ trans('message.yes') }}
+                                            @if($data['practices'])
+                                                @if ($data['practices'] == "Y")
+                                                    {{ trans('message.yes') }}
+                                                @else
+                                                    {{ trans('message.no') }}
+                                                @endif
                                             @else
-                                                {{ trans('message.no') }}
+                                                Tidak ada data
                                             @endif
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>{{ trans('message.books') }}</td>
-                                        <td align="right">@if ($data['books'] == "Y")
-                                            {{ trans('message.yes') }}
-                                        @else
-                                            {{ trans('message.no') }}
-                                        @endif</td>
+                                        <td align="right">
+                                            @if($data['books'])
+                                                @if ($data['books'] == "Y")
+                                                    {{ trans('message.yes') }}
+                                                @else
+                                                    {{ trans('message.no') }}
+                                                @endif
+                                            @else
+                                                Tidak ada data
+                                            @endif
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>{{ trans('message.services') }}</td>
-                                        <td align="right">@if ($data['services'] == "Y")
-                                            {{ trans('message.yes') }}
-                                        @else
-                                            {{ trans('message.no') }}
-                                        @endif</td>
+                                        <td align="right">
+                                            @if($data['services'])
+                                                @if ($data['services'] == "Y")
+                                                    {{ trans('message.yes') }}
+                                                @else
+                                                    {{ trans('message.no') }}
+                                                @endif
+                                            @else
+                                                Tidak ada data
+                                            @endif
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Website</td>
-                                        <td align="right"><a href="{{ url($data['website']) }}" target="_blank">{{ $data['website'] }} </a></td>
+                                        <td align="right"><a href="{{ url($data['website'] ? $data['website'] : '#') }}" target="_blank">{{ $data['website'] ? $data['website'] : 'Tidak ada data' }} </a></td>
                                     </tr>
                                     <tr>
                                         <td>Instagram</td>
-                                        <td align="right">{{ $data['instagram'] }} </td>
+                                        <td align="right"><a href="{{ url($data['instagram'] ? 'https://www.instagram.com/'. $data['instagram'] : '#') }}" target="_blank">{{ $data['instagram'] ? $data['instagram'] : 'Tidak ada data' }} </a> </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -239,7 +255,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
 
     <script>
-        $( '.price' ).mask('000.000.000',
+        $( '.price' ).mask('000.000.000.000.000',
         {reverse: true}
         );
     </script>

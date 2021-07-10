@@ -178,6 +178,15 @@ return [
     'additional_information' => 'Informasi Tambahan',
     'grow' => 'Pertumbuhan Gerai dalam 5 tahun terakhir',
     'supported' => 'Gambar Pendukung',
-    'packet' => 'Paket Investasi'
+    'packet' => 'Paket Investasi',
+
+    // Contact
+    'email_deliver' => 'Email berhasil dikirim!',
+    'user_exist' => 'User tidak ada!',
+    'reset_link' => 'Link reset password sudah dikirim ke email anda.',
+    'network_error' => 'Terjadi Kesalahan Jaringan. Silakan coba lagi.',
+
+
+
 
 ];

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\RetailDirectory;
 use App\Models\TodayNews;
+use App\Models\Customer;
 
 class User extends Authenticatable
 {
@@ -58,6 +59,9 @@ class User extends Authenticatable
     public function today_news(){
       return $this->hasMany(TodayNews::class, 'user_id');
 
+    }
+    public function customer(){
+        return $this->hasOne(Customer::class);
     }
 
     public function retail(){

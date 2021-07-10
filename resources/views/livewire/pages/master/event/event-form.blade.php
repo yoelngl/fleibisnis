@@ -132,7 +132,7 @@ Event Schedule
                               <div class="form-group mb-2" >
                                   <label>Activities</label>
                                   <div wire:ignore>
-                                      <textarea id="activities" class="form-control" wire:model="activities"></textarea>
+                                      <textarea id="activities"  wire:model="activities"></textarea>
                                   </div>
                                       @error('activities') <small class="text-danger">{{ $message }}</small> @enderror
                               </div>
@@ -262,10 +262,10 @@ Event Schedule
     minDate: "today",
     dateFormat: "d F, Y",
 });
-    $('#categories').select2().val({{ isset($category->id) ? $category->id : 1  }}).trigger('change');
 
     $(document).ready(function() {
-        @this.set('category',{{ isset($category->id) ? $category->id : 1 }});
+        $('#categories').select2().val({!! isset($category->id) ? $category->id : "\"\""  !!}).trigger('change');
+        @this.set('category',{!! isset($category->id) ? $category->id : "\"\"" !!});
     });
     $(document).on('change','#categories',function(){
         @this.set('category', this.value);
