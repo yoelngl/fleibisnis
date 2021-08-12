@@ -30,6 +30,7 @@ class VerifyMail extends Mailable
      */
     public function build()
     {
-        return $this->view('vendor.email');
+        return $this->subject('Successful Activation of
+FLEIBISNIS ID')->view('vendor.email');
     }
 }

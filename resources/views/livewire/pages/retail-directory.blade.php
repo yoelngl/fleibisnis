@@ -90,7 +90,7 @@
                           <h3>{{ $item->product_name }}</h3>
                           <span><i class="sl sl-icon-book-open"></i> {{ $item->category->title }}</span>
                           <span><i class="sl sl-icon-tag"></i> IDR <b class="price">{{ $item->product_price }}</b> </span>
-                          <p>{!! Str::limit($item->product_information, 200) !!}</p>
+                          <p>{!! Str::limit($item->product_description, 200) !!}</p>
                         </div>
                       </div>
                       </a>

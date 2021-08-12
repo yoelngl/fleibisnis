@@ -175,7 +175,7 @@ return [
     'bussiness_information' => 'Bussiness Information',
     'investment_information' => 'Investment Information',
     'additional_information' => 'Additional Information',
-    'grow' => 'Store Growth in the last 5 years',
+    'brand_logo' => 'Brand Logo',
     'supported' => 'Supported Images',
     'packet' => 'Investment Package',
 
@@ -184,6 +184,11 @@ return [
     'user_exist' => 'User does not exists!',
     'reset_link' => 'A reset link has been sent to your email address.',
     'network_error' => 'A Network Error occurred. Please try again.',
+
+    'token_failed' => 'Token not found or error, Please try again!',
+    'email_failed' => 'Email not found!',
+    'reset_success' => 'Password successfully reset, Please Login!',
+    'subscribed' => 'You have Successfully Subscribed!',
 
 
 ];

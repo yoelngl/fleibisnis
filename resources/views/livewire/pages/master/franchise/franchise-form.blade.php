@@ -402,7 +402,7 @@ Franchise Form
                                 <div class="media flex-column flex-md-row ">
 
                                 <div class="media-body" >
-                                    <small class="text-muted">Recommended image resolution 620x430, image/pdf size 10mb.</small>
+                                    <small class="text-muted">Recommended image resolution 1.654x2.339, image/pdf size 10mb.</small>
                                     <p class="my-50">
                                         <a href="javascript:void(0);" id="blog-image-text" hidden>C:\fakepath\banners.jpg</a>
                                     </p>

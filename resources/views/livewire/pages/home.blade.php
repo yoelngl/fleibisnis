@@ -108,13 +108,17 @@
                     <h3 class="headline_part centered margin-bottom-40 margin-top-30">{{ trans('message.merk-franchise') }}</h3>
                 </div>
                 <div class="col-md-12">
-                    <div class="companie-logo-slick-carousel utf_dots_nav margin-bottom-10">
+                    <center>
+                    <div class="companie-logo sliders margin-bottom-10">
                         @foreach ($brand as $item)
                         <div class="item">
+                            <center>
                             <a href="{{ $item->link }}" target="_blank"><img src="{{ asset('storage/'.$item->images) }}" alt=""></a>
                         </div>
                         @endforeach
                     </div>
+                </center>
+
                 </div>
             </div>
         </div>
@@ -148,6 +152,7 @@
                         </div>
                         @endforeach
                     </div>
+                    <div class="col-md-12 centered_content"> <a href="{{ route('franchise-directory') }}" class="button border margin-top-20">{{ trans('message.view-more') }}</a> </div>
                 </div>
             </div>
         </div>
@@ -170,7 +175,7 @@
                     <ul class="blog_post_tag_part">
                       <li>{{ $item->category->title }} / {{ Carbon\Carbon::parse($item->created_at)->format('d F, Y') }}</li>
                     </ul>
-                    
+
                   </div>
                 </div>
                 </a>
@@ -189,6 +194,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
 
 <script>
+
     $('.price').mask('000.000.000.000.000',
     {reverse: true}
     );
@@ -293,16 +299,48 @@
     	}
     });
     }
+    $('.sliders').slick({
+      infinite: false,
+      speed: 300,
+      slidesToShow: 5,
+      slidesToScroll: 5,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            infinite: true,
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          }
+        }
+      ]
     });
-    var typed = new Typed('.typed-words', {
-    strings: ["Terbaik"," Terlengkap"," Termurah"],
-        typeSpeed: 80,
-        backSpeed: 80,
-        backDelay: 4000,
-        startDelay: 1000,
-        loop: true,
-        showCursor: true
     });
+
+
+    // var typed = new Typed('.typed-words', {
+    // strings: ["Terbaik"," Terlengkap"," Termurah"],
+    //     typeSpeed: 80,
+    //     backSpeed: 80,
+    //     backDelay: 4000,
+    //     startDelay: 1000,
+    //     loop: true,
+    //     showCursor: true
+    // });
     $(document).ready(function (){
         @include('vendor.helpers')
         $('#categories').on('change',function(){

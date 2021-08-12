@@ -176,7 +176,7 @@ return [
     'bussiness_information' => 'Informasi Bisnis',
     'investment_information' => 'Informasi Investasi',
     'additional_information' => 'Informasi Tambahan',
-    'grow' => 'Pertumbuhan Gerai dalam 5 tahun terakhir',
+    'brand_logo' => 'Logo Brand',
     'supported' => 'Gambar Pendukung',
     'packet' => 'Paket Investasi',
 
@@ -185,6 +185,12 @@ return [
     'user_exist' => 'User tidak ada!',
     'reset_link' => 'Link reset password sudah dikirim ke email anda.',
     'network_error' => 'Terjadi Kesalahan Jaringan. Silakan coba lagi.',
+
+    'token_failed' => 'Token tidak ditemukan atau error, Harap coba lagi!',
+    'email_failed' => 'Email tidak ditemukan!',
+    'reset_success' => 'Password berhasil di reset, Please Login!',
+    'subscribed' => 'Kamu berhasil Berlangganan!',
+
 
 
 

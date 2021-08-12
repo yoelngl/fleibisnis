@@ -16,6 +16,7 @@ class Register extends Component
     public $username;
     public $email;
     public $password;
+    public $accept;
     public $password_confirmation;
 
     protected $rules = [
@@ -23,6 +24,7 @@ class Register extends Component
         'email' => 'required|unique:users|email',
         'password' => 'required|min:8',
         'password_confirmation' => 'required|min:8|same:password',
+        'accept' => 'required',
     ];
 
     public function register(){
@@ -41,9 +43,6 @@ class Register extends Component
             'token' => sha1(time()),
         ]);
         $send = Mail::to($user->email)->send(new VerifyMail($user));
-        if(!$send){
-            User::whereId($user->id)->delete();
-        }
         session()->flash('success',trans('message.register-success'));
         Auth::logout();
         return redirect()->route('home');

@@ -32,6 +32,21 @@
         <span class="text-danger">{{ $message }}</span>
     @enderror
     <br>
+    <div class="utf_row_form utf_form_wide_block form_forgot_part">
+        <div class="checkboxes fl_right">
+            <input id="remember-me" type="checkbox" wire:model="accept">
+            <label for="remember-me">Dengan mendaftar, saya menyetujui
+                                    Syarat & Ketentuan serta Kebijakan
+                                    Privasi, termasuk menikmati berbagai
+                                    manfaat saat mengunjungi
+                                    FLEIBISNIS.com.
+            </label>
+        </div>
+    </div>
+    @error('accept')
+        <span class="text-danger">{{ $message }}</span>
+    @enderror
+    <br>
     <div wire:loading wire:target="register" >
         <img src="{{ asset('icons/loading.gif') }}" width="70px" alt="">
     </div>

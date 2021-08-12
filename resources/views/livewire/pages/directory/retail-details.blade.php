@@ -136,7 +136,7 @@
                                 <tbody>
                                     <tr>
                                         <td>{{ trans('message.guarantee') }}</td>
-                                        <td align="right">{{ $data['guarantee'] ? $data['guarantee'] . trans('message.year') : 'Tidak ada data' }} </td>
+                                        <td align="right">{{ $data['guarantee'] ? $data['guarantee'] . ' '.  trans('message.year') : 'Tidak ada data' }} </td>
                                     </tr>
                                     <tr>
                                         <td>{{ trans('message.practices') }}</td>

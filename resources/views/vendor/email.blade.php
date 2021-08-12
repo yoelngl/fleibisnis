@@ -160,16 +160,19 @@ body {font-family: 'Muli', sans-serif;}
 </table><table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="948e3f3f-5214-4721-a90e-625a47b1c957" data-mc-module-version="2019-10-22">
   <tbody>
     <tr>
-      <td style="padding:50px 30px 18px 30px; line-height:36px; text-align:inherit; background-color:#ffffff;" height="100%" valign="top" bgcolor="#ffffff" role="module-content"><div><div style="font-family: inherit; text-align: center"><span style="font-size: 20px">Thanks for signing up, &#64;{{ $user['username'] }}!&nbsp;</span></div><div></div></div></td>
+      <td style="padding:50px 30px 18px 30px; line-height:36px; text-align:inherit; background-color:#ffffff;" height="100%" valign="top" bgcolor="#ffffff" role="module-content"><div><div style="font-family: inherit; text-align: center"><span style="font-size: 20px">Hai, &#64;{{ $user['username'] }}!&nbsp;</span></div><div></div></div></td>
     </tr>
   </tbody>
 </table><table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="a10dcb57-ad22-4f4d-b765-1d427dfddb4e" data-mc-module-version="2019-10-22">
   <tbody>
     <tr>
-      <td style="padding:18px 30px 18px 30px; line-height:22px; text-align:inherit; background-color:#ffffff;" height="100%" valign="top" bgcolor="#ffffff" role="module-content"><div><div style="font-family: inherit; text-align: center"><span style="font-size: 18px">You registered an account on Fleibisnis, before being able to use your account you need to verify that this is your email address by clicking the button!
-
+      <td style="padding:18px 30px 18px 30px; line-height:22px; text-align:inherit; background-color:#ffffff;" height="100%" valign="top" bgcolor="#ffffff" role="module-content"><div><div style="font-family: inherit; text-align: center"><span style="font-size: 18px">Sebelum menggunakan akun Anda untuk
+        menikmati BERBAGAI KEISTIMEWAAN
+        saat mengunjungi fleibisnis.com, silahkan
+        lakukan verifikasi alamat email Anda
+        dengan klik tombol di bawah ini
        </span></div>
-<div style="font-family: inherit; text-align: center"><span style="color: #f52084; font-size: 18px"><strong>Thank you!&nbsp;</strong></span></div><div></div></div></td>
+<div style="font-family: inherit; text-align: center"><span style="color: #f52084; font-size: 18px"><strong>Terima Kasih!&nbsp;</strong></span></div><div></div></div></td>
     </tr>
   </tbody>
 </table><table class="module" role="module" data-type="spacer" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="7770fdab-634a-4f62-a277-1c66b2646d8d">

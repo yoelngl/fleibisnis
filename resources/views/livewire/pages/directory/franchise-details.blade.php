@@ -222,8 +222,8 @@
                                 <tr>
                                     <td>Buku Panduan/SOP</td>
                                     <td align="right">
-                                        @if($data['stop'])
-                                            @if ($data['stop'] == "Y")
+                                        @if($data['sop'])
+                                            @if ($data['sop'] == "Y")
                                                 {{ trans('message.yes') }}
                                             @else
                                                 {{ trans('message.no') }}
@@ -272,7 +272,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <h3><span class="ui-accordion-header-icon ui-icon ui-accordion-icon"></span><i class="sl sl-icon-plus"></i> {{ trans('message.grow') }}</h3>
+                    <h3><span class="ui-accordion-header-icon ui-icon ui-accordion-icon"></span><i class="sl sl-icon-plus"></i> {{ trans('message.brand_logo') }}</h3>
                     <div>
                         <img src="{{ asset($data['store_images'] ? 'storage/'.$data['store_images'] : 'backend-assets/images/notFound.jpg') }}" width="100%" alt="">
                     </div>

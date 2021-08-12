@@ -6,6 +6,8 @@ use Livewire\Component;
 use App\Models\FranchiseCategory;
 use App\Models\FranchiseDirectory;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
+
 
 class FranchiseForm extends Component
 {

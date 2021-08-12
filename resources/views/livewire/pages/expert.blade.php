@@ -58,9 +58,9 @@ Ask The Expert
 			<div class="with-forms margin-top-0" wire:ignore>
 				<div class="col-lg-12 col-md-12">
 					<select wire:model="experts_name" id="experts" class="utf_chosen_select_single" >
-					  <option value=""  label="Select Time">Select Experts</option>
+					  <option value=""  label="Select Expert">Select Experts</option>
                       @foreach ($experts as $item)
-					    <option value="{{ $item->id }}" label="Select Time">{{ $item->name }}</option>
+					    <option value="{{ $item->slug }}" label="Select Expert">{{ $item->name }}</option>
                       @endforeach
 					</select>
 				</div>
@@ -101,7 +101,7 @@ Ask The Expert
                                 <div class="pertanyaan"><b>{{ trans('message.question') }}</b></div>
                               <div class="jawaban">{!! $item->question !!}</div>
                                 <div class="pertanyaan"><b>{{ trans('message.answer') }}</b></div>
-                                <div class="jawaban">{!! Str::limit($item->answer,500,$end='..... <a href="'. route('expert.details',['slug' => $item->expert->slug]) .'">Lihat selengkapnya!</a>') !!}</div>
+                                <div class="jawaban"><p>{!! Str::limit($item->answer,1000,$end="..... <p><a href='". route('expert.details',['slug' => $item->expert->slug]) ."'>Lihat selengkapnya!</a></p>") !!}</p></div>
                                 <br>
                                     <div class="utf_by_comment"><a href="{{ route('expert.details',['slug' => $item->expert->slug]) }}" >{{ $item->expert->name }}</a>
                                     <span class="date">{{ $item->expert->position }}</span>
@@ -138,10 +138,8 @@ Ask The Expert
     });
 
 $('.sliders').slick({
-  dots: true,
   infinite: false,
   speed: 300,
-  arrows: false,
   slidesToShow: 4,
   slidesToScroll: 4,
   responsive: [

@@ -46,7 +46,7 @@ class Contact extends Component
         $email = Footer::first();
         $to_name = 'Fleibisnis';
         $to_email = $email->email;
-        $data = array("name" => $this->name, "body" => $this->comments);
+        $data = array("name" => $this->name,"email" => $this->email,"subject" => $this->subject, "body" => $this->comments);
         Mail::send('vendor.contact.email', $data, function($message) use ($to_name, $to_email) {
             $message->to($to_email, $to_name)
             ->subject($this->subject);

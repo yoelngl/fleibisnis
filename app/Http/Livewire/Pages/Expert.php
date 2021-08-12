@@ -28,7 +28,9 @@ class Expert extends Component
         $experts = ModelsExpert::all();
         $qna = AskExpert::with('expert')->where('title','like',$searchTerm)->latest()->paginate($this->load_more);
         if(isset($this->experts_name) && $this->experts_name != "" ){
-            $qna = AskExpert::with('expert')->where('title','like',$searchTerm)->where('expert_id',$this->experts_name)->paginate($this->load_more);
+            $qna = AskExpert::whereHas('expert', function ($query) {
+                return $query->where('slug', '=', $this->experts_name);
+            })->where('title','like',$searchTerm)->latest()->paginate($this->load_more);
         }
         return view('livewire.pages.expert',compact('experts','qna','banner'))->extends('layouts.app')->section('content');
     }

@@ -20,6 +20,8 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700,800" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lity/2.4.1/lity.min.css" integrity="sha512-UiVP2uTd2EwFRqPM4IzVXuSFAzw+Vo84jxICHVbOA1VZFUyr4a6giD9O3uvGPFIuB2p3iTnfDVLnkdY7D/SJJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" integrity="sha512-wR4oNhLBHf7smjy0K4oqzdWumd+r5/+6QO/vDda76MW5iug4PT7v86FoEkySIJft3XA0Ae6axhIvHrqwm793Nw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css" integrity="sha512-6lLUdeQ5uheMFbWm3CP271l14RsX1xtx+J5x2yeIDkkiBpeVTNhTqijME7GgRKKi6hCqovwCoBTlRBEC20M8Mg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <style media="screen">
         .float{
             position:fixed;
@@ -39,11 +41,21 @@
         .my-float{
             margin-top:16px;
         }
+
+        .slick-prev:before, .slick-next:before {
+            font-family: 'slick';
+            font-size: 40px;
+            line-height: 1;
+            opacity: .75;
+            color: white;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
         </style>
         @yield('css')
         @livewireStyles()
     </head>
-    <body>
+    <body onload="myWhatsappFunction()">
 
         <!-- Wrapper -->
         <div id="main_wrapper">
@@ -55,7 +67,7 @@
 
         </div>
         <?php $whatsapp = App\Models\Footer::first(); ?>
-        <a href="https://wa.me/{{ ($whatsapp) ? $whatsapp['phone'] : '' }}" class="float" target="_blank" style="margin-right:40px;">
+        <a {{-- href="https://wa.me/{{ ($whatsapp) ? $whatsapp['phone'] : '' }}" --}} id="whatsapp_number" class="float" target="_blank" style="margin-right:40px;">
         <i class="fa fa-whatsapp my-float"></i>
         </a>
         @livewireScripts()
@@ -64,7 +76,6 @@
         <!-- Scripts -->
         <script src="{{ asset('scripts/jquery-3.4.1.min.js') }}"></script>
         <script src="{{ asset('scripts/chosen.min.js') }}"></script>
-        <script src="{{ asset('scripts/slick.min.js') }}"></script>
         <script src="{{ asset('scripts/rangeslider.min.js') }}"></script>
         <script src="{{ asset('scripts/bootstrap-select.min.js') }}"></script>
         <script src="{{ asset('scripts/magnific-popup.min.js') }}"></script>
@@ -88,6 +99,22 @@
         <script src="{{ asset('scripts/extensions/revolution.extension.slideanims.min.js') }}"></script>
         <script src="{{ asset('scripts/extensions/revolution.extension.video.min.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.4.3/mobile-detect.min.js"></script>
+        <script src="{{ asset('scripts/slick.min.js') }}"></script>
+        <script>
+        var whatsapp_number = {{ ($whatsapp) ? $whatsapp['phone'] : '' }};
+
+        function myWhatsappFunction() {
+          var md = new MobileDetect(window.navigator.userAgent);
+          if (md.mobile()) {
+            // mobile link
+            document.getElementById("whatsapp_number").href = "https://wa.me/" + whatsapp_number;
+          } else {
+            // desktop link
+            document.getElementById("whatsapp_number").href = "https://web.whatsapp.com/send?phone=" + whatsapp_number;
+          }
+        };
+      </script>
         <!-- Style Switcher -->
         {{-- <div id="color_switcher_preview">
           <h2>Choose Your Color <a href="#"><i class="fa fa-gear fa-spin (alias)"></i></a></h2>

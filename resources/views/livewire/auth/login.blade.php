@@ -17,8 +17,8 @@
     @enderror
     <div class="utf_row_form utf_form_wide_block form_forgot_part margin-top-10"> <span class="lost_password fl_left"> <a id="forgot" href="javascript:void(0);">Forgot Password?</a> </span>
     <div class="checkboxes fl_right">
-        <input id="remember-me" type="checkbox" name="check">
-        <label for="remember-me">Remember Me</label>
+        <input id="remember-mes" type="checkbox" name="check">
+        <label for="remember-mes">Remember Me</label>
     </div>
     </div>
     <br>

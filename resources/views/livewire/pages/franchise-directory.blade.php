@@ -76,7 +76,7 @@
                       <h3>{{ $franchise->brand_name }}</h3>
                       <span><i class="sl sl-icon-book-open"></i> {{ $franchise->category->title }}</span>
                       <div class="">
-                          {!! Str::limit($franchise->brand_description,500) !!}
+                          <p>{!! Str::limit($franchise->brand_description,200) !!}</p>
                       </div>
                     </div>
                   </div>

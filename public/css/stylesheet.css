@@ -13475,10 +13475,10 @@ img.mfp-img {
 .slick-arrow.slick-hidden {
 	display: none;
 }
-.companie-logo-slick-carousel, .utf_testimonial_carousel, .simple_slick_carousel_block, .simple-slick-carousel {
+.companie-logo, .utf_testimonial_carousel, .simple_slick_carousel_block, .simple-slick-carousel {
 	display: none;
 }
-.slick-initialized.companie-logo-slick-carousel, .slick-initialized.utf_testimonial_carousel, .slick-initialized.simple_slick_carousel_block, .slick-initialized.simple-slick-carousel {
+.slick-initialized.companie-logo, .slick-initialized.utf_testimonial_carousel, .slick-initialized.simple_slick_carousel_block, .slick-initialized.simple-slick-carousel {
 	display: block;
 }
 .slick-initialized.simple_slick_carousel_block{
@@ -13511,7 +13511,7 @@ img.mfp-img {
 	outline: none;
 	background: transparent;
 }
-.companie-logo-slick-carousel .slick-prev, .companie-logo-slick-carousel .slick-next, .simple-slick-carousel .slick-prev, .simple-slick-carousel .slick-next {
+.companie-logo .slick-prev, .companie-logo .slick-next, .simple-slick-carousel .slick-prev, .simple-slick-carousel .slick-next {
 	display: none!important;
 }
 .simple-slick-carousel.arrows-nav .slick-prev, .simple-slick-carousel.arrows-nav .slick-next {
@@ -13641,12 +13641,12 @@ img.mfp-img {
 .slick-dots li button:hover, .slick-dots li button:focus {
 	outline: none;
 }
-.companie-logo-slick-carousel div.item {
+.companie-logo div.item {
 	margin-bottom: 30px;
 	text-align: center;
 	display: inline-block;
 }
-.companie-logo-slick-carousel div.item img {
+.companie-logo div.item img {
 	display: inline-block;
 	border:1px solid rgba(0, 0, 0, 0.05);
 	border-radius:6px;
@@ -14638,7 +14638,7 @@ button.panel-cancel:active {
 }
 }
 @media only screen and (min-width: 992px) and (max-width: 1239px) {
-.companie-logo-slick-carousel div.item {
+.companie-logo div.item {
     padding: 0 10px;
 }
 }
@@ -31812,10 +31812,10 @@ img.mfp-img {
 .slick-arrow.slick-hidden {
 	display: none;
 }
-.companie-logo-slick-carousel, .utf_testimonial_carousel, .simple_slick_carousel_block, .simple-slick-carousel {
+.companie-logo, .utf_testimonial_carousel, .simple_slick_carousel_block, .simple-slick-carousel {
 	display: none;
 }
-.slick-initialized.companie-logo-slick-carousel, .slick-initialized.utf_testimonial_carousel, .slick-initialized.simple_slick_carousel_block, .slick-initialized.simple-slick-carousel {
+.slick-initialized.companie-logo, .slick-initialized.utf_testimonial_carousel, .slick-initialized.simple_slick_carousel_block, .slick-initialized.simple-slick-carousel {
 	display: block;
 }
 .slick-initialized.simple_slick_carousel_block{
@@ -31848,7 +31848,7 @@ img.mfp-img {
 	outline: none;
 	background: transparent;
 }
-.companie-logo-slick-carousel .slick-prev, .companie-logo-slick-carousel .slick-next, .simple-slick-carousel .slick-prev, .simple-slick-carousel .slick-next {
+.companie-logo .slick-prev, .companie-logo .slick-next, .simple-slick-carousel .slick-prev, .simple-slick-carousel .slick-next {
 	display: none!important;
 }
 .simple-slick-carousel.arrows-nav .slick-prev, .simple-slick-carousel.arrows-nav .slick-next {
@@ -31978,12 +31978,12 @@ img.mfp-img {
 .slick-dots li button:hover, .slick-dots li button:focus {
 	outline: none;
 }
-.companie-logo-slick-carousel div.item {
+.companie-logo div.item {
 	margin-bottom: 30px;
 	text-align: center;
 	display: inline-block;
 }
-.companie-logo-slick-carousel div.item img {
+.companie-logo div.item img {
 	display: inline-block;
 	border:1px solid rgba(0, 0, 0, 0.05);
 	border-radius:6px;
@@ -32975,7 +32975,7 @@ button.panel-cancel:active {
 }
 }
 @media only screen and (min-width: 992px) and (max-width: 1239px) {
-.companie-logo-slick-carousel div.item {
+.companie-logo div.item {
     padding: 0 10px;
 }
 }

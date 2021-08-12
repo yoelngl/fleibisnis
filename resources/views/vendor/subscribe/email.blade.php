@@ -5,9 +5,6 @@
         <title>Fleibisnis Message</title>
     </head>
     <body>
-        <p>Nama: {{ $name }}</p>
-        <p>Email: {{ $email }}</p>
-        <p>Subject: {{ $subject }}</p>
-        <p>Isi: {{ $body }}</p>
+        <p>New Subscribers {{ $email }}</p>
     </body>
 </html>
