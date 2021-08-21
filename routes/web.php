@@ -28,6 +28,8 @@ use App\Http\Livewire\Pages\Master\Franchise\FranchiseForm;
 use App\Http\Livewire\Pages\Master\Franchise\FranchiseIndex;
 use App\Http\Livewire\Pages\Master\News\NewsIndex;
 use App\Http\Livewire\Pages\Master\News\NewsForm;
+use App\Http\Livewire\Pages\Master\Users\Subscribe;
+use App\Http\Livewire\Pages\Master\Users\User;
 use App\Http\Livewire\Pages\Master\Widget\Expert as WidgetExpert;
 use App\Http\Livewire\Pages\Master\Widget\ExpertForm;
 use App\Http\Livewire\Pages\TodayNewsDetail;
@@ -130,6 +132,11 @@ Route::middleware(['role:admin'])->group(function () {
     Route::GET('/admin/footer',FooterIndex::class)->name('admin.footer');
     Route::GET('/admin/footer/add',FooterForm::class)->name('admin.footer.add');
     Route::GET('/admin/footer/edit/{id}',FooterForm::class)->name('admin.footer.edit');
+
+    Route::GET('/admin/users',User::class)->name('admin.users');
+    Route::GET('/admin/subscribes',Subscribe::class)->name('admin.subscribes');
+
+
 
 
 

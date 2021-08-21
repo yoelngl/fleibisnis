@@ -101,6 +101,7 @@ class Profile extends Component
         if($this->images){
         $data['images'] = $this->images->store('profile', 'public');
         }
+        
         Customer::create($data);
 
         session()->flash('success','Your Profile Successfully Updated');

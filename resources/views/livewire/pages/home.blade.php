@@ -167,9 +167,11 @@
             </div>
           </div>
           <div class="row">
-              @foreach ($today_news->take(4) as $item)
-              <div class="col-md-3 col-sm-6 col-xs-12"> <a href="{{ route('today_news.details',['slug' => $item->slug]) }}" class="blog_compact_part-container">
-                <div class="blog_compact_part"> <img src="{{ asset('storage/'.$item->images) }}" alt="">
+            @foreach ($today_news->take(4) as $item)
+              <div class="col-md-3 col-sm-6 col-xs-12 " style="margin-bottom: 20px;"> 
+                <a href="{{ route('today_news.details',['slug' => $item->slug]) }}" >
+                <div class="blog_compact_part"> 
+                  <img src="{{ asset('storage/'.$item->images) }}" alt="">
                   <div class="blog_compact_part_content">
                     <h3>{{ $item->title }}</h3>
                     <ul class="blog_post_tag_part">
@@ -180,9 +182,9 @@
                 </div>
                 </a>
               </div>
-              @endforeach
-            <div class="col-md-12 centered_content"> <a href="{{ route('today-news') }}" class="button border margin-top-20">{{ trans('message.view-more') }}</a> </div>
+            @endforeach
           </div>
+          <div class="col-md-12 centered_content"> <a href="{{ route('today-news') }}" class="button border margin-top-20">{{ trans('message.view-more') }}</a> </div>
         </div>
       </section>
 
@@ -300,6 +302,7 @@
     });
     }
     $('.sliders').slick({
+      arrows:false,
       infinite: false,
       speed: 300,
       slidesToShow: 5,
