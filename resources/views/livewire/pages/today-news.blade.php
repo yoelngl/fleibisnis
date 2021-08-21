@@ -64,8 +64,10 @@
                     <li>{{ trans('message.created-by') }} <a href="#">{{ $today_news->username }}</a></li>
                     <li><a href="#">{{ $views }} Views</a></li>
                   </ul>
-                  <p>{!! Str::limit($today_news->description,500) !!}</p>
-                  <a href="{{ route('today_news.details',['slug' => $today_news->slug]) }}" class="read-more">{{ trans('message.read-more') }}<i class="fa fa-angle-right"></i></a>
+                  <div class="">
+                      {!! Str::limit($today_news->description,700) !!}
+                      <a href="{{ route('today_news.details',['slug' => $today_news->slug]) }}" class="read-more">{!! trans('message.read-more') !!}<i class="fa fa-angle-right"></i></a>
+                  </div>
                 </div>
               </div>
 
@@ -81,7 +83,7 @@
                 <div class="row">
                     @if($more_news->count())
                     @foreach ($more_news as $item)
-                    <div class="col-md-6 col-sm-6 col-xs-12"> <a href="{{ route('today_news.details',['slug' => $item->slug]) }}" class="blog_compact_part-container">
+                    <div class="col-md-6 col-sm-6 col-xs-12"> <a href="{{ route('today_news.details',['slug' => $item->slug]) }}" class="">
                         <div class="blog_compact_part"> <img src="{{ asset('storage/'.$item->images) }}" alt="">
                           <div class="blog_compact_part_content">
                             <h3>{{ $item->title }}</h3>
