@@ -77,8 +77,8 @@ display: none;
             <div class="row">
                 @if($franchise_week->count())
                 @foreach ($franchise_week as $item)
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <a href="//www.youtube.com/watch?v={{ $item->url }}" data-lity class="blog_compact_part-container">
+                <div class="col-md-4 col-sm-6 col-xs-12" style="margin-bottom: 20px">
+                    <a href="//www.youtube.com/watch?v={{ $item->url }}" data-lity class="">
                   <div class="blog_compact_part"> <img src="{{ asset('storage/'.$item->images) }}" alt="">
                     <div class="blog_compact_part_content">
                       <h3>{{ $item->title }}</h3>

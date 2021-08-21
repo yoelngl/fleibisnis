@@ -81,7 +81,7 @@ Today News
                                   </div>
                                   </a>
                                   <div>
-                                  <a href="{{ route('retail-details',['slug' => $item->slug]) }}" class="font-weight-bold  mr-1">Details</a>
+                                  <a href="{{ route('today_news.details',['slug' => $item->slug]) }}" class="font-weight-bold  mr-1">Details</a>
                                   <a href="{{ route('admin.today_news.edit',['slug' => $item->slug]) }}" class="font-weight-bold text-warning mr-1">Edit</a>
                                   <a wire:click.prevent="$emit('deleteNews','{{ $item->slug }}')" class="font-weight-bold text-danger mr-1">Delete</a>
                                   </div>

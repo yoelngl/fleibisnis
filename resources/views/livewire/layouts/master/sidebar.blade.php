@@ -37,6 +37,10 @@
         </li>
         <li class=" nav-item {{ request()->is('admin/footer') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.footer') }}"><i data-feather="layout"></i><span class="menu-title text-truncate" data-i18n="home">Footer</span></a>
         </li>
+        <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">USERS </span><i data-feather="more-horizontal"></i>
+        <li class=" nav-item {{ request()->is('admin/users') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.users') }}"><i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="user">Users</span></a>
+        <li class=" nav-item {{ request()->is('admin/subscribes') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.subscribes') }}"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="user">Subscribes</span></a>
+
       </ul>
     </div>
   </div>
