@@ -168,9 +168,9 @@
           </div>
           <div class="row">
             @foreach ($today_news->take(4) as $item)
-              <div class="col-md-3 col-sm-6 col-xs-12 " style="margin-bottom: 20px;"> 
+              <div class="col-md-3 col-sm-6 col-xs-12 " style="margin-bottom: 20px;">
                 <a href="{{ route('today_news.details',['slug' => $item->slug]) }}" >
-                <div class="blog_compact_part"> 
+                <div class="blog_compact_part">
                   <img src="{{ asset('storage/'.$item->images) }}" alt="">
                   <div class="blog_compact_part_content">
                     <h3>{{ $item->title }}</h3>
@@ -196,6 +196,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
 
 <script>
+
+
 
     $('.price').mask('000.000.000.000.000',
     {reverse: true}
@@ -301,8 +303,11 @@
     	}
     });
     }
+    var item_length = $('.sliders > div').length - 1;
     $('.sliders').slick({
-      arrows:false,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      speed: 3000,
       infinite: false,
       speed: 300,
       slidesToShow: 5,
@@ -332,6 +337,16 @@
         }
       ]
     });
+    });
+
+    slider.on('afterChange', function(event, slick, currentSlide, nextSlide){
+        //check the length of total items in .slide container
+      //if that number is the same with the number of the last slider
+      //Then pause the slider
+      if( item_length === slider.slick('slickCurrentSlide') ){
+        //this should do the same thing -> slider.slickPause();
+        slider.slickSetOption("autoplay",false,false)
+      };
     });
 
 

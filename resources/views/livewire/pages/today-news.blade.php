@@ -83,7 +83,7 @@
                 <div class="row">
                     @if($more_news->count())
                     @foreach ($more_news as $item)
-                    <div class="col-md-6 col-sm-6 col-xs-12"> <a href="{{ route('today_news.details',['slug' => $item->slug]) }}" class="blog_compact_part-container">
+                    <div class="col-md-6 col-sm-6 col-xs-12" style="margin-bottom: 20px;"> <a href="{{ route('today_news.details',['slug' => $item->slug]) }}" class="">
                         <div class="blog_compact_part"> <img src="{{ asset('storage/'.$item->images) }}" alt="">
                           <div class="blog_compact_part_content">
                             <h3>{{ $item->title }}</h3>

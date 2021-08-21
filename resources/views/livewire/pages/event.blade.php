@@ -5,7 +5,7 @@ Events
 @section('css')
     <style>
 
-    .card-horizontal {
+    /* .card-horizontal {
     display: flex;
     flex: 1 1 auto;
 }
@@ -14,7 +14,7 @@ Events
  .optionalstuff {
 display: none;
 }
-}
+} */
 
         #headerPopup{
   width:75%;
@@ -124,20 +124,18 @@ display: none;
                                         <div class="row">
                                             <div class="col-12 mt-3">
                                                 <div class="card">
-                                                    <div class="card-horizontal">
                                                         <div class="img-square-wrapper" wire:ignore>
                                                             <div class="" >
                                                                 @if ($item->images)
-                                                                    <img class="optionalstuff"  src="{{ asset('storage/'.$item->images) }}" alt="Card image cap">
+                                                                    <img class="optionalstuff"  src="{{ asset('storage/'.$item->images) }}" alt="Card image cap" width="50%">
                                                                 @endif
                                                             </div>
                                                         </div>
                                                         <div class="card-body">
                                                             <div class="card-text">
-                                                            {!! Str::limit($item->activities,500) !!}
+                                                            <p>{!! Str::limit($item->activities,500) !!}</p>
                                                             </div>
                                                         </div>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

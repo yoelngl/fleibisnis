@@ -19,7 +19,8 @@ class ExpertDetails extends Component
 
     public function render()
     {
+        $ads = Banner::where('category','=','Ads Expert')->first();
         $banner = Banner::where('category','=','Ask Expert')->first();
-        return view('livewire.pages.expert-details',compact('banner'))->extends('layouts.app')->section('content');
+        return view('livewire.pages.expert-details',compact('banner','ads'))->extends('layouts.app')->section('content');
     }
 }

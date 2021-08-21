@@ -123,7 +123,7 @@ return [
     'full-name' => 'Full Name',
     'phone-number' => 'Phone Number',
     'job-title' => 'Job Title',
-    'email-bussines' => 'Bussines Email',
+    'email-bussines' => 'Business Email',
     'city' => 'City',
     'country' => 'Country',
     'address' => 'Address',
@@ -172,7 +172,7 @@ return [
     'no' => 'No',
 
     // Franchise
-    'bussiness_information' => 'Bussiness Information',
+    'bussiness_information' => 'Business Information',
     'investment_information' => 'Investment Information',
     'additional_information' => 'Additional Information',
     'brand_logo' => 'Brand Logo',

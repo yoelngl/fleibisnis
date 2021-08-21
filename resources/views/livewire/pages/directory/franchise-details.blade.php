@@ -68,7 +68,7 @@
             <a href="https://wa.me/{{ $data['whatsapp_contact'] }}" class="button gray btn btn-sm"><i class="fa fa-phone"></i> Whatsapp Contact</a>
             @endauth
             <div id="utf_listing_overview" class="utf_listing_section">
-                <h3 class="utf_listing_headline_part margin-top-30 margin-bottom-30">Franchise Details</h3>
+                <h3 class="utf_listing_headline_part margin-top-30 margin-bottom-30">Brand Details</h3>
               <div class="style-2">
                 <div class="accordion">
                     <h3><span class="ui-accordion-header-icon ui-icon ui-accordion-icon"></span><i class="sl sl-icon-plus"></i> {{ trans('message.bussiness_information') }}</h3>
